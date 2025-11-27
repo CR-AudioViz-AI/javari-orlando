@@ -1,0 +1,12 @@
+{
+  "name": "orlando-vacation-deals",
+  "version": "2.0.0",
+  "description": "Complete Orlando vacation planning with real deals from Disney, Universal, SeaWorld - DVC rentals, hotel comparison, passholder perks",
+  "scripts": {
+    "start": "npx serve public",
+    "dev": "npx serve public"
+  },
+  "keywords": ["disney", "universal", "seaworld", "orlando", "vacation", "deals", "dvc", "travel"],
+  "author": "CR AudioViz AI",
+  "license": "MIT"
+}
