@@ -1,0 +1,55 @@
+{
+  "resorts": {
+    "grand-floridian": {
+      "name": "Disney's Grand Floridian Resort & Spa",
+      "tier": "deluxe",
+      "directPriceAvg": 789,
+      "dvcPointsStudio": { "adventure": 20, "choice": 25, "peak": 31, "premier": 38 },
+      "dvcRentalRate": 21,
+      "amenities": ["Monorail", "Walk to MK", "Spa", "Fine Dining"],
+      "perks": ["Early Entry", "Extended Hours", "Free Parking"]
+    },
+    "polynesian": {
+      "name": "Disney's Polynesian Village Resort",
+      "tier": "deluxe",
+      "directPriceAvg": 685,
+      "dvcPointsStudio": { "adventure": 19, "choice": 24, "peak": 29, "premier": 35 },
+      "dvcRentalRate": 21,
+      "amenities": ["Monorail", "Walk to MK", "Beach", "Trader Sam's"],
+      "perks": ["Early Entry", "Extended Hours", "Free Parking"]
+    },
+    "animal-kingdom-lodge": {
+      "name": "Disney's Animal Kingdom Villas",
+      "tier": "deluxe",
+      "directPriceAvg": 534,
+      "dvcPointsStudio": { "adventure": 14, "choice": 18, "peak": 22, "premier": 28 },
+      "dvcRentalRate": 21,
+      "amenities": ["Savanna Views", "African Cuisine", "Unique Theming"],
+      "perks": ["Early Entry", "Extended Hours", "Free Parking"]
+    },
+    "beach-club": {
+      "name": "Disney's Beach Club Villas",
+      "tier": "deluxe",
+      "directPriceAvg": 625,
+      "dvcPointsStudio": { "adventure": 16, "choice": 20, "peak": 25, "premier": 32 },
+      "dvcRentalRate": 21,
+      "amenities": ["Walk to EPCOT", "Stormalong Bay", "Yacht Club access"],
+      "perks": ["Early Entry", "Extended Hours", "Free Parking"]
+    },
+    "boardwalk": {
+      "name": "Disney's BoardWalk Villas",
+      "tier": "deluxe",
+      "directPriceAvg": 565,
+      "dvcPointsStudio": { "adventure": 14, "choice": 18, "peak": 22, "premier": 28 },
+      "dvcRentalRate": 21,
+      "amenities": ["Walk to EPCOT", "BoardWalk Entertainment", "Bakery"],
+      "perks": ["Early Entry", "Extended Hours", "Free Parking"]
+    }
+  },
+  "seasons": {
+    "adventure": { "months": [1, 9, 11], "description": "Value Season" },
+    "choice": { "months": [2, 5, 10], "description": "Regular Season" },
+    "peak": { "months": [3, 4, 6, 8], "description": "Peak Season" },
+    "premier": { "months": [7, 12], "description": "Holiday Season" }
+  }
+}
