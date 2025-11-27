@@ -1,0 +1,34 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "public/**",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "api/**/*.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "rewrites": [
+    { "source": "/", "destination": "/public/index.html" },
+    { "source": "/api/:path*", "destination": "/api/:path*" },
+    { "source": "/dvc", "destination": "/public/dvc.html" },
+    { "source": "/deals", "destination": "/public/deals.html" },
+    { "source": "/results", "destination": "/public/results.html" },
+    { "source": "/hotels", "destination": "/public/results.html" },
+    { "source": "/:path*", "destination": "/public/:path*" }
+  ],
+  "headers": [
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        { "key": "Access-Control-Allow-Origin", "value": "*" },
+        { "key": "Access-Control-Allow-Methods", "value": "GET, POST, OPTIONS" }
+      ]
+    }
+  ],
+  "github": {
+    "autoAlias": false
+  }
+}
