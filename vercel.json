@@ -10,14 +10,13 @@
       "use": "@vercel/node"
     }
   ],
-  "routes": [
-    { "src": "/api/(.*)", "dest": "/api/$1" },
-    { "src": "/dvc", "dest": "/public/dvc.html" },
-    { "src": "/deals", "dest": "/public/deals.html" },
-    { "src": "/results", "dest": "/public/results.html" },
-    { "src": "/hotels", "dest": "/public/results.html" },
-    { "src": "/(.*)", "dest": "/public/$1" },
-    { "src": "/", "dest": "/public/index.html" }
+  "rewrites": [
+    { "source": "/api/:path*", "destination": "/api/:path*" },
+    { "source": "/dvc", "destination": "/public/dvc.html" },
+    { "source": "/deals", "destination": "/public/deals.html" },
+    { "source": "/results", "destination": "/public/results.html" },
+    { "source": "/hotels", "destination": "/public/results.html" },
+    { "source": "/:path*", "destination": "/public/:path*" }
   ],
   "headers": [
     {
@@ -27,5 +26,8 @@
         { "key": "Access-Control-Allow-Methods", "value": "GET, POST, OPTIONS" }
       ]
     }
-  ]
+  ],
+  "github": {
+    "autoAlias": false
+  }
 }
