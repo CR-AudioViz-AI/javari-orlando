@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orlando Vacation Deals - Disney, Universal, SeaWorld & More | Plan Your Dream Trip</title>
+    <meta name="description" content="Plan your perfect Orlando vacation! Compare deals for Disney World, Universal, SeaWorld, and LEGOLAND. Find hotel discounts, passholder perks, and build your custom multi-park trip.">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'disney': '#5B2C86',
+                        'universal': '#0033A0',
+                        'seaworld': '#0077B6',
+                        'legoland': '#FFD700'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Segoe UI', system-ui, sans-serif; }
+        .hero-bg {
+            background: linear-gradient(135deg, 
+                rgba(91, 44, 134, 0.9) 0%, 
+                rgba(0, 51, 160, 0.9) 50%, 
+                rgba(0, 119, 182, 0.9) 100%
+            ), url('https://images.unsplash.com/photo-1597466599360-3b9775841aec?w=1600') center/cover;
+        }
+        .park-card { transition: all 0.3s; cursor: pointer; }
+        .park-card:hover { transform: scale(1.02); }
+        .park-card.selected { ring: 4px; ring-offset: 2px; }
+        .park-disney.selected { box-shadow: 0 0 0 4px #5B2C86; }
+        .park-universal.selected { box-shadow: 0 0 0 4px #0033A0; }
+        .park-seaworld.selected { box-shadow: 0 0 0 4px #0077B6; }
+        .park-legoland.selected { box-shadow: 0 0 0 4px #DAA520; }
+        .fade-in { animation: fadeIn 0.5s ease-in; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .pulse { animation: pulse 2s infinite; }
+        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-3">
+            <div class="flex items-center justify-between">
+                <a href="/" class="flex items-center gap-3">
+                    <div class="flex -space-x-1">
+                        <span class="text-2xl">🏰</span>
+                        <span class="text-2xl">🎢</span>
+                        <span class="text-2xl">🐋</span>
+                    </div>
+                    <div>
+                        <span class="font-bold text-xl text-gray-900">Orlando Vacation Deals</span>
+                        <span class="text-xs text-gray-500 block">by CR AudioViz AI</span>
+                    </div>
+                </a>
+                
+                <div class="hidden md:flex items-center gap-6">
+                    <a href="/hotels" class="text-gray-600 hover:text-disney font-medium">Hotels</a>
+                    <a href="/tickets" class="text-gray-600 hover:text-disney font-medium">Tickets</a>
+                    <a href="/deals" class="text-gray-600 hover:text-disney font-medium">Current Deals</a>
+                    <a href="/passholder" class="text-gray-600 hover:text-disney font-medium">Passholder Hub</a>
+                    <a href="/trip-builder" class="bg-disney text-white px-4 py-2 rounded-lg hover:bg-purple-800 transition text-sm font-medium">
+                        Build My Trip
+                    </a>
+                </div>
+                
+                <button id="mobileMenuBtn" class="md:hidden text-gray-600">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-bg text-white py-16 md:py-24">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <h1 class="text-4xl md:text-6xl font-bold mb-4">
+                    Your Orlando Adventure Starts Here
+                </h1>
+                <p class="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto">
+                    Disney World • Universal • SeaWorld • LEGOLAND
+                    <br><span class="text-lg">One place to find ALL the best deals, compare hotels, and plan your perfect trip</span>
+                </p>
+            </div>
+
+            <!-- Quick Action Buttons -->
+            <div class="flex flex-wrap justify-center gap-4 mb-12">
+                <a href="#trip-builder" class="bg-white text-disney px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition flex items-center gap-2 pulse">
+                    <i class="fas fa-magic"></i>
+                    Build My Custom Trip
+                </a>
+                <a href="/deals" class="border-2 border-white text-white px-6 py-3 rounded-full font-semibold hover:bg-white/10 transition flex items-center gap-2">
+                    <i class="fas fa-tags"></i>
+                    Today's Hot Deals
+                </a>
+                <a href="/passholder" class="border-2 border-white text-white px-6 py-3 rounded-full font-semibold hover:bg-white/10 transition flex items-center gap-2">
+                    <i class="fas fa-id-card"></i>
+                    Passholder Perks
+                </a>
+            </div>
+
+            <!-- Stats Bar -->
+            <div class="bg-white/10 backdrop-blur rounded-2xl p-6 max-w-4xl mx-auto">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                    <div>
+                        <div class="text-3xl font-bold">4</div>
+                        <div class="text-white/80 text-sm">Theme Park Resorts</div>
+                    </div>
+                    <div>
+                        <div class="text-3xl font-bold">700K+</div>
+                        <div class="text-white/80 text-sm">Hotels Compared</div>
+                    </div>
+                    <div>
+                        <div class="text-3xl font-bold">60%</div>
+                        <div class="text-white/80 text-sm">Max DVC Savings</div>
+                    </div>
+                    <div>
+                        <div class="text-3xl font-bold">$0</div>
+                        <div class="text-white/80 text-sm">To Use This Site</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Park Selector Section -->
+    <section class="py-16 bg-white" id="parks">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold text-gray-900 mb-3">Choose Your Adventure</h2>
+                <p class="text-gray-600 text-lg">Select the parks you want to explore - mix and match for your perfect trip!</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6" id="parkCards">
+                <!-- Disney -->
+                <div class="park-card park-disney bg-gradient-to-br from-purple-600 to-purple-800 rounded-2xl p-6 text-white" 
+                     data-park="disney" onclick="togglePark('disney')">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-4xl">🏰</span>
+                        <div class="w-6 h-6 rounded-full border-2 border-white flex items-center justify-center" id="check-disney">
+                            <i class="fas fa-check text-xs hidden"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Walt Disney World</h3>
+                    <p class="text-white/80 text-sm mb-4">4 parks • Magic Kingdom, EPCOT, Hollywood Studios, Animal Kingdom</p>
+                    <div class="flex items-center gap-2 text-xs">
+                        <span class="bg-white/20 px-2 py-1 rounded">DVC Rentals</span>
+                        <span class="bg-white/20 px-2 py-1 rounded">Passholder Deals</span>
+                    </div>
+                </div>
+
+                <!-- Universal -->
+                <div class="park-card park-universal bg-gradient-to-br from-blue-700 to-blue-900 rounded-2xl p-6 text-white" 
+                     data-park="universal" onclick="togglePark('universal')">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-4xl">🎢</span>
+                        <div class="w-6 h-6 rounded-full border-2 border-white flex items-center justify-center" id="check-universal">
+                            <i class="fas fa-check text-xs hidden"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Universal Orlando</h3>
+                    <p class="text-white/80 text-sm mb-4">4 parks • Studios, Islands, Volcano Bay, Epic Universe</p>
+                    <div class="flex items-center gap-2 text-xs">
+                        <span class="bg-white/20 px-2 py-1 rounded">40% Off Hotels</span>
+                        <span class="bg-white/20 px-2 py-1 rounded">Free Express</span>
+                    </div>
+                </div>
+
+                <!-- SeaWorld -->
+                <div class="park-card park-seaworld bg-gradient-to-br from-cyan-600 to-cyan-800 rounded-2xl p-6 text-white" 
+                     data-park="seaworld" onclick="togglePark('seaworld')">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-4xl">🐋</span>
+                        <div class="w-6 h-6 rounded-full border-2 border-white flex items-center justify-center" id="check-seaworld">
+                            <i class="fas fa-check text-xs hidden"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">SeaWorld Parks</h3>
+                    <p class="text-white/80 text-sm mb-4">4 parks • SeaWorld, Aquatica, Discovery Cove, Busch Gardens</p>
+                    <div class="flex items-center gap-2 text-xs">
+                        <span class="bg-white/20 px-2 py-1 rounded">50% Off Passes</span>
+                        <span class="bg-white/20 px-2 py-1 rounded">Free Parking</span>
+                    </div>
+                </div>
+
+                <!-- LEGOLAND -->
+                <div class="park-card park-legoland bg-gradient-to-br from-yellow-500 to-orange-500 rounded-2xl p-6 text-white" 
+                     data-park="legoland" onclick="togglePark('legoland')">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-4xl">🧱</span>
+                        <div class="w-6 h-6 rounded-full border-2 border-white flex items-center justify-center" id="check-legoland">
+                            <i class="fas fa-check text-xs hidden"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">LEGOLAND Florida</h3>
+                    <p class="text-white/80 text-sm mb-4">2 parks • Theme Park + Water Park • Perfect for kids 2-12</p>
+                    <div class="flex items-center gap-2 text-xs">
+                        <span class="bg-white/20 px-2 py-1 rounded">Kids Free</span>
+                        <span class="bg-white/20 px-2 py-1 rounded">Hotel Packages</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Selected Parks Summary -->
+            <div id="selectedSummary" class="hidden mt-8 bg-gray-100 rounded-xl p-6 fade-in">
+                <div class="flex items-center justify-between flex-wrap gap-4">
+                    <div>
+                        <h4 class="font-bold text-gray-900">Your Trip Includes:</h4>
+                        <p class="text-gray-600" id="selectedParksText">No parks selected</p>
+                    </div>
+                    <a href="#trip-builder" class="bg-disney text-white px-6 py-2 rounded-lg font-semibold hover:bg-purple-800 transition">
+                        Continue to Trip Builder →
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trip Builder Section -->
+    <section class="py-16 bg-gray-100" id="trip-builder">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold text-gray-900 mb-3">
+                    <i class="fas fa-magic text-disney mr-2"></i>
+                    Trip Builder
+                </h2>
+                <p class="text-gray-600 text-lg">Design your perfect Orlando vacation - we'll find the best deals</p>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8">
+                <!-- Step 1: Dates -->
+                <div class="mb-8">
+                    <h3 class="font-bold text-gray-900 mb-4 flex items-center gap-2">
+                        <span class="w-8 h-8 bg-disney text-white rounded-full flex items-center justify-center text-sm">1</span>
+                        When are you going?
+                    </h3>
+                    <div class="grid md:grid-cols-3 gap-4">
+                        <div>
+                            <label class="text-sm text-gray-600 block mb-1">Check-In Date</label>
+                            <input type="date" id="tripCheckin" class="w-full border-2 border-gray-200 rounded-lg px-4 py-3 focus:border-disney focus:ring-0">
+                        </div>
+                        <div>
+                            <label class="text-sm text-gray-600 block mb-1">Check-Out Date</label>
+                            <input type="date" id="tripCheckout" class="w-full border-2 border-gray-200 rounded-lg px-4 py-3 focus:border-disney focus:ring-0">
+                        </div>
+                        <div>
+                            <label class="text-sm text-gray-600 block mb-1">Trip Length</label>
+                            <div class="bg-gray-100 rounded-lg px-4 py-3 text-gray-700" id="tripLength">Select dates</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2: Party Size -->
+                <div class="mb-8">
+                    <h3 class="font-bold text-gray-900 mb-4 flex items-center gap-2">
+                        <span class="w-8 h-8 bg-disney text-white rounded-full flex items-center justify-center text-sm">2</span>
+                        Who's coming?
+                    </h3>
+                    <div class="grid md:grid-cols-4 gap-4">
+                        <div>
+                            <label class="text-sm text-gray-600 block mb-1">Adults (18+)</label>
+                            <select id="adults" class="w-full border-2 border-gray-200 rounded-lg px-4 py-3 focus:border-disney">
+                                <option value="1">1</option>
+                                <option value="2" selected>2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5+</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="text-sm text-gray-600 block mb-1">Children (3-17)</label>
+                            <select id="children" class="w-full border-2 border-gray-200 rounded-lg px-4 py-3 focus:border-disney">
+                                <option value="0" selected>0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4+</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="text-sm text-gray-600 block mb-1">Toddlers (0-2)</label>
+                            <select id="toddlers" class="w-full border-2 border-gray-200 rounded-lg px-4 py-3 focus:border-disney">
+                                <option value="0" selected>0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="text-sm text-gray-600 block mb-1">Rooms Needed</label>
+                            <select id="rooms" class="w-full border-2 border-gray-200 rounded-lg px-4 py-3 focus:border-disney">
+                                <option value="1" selected>1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3: Park Days -->
+                <div class="mb-8">
+                    <h3 class="font-bold text-gray-900 mb-4 flex items-center gap-2">
+                        <span class="w-8 h-8 bg-disney text-white rounded-full flex items-center justify-center text-sm">3</span>
+                        How many days at each park?
+                    </h3>
+                    <div class="grid md:grid-cols-4 gap-4" id="parkDaysGrid">
+                        <div class="bg-purple-50 rounded-lg p-4" id="disneyDays">
+                            <div class="flex items-center gap-2 mb-2">
+                                <span>🏰</span>
+                                <span class="font-medium text-gray-900">Disney World</span>
+                            </div>
+                            <select class="w-full border rounded px-3 py-2" id="daysDisney">
+                                <option value="0">0 days</option>
+                                <option value="1">1 day</option>
+                                <option value="2">2 days</option>
+                                <option value="3">3 days</option>
+                                <option value="4" selected>4 days</option>
+                                <option value="5">5 days</option>
+                                <option value="6">6 days</option>
+                                <option value="7">7+ days</option>
+                            </select>
+                        </div>
+                        <div class="bg-blue-50 rounded-lg p-4" id="universalDays">
+                            <div class="flex items-center gap-2 mb-2">
+                                <span>🎢</span>
+                                <span class="font-medium text-gray-900">Universal</span>
+                            </div>
+                            <select class="w-full border rounded px-3 py-2" id="daysUniversal">
+                                <option value="0">0 days</option>
+                                <option value="1">1 day</option>
+                                <option value="2" selected>2 days</option>
+                                <option value="3">3 days</option>
+                                <option value="4">4 days</option>
+                                <option value="5">5+ days</option>
+                            </select>
+                        </div>
+                        <div class="bg-cyan-50 rounded-lg p-4" id="seaworldDays">
+                            <div class="flex items-center gap-2 mb-2">
+                                <span>🐋</span>
+                                <span class="font-medium text-gray-900">SeaWorld</span>
+                            </div>
+                            <select class="w-full border rounded px-3 py-2" id="daysSeaworld">
+                                <option value="0">0 days</option>
+                                <option value="1" selected>1 day</option>
+                                <option value="2">2 days</option>
+                                <option value="3">3 days</option>
+                            </select>
+                        </div>
+                        <div class="bg-yellow-50 rounded-lg p-4" id="legolandDays">
+                            <div class="flex items-center gap-2 mb-2">
+                                <span>🧱</span>
+                                <span class="font-medium text-gray-900">LEGOLAND</span>
+                            </div>
+                            <select class="w-full border rounded px-3 py-2" id="daysLegoland">
+                                <option value="0" selected>0 days</option>
+                                <option value="1">1 day</option>
+                                <option value="2">2 days</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 4: Budget & Preferences -->
+                <div class="mb-8">
+                    <h3 class="font-bold text-gray-900 mb-4 flex items-center gap-2">
+                        <span class="w-8 h-8 bg-disney text-white rounded-full flex items-center justify-center text-sm">4</span>
+                        Budget & Preferences
+                    </h3>
+                    <div class="grid md:grid-cols-3 gap-4">
+                        <div>
+                            <label class="text-sm text-gray-600 block mb-1">Hotel Budget (per night)</label>
+                            <select id="budget" class="w-full border-2 border-gray-200 rounded-lg px-4 py-3 focus:border-disney">
+                                <option value="100">Budget ($100 or less)</option>
+                                <option value="200" selected>Moderate ($100-$200)</option>
+                                <option value="350">Deluxe ($200-$350)</option>
+                                <option value="500">Premium ($350-$500)</option>
+                                <option value="1000">Luxury ($500+)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="text-sm text-gray-600 block mb-1">Hotel Location Priority</label>
+                            <select id="location" class="w-full border-2 border-gray-200 rounded-lg px-4 py-3 focus:border-disney">
+                                <option value="onsite">On-site Resort</option>
+                                <option value="nearby" selected>Near Parks</option>
+                                <option value="any">Anywhere (Best Price)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="text-sm text-gray-600 block mb-1">Are you a Passholder?</label>
+                            <select id="passholder" class="w-full border-2 border-gray-200 rounded-lg px-4 py-3 focus:border-disney">
+                                <option value="none" selected>No</option>
+                                <option value="disney">Disney Passholder</option>
+                                <option value="universal">Universal Passholder</option>
+                                <option value="seaworld">SeaWorld Passholder</option>
+                                <option value="multiple">Multiple Passes</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <!-- Special Options -->
+                    <div class="mt-4 flex flex-wrap gap-4">
+                        <label class="flex items-center gap-2 cursor-pointer">
+                            <input type="checkbox" id="includeDVC" class="rounded text-disney">
+                            <span class="text-sm text-gray-700">Include DVC Rentals (save 30-60%)</span>
+                        </label>
+                        <label class="flex items-center gap-2 cursor-pointer">
+                            <input type="checkbox" id="includeGoodNeighbor" checked class="rounded text-disney">
+                            <span class="text-sm text-gray-700">Include Good Neighbor Hotels</span>
+                        </label>
+                        <label class="flex items-center gap-2 cursor-pointer">
+                            <input type="checkbox" id="militaryDiscount" class="rounded text-disney">
+                            <span class="text-sm text-gray-700">Military/Veteran</span>
+                        </label>
+                        <label class="flex items-center gap-2 cursor-pointer">
+                            <input type="checkbox" id="floridaResident" class="rounded text-disney">
+                            <span class="text-sm text-gray-700">Florida Resident</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Search Button -->
+                <div class="text-center">
+                    <button onclick="searchTrip()" class="bg-gradient-to-r from-disney to-universal text-white px-12 py-4 rounded-xl font-bold text-lg hover:opacity-90 transition inline-flex items-center gap-3">
+                        <i class="fas fa-search"></i>
+                        Find My Perfect Trip
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                    <p class="text-gray-500 text-sm mt-3">We'll search 700,000+ hotels and show you the best options</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Current Hot Deals -->
+    <section class="py-16 bg-white">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex items-center justify-between mb-8">
+                <div>
+                    <h2 class="text-3xl font-bold text-gray-900">🔥 Hot Deals Right Now</h2>
+                    <p class="text-gray-600">Real promotions from Disney, Universal, and SeaWorld</p>
+                </div>
+                <a href="/deals" class="text-disney hover:underline font-medium">View All →</a>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6" id="hotDeals">
+                <!-- Disney Deal -->
+                <div class="bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl p-6 border border-purple-200">
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="text-2xl">🏰</span>
+                        <span class="bg-disney text-white text-xs font-bold px-2 py-1 rounded">DISNEY</span>
+                    </div>
+                    <h3 class="font-bold text-gray-900 text-lg mb-2">Save Up to 25% on Rooms</h3>
+                    <p class="text-gray-600 text-sm mb-4">Select Disney Resort hotels for stays most nights Jan 4 - Apr 30, 2026</p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs text-gray-500">Valid: Jan 4 - Apr 30, 2026</span>
+                        <a href="/deals/disney-room-discount" class="text-disney font-medium text-sm hover:underline">Details →</a>
+                    </div>
+                </div>
+
+                <!-- Universal Deal -->
+                <div class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-6 border border-blue-200">
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="text-2xl">🎢</span>
+                        <span class="bg-universal text-white text-xs font-bold px-2 py-1 rounded">UNIVERSAL</span>
+                    </div>
+                    <h3 class="font-bold text-gray-900 text-lg mb-2">40% Off Hotels + Early Entry</h3>
+                    <p class="text-gray-600 text-sm mb-4">Annual Passholders save up to 40% at Universal resorts including Epic Universe early access</p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs text-gray-500">Ongoing through 2025</span>
+                        <a href="/deals/universal-passholder-hotels" class="text-universal font-medium text-sm hover:underline">Details →</a>
+                    </div>
+                </div>
+
+                <!-- SeaWorld Deal -->
+                <div class="bg-gradient-to-br from-cyan-50 to-cyan-100 rounded-xl p-6 border border-cyan-200">
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="text-2xl">🐋</span>
+                        <span class="bg-seaworld text-white text-xs font-bold px-2 py-1 rounded">SEAWORLD</span>
+                    </div>
+                    <h3 class="font-bold text-gray-900 text-lg mb-2">Black Friday: Fun Card $49.99</h3>
+                    <p class="text-gray-600 text-sm mb-4">Unlimited visits to SeaWorld & Aquatica through end of 2025 for one low price</p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs text-gray-500">Limited Time</span>
+                        <a href="/deals/seaworld-funcard" class="text-seaworld font-medium text-sm hover:underline">Details →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DVC Savings Calculator -->
+    <section class="py-16 bg-gray-900 text-white">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <div class="inline-flex items-center gap-2 bg-green-500/20 text-green-400 px-3 py-1 rounded-full text-sm font-medium mb-4">
+                        <i class="fas fa-piggy-bank"></i>
+                        Save 30-60%
+                    </div>
+                    <h2 class="text-3xl font-bold mb-4">DVC Rentals: Disney Deluxe for Less</h2>
+                    <p class="text-gray-300 mb-6">
+                        Disney Vacation Club owners rent their unused points to guests like you. 
+                        Stay at Deluxe resorts like Grand Floridian and Polynesian for the price of a Moderate!
+                    </p>
+                    <div class="space-y-3 mb-6">
+                        <div class="flex items-center gap-3">
+                            <i class="fas fa-check-circle text-green-400"></i>
+                            <span>Same rooms, same amenities, same perks</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i class="fas fa-check-circle text-green-400"></i>
+                            <span>Early Entry & Extended Evening Hours included</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i class="fas fa-check-circle text-green-400"></i>
+                            <span>Free parking at all theme parks</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i class="fas fa-check-circle text-green-400"></i>
+                            <span>Book through trusted DVC brokers</span>
+                        </div>
+                    </div>
+                    <a href="/dvc" class="bg-green-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-600 transition inline-flex items-center gap-2">
+                        <i class="fas fa-calculator"></i>
+                        Calculate My DVC Savings
+                    </a>
+                </div>
+                
+                <div class="bg-gray-800 rounded-2xl p-6">
+                    <h4 class="font-bold text-lg mb-4">Example: 5 Nights at Grand Floridian</h4>
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between p-3 bg-gray-700 rounded-lg">
+                            <span class="text-gray-300">Disney Direct Price</span>
+                            <span class="font-bold text-xl line-through text-gray-400">$3,945</span>
+                        </div>
+                        <div class="flex items-center justify-between p-3 bg-green-500/20 rounded-lg border border-green-500/50">
+                            <span class="text-green-400">DVC Rental Price</span>
+                            <span class="font-bold text-2xl text-green-400">$2,205</span>
+                        </div>
+                        <div class="text-center py-3 bg-green-500 rounded-lg">
+                            <span class="font-bold text-xl">You Save: $1,740 (44%)</span>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 text-xs mt-4 text-center">*Based on $21/point DVC rental rate, average studio points</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Passholder Hub -->
+    <section class="py-16 bg-white">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold text-gray-900 mb-3">Passholder Hub</h2>
+                <p class="text-gray-600 text-lg">Exclusive deals and perks for annual pass holders</p>
+            </div>
+
+            <div class="grid md:grid-cols-4 gap-6">
+                <a href="/passholder/disney" class="bg-purple-50 rounded-xl p-6 hover:bg-purple-100 transition">
+                    <span class="text-3xl mb-3 block">🏰</span>
+                    <h3 class="font-bold text-gray-900 mb-2">Disney Passholders</h3>
+                    <ul class="text-sm text-gray-600 space-y-1">
+                        <li>• 10-20% merchandise</li>
+                        <li>• 10-20% dining</li>
+                        <li>• Room discounts</li>
+                        <li>• Free MagicBand+</li>
+                    </ul>
+                </a>
+
+                <a href="/passholder/universal" class="bg-blue-50 rounded-xl p-6 hover:bg-blue-100 transition">
+                    <span class="text-3xl mb-3 block">🎢</span>
+                    <h3 class="font-bold text-gray-900 mb-2">Universal Passholders</h3>
+                    <ul class="text-sm text-gray-600 space-y-1">
+                        <li>• Up to 40% off hotels</li>
+                        <li>• Free Express (Premier)</li>
+                        <li>• 10-15% merchandise</li>
+                        <li>• UOAP Lounge access</li>
+                    </ul>
+                </a>
+
+                <a href="/passholder/seaworld" class="bg-cyan-50 rounded-xl p-6 hover:bg-cyan-100 transition">
+                    <span class="text-3xl mb-3 block">🐋</span>
+                    <h3 class="font-bold text-gray-900 mb-2">SeaWorld Passholders</h3>
+                    <ul class="text-sm text-gray-600 space-y-1">
+                        <li>• Up to 50% off in-park</li>
+                        <li>• Free guest tickets</li>
+                        <li>• Quick Queue (Gold+)</li>
+                        <li>• Hotel discounts</li>
+                    </ul>
+                </a>
+
+                <a href="/passholder/multi" class="bg-gradient-to-br from-purple-50 via-blue-50 to-cyan-50 rounded-xl p-6 hover:opacity-80 transition">
+                    <span class="text-3xl mb-3 block">🎫</span>
+                    <h3 class="font-bold text-gray-900 mb-2">Multi-Park Passes</h3>
+                    <ul class="text-sm text-gray-600 space-y-1">
+                        <li>• Compare all options</li>
+                        <li>• Calculate best value</li>
+                        <li>• Stack discounts</li>
+                        <li>• Plan strategically</li>
+                    </ul>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center gap-2 mb-4">
+                        <span class="text-2xl">🏰🎢🐋</span>
+                        <span class="font-bold">Orlando Vacation Deals</span>
+                    </div>
+                    <p class="text-gray-400 text-sm">
+                        Your one-stop shop for planning the perfect Orlando vacation. 
+                        Real deals, real savings, no fake data.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Theme Parks</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="/disney" class="hover:text-white">Walt Disney World</a></li>
+                        <li><a href="/universal" class="hover:text-white">Universal Orlando</a></li>
+                        <li><a href="/seaworld" class="hover:text-white">SeaWorld Parks</a></li>
+                        <li><a href="/legoland" class="hover:text-white">LEGOLAND Florida</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Tools</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="/trip-builder" class="hover:text-white">Trip Builder</a></li>
+                        <li><a href="/hotels" class="hover:text-white">Hotel Search</a></li>
+                        <li><a href="/dvc" class="hover:text-white">DVC Calculator</a></li>
+                        <li><a href="/deals" class="hover:text-white">Current Deals</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">More from CR AudioViz AI</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="https://craudiovizai.com" class="hover:text-white">Creative Tools</a></li>
+                        <li><a href="https://craudiovizai.com/games" class="hover:text-white">Games Platform</a></li>
+                        <li><a href="/agents" class="hover:text-white">Travel Agent Portal</a></li>
+                        <li><a href="/about" class="hover:text-white">About Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8">
+                <p class="text-center text-gray-500 text-sm">
+                    © 2025 CR AudioViz AI, LLC. Not affiliated with Disney, Universal, SeaWorld, or LEGOLAND. 
+                    All trademarks are property of their respective owners.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Park selection state
+        const selectedParks = new Set();
+
+        function togglePark(park) {
+            const card = document.querySelector(`[data-park="${park}"]`);
+            const check = document.getElementById(`check-${park}`);
+            const icon = check.querySelector('i');
+            
+            if (selectedParks.has(park)) {
+                selectedParks.delete(park);
+                card.classList.remove('selected');
+                icon.classList.add('hidden');
+            } else {
+                selectedParks.add(park);
+                card.classList.add('selected');
+                icon.classList.remove('hidden');
+            }
+            
+            updateSelectedSummary();
+        }
+
+        function updateSelectedSummary() {
+            const summary = document.getElementById('selectedSummary');
+            const text = document.getElementById('selectedParksText');
+            
+            if (selectedParks.size > 0) {
+                summary.classList.remove('hidden');
+                const parkNames = {
+                    disney: 'Walt Disney World',
+                    universal: 'Universal Orlando',
+                    seaworld: 'SeaWorld Parks',
+                    legoland: 'LEGOLAND Florida'
+                };
+                const names = Array.from(selectedParks).map(p => parkNames[p]);
+                text.textContent = names.join(' + ');
+            } else {
+                summary.classList.add('hidden');
+            }
+        }
+
+        // Date handling
+        const today = new Date();
+        const checkinDate = new Date(today);
+        checkinDate.setDate(today.getDate() + 60);
+        const checkoutDate = new Date(checkinDate);
+        checkoutDate.setDate(checkinDate.getDate() + 7);
+
+        document.getElementById('tripCheckin').valueAsDate = checkinDate;
+        document.getElementById('tripCheckout').valueAsDate = checkoutDate;
+        updateTripLength();
+
+        document.getElementById('tripCheckin').addEventListener('change', updateTripLength);
+        document.getElementById('tripCheckout').addEventListener('change', updateTripLength);
+
+        function updateTripLength() {
+            const checkin = new Date(document.getElementById('tripCheckin').value);
+            const checkout = new Date(document.getElementById('tripCheckout').value);
+            const nights = Math.round((checkout - checkin) / (1000 * 60 * 60 * 24));
+            
+            if (nights > 0) {
+                document.getElementById('tripLength').textContent = `${nights} nights`;
+            } else {
+                document.getElementById('tripLength').textContent = 'Invalid dates';
+            }
+        }
+
+        // Search function
+        function searchTrip() {
+            const params = new URLSearchParams({
+                checkin: document.getElementById('tripCheckin').value,
+                checkout: document.getElementById('tripCheckout').value,
+                adults: document.getElementById('adults').value,
+                children: document.getElementById('children').value,
+                rooms: document.getElementById('rooms').value,
+                budget: document.getElementById('budget').value,
+                location: document.getElementById('location').value,
+                passholder: document.getElementById('passholder').value,
+                daysDisney: document.getElementById('daysDisney').value,
+                daysUniversal: document.getElementById('daysUniversal').value,
+                daysSeaworld: document.getElementById('daysSeaworld').value,
+                daysLegoland: document.getElementById('daysLegoland').value,
+                includeDVC: document.getElementById('includeDVC').checked,
+                military: document.getElementById('militaryDiscount').checked,
+                florida: document.getElementById('floridaResident').checked
+            });
+            
+            window.location.href = `/results?${params.toString()}`;
+        }
+    </script>
+</body>
+</html>
