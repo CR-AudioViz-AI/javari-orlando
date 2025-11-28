@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Passholder Hub | Orlando Vacation Deals</title>
+    <meta name="description" content="Exclusive perks and discounts for Disney, Universal, and SeaWorld Annual Passholders. Hotel discounts, merchandise savings, dining deals, and more.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'disney': '#5B2C86',
+                        'universal': '#0033A0',
+                        'seaworld': '#0077B6'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Segoe UI', system-ui, sans-serif; }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-3">
+            <div class="flex items-center justify-between">
+                <a href="/" class="flex items-center gap-3">
+                    <div class="flex -space-x-1">
+                        <span class="text-2xl">🏰</span>
+                        <span class="text-2xl">🎢</span>
+                        <span class="text-2xl">🐋</span>
+                    </div>
+                    <span class="font-bold text-xl text-gray-900">Orlando Vacation Deals</span>
+                </a>
+                <div class="flex items-center gap-6">
+                    <a href="/" class="text-gray-600 hover:text-disney">Trip Builder</a>
+                    <a href="/deals" class="text-gray-600 hover:text-disney">Deals</a>
+                    <a href="/dvc" class="text-gray-600 hover:text-disney">DVC Calculator</a>
+                    <a href="/passholder" class="text-disney font-semibold">Passholder Hub</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <div class="bg-gradient-to-br from-disney via-universal to-seaworld text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">🎟️ Passholder Hub</h1>
+            <p class="text-xl text-white/90 max-w-2xl mx-auto">Exclusive perks, discounts, and benefits for Annual Passholders at Disney, Universal, and SeaWorld</p>
+        </div>
+    </div>
+
+    <!-- Pass Selector Tabs -->
+    <div class="max-w-7xl mx-auto px-4 -mt-6">
+        <div class="flex justify-center gap-4 flex-wrap">
+            <button onclick="showPass('disney')" id="tab-disney" class="pass-tab active bg-disney text-white px-6 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transition flex items-center gap-2">
+                <span class="text-xl">🏰</span> Disney Passholder
+            </button>
+            <button onclick="showPass('universal')" id="tab-universal" class="pass-tab bg-white text-universal px-6 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transition flex items-center gap-2">
+                <span class="text-xl">🎢</span> Universal Passholder
+            </button>
+            <button onclick="showPass('seaworld')" id="tab-seaworld" class="pass-tab bg-white text-seaworld px-6 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transition flex items-center gap-2">
+                <span class="text-xl">🐋</span> SeaWorld Passholder
+            </button>
+        </div>
+    </div>
+
+    <!-- Disney Passholder Section -->
+    <div id="content-disney" class="pass-content max-w-7xl mx-auto px-4 py-12">
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Hotel Discounts -->
+            <div class="bg-white rounded-xl shadow-sm p-6">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-12 h-12 bg-disney/10 rounded-xl flex items-center justify-center">
+                        <span class="text-2xl">🏨</span>
+                    </div>
+                    <h3 class="font-bold text-lg">Hotel Discounts</h3>
+                </div>
+                <ul class="space-y-3 text-gray-700">
+                    <li class="flex items-start gap-2">
+                        <span class="text-green-500">✓</span>
+                        <span><strong>Up to 25% off</strong> Disney Resort hotels (select dates)</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-green-500">✓</span>
+                        <span>Exclusive passholder rates throughout the year</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-green-500">✓</span>
+                        <span>Early access to room-only discounts</span>
+                    </li>
+                </ul>
+                <a href="https://disneyworld.disney.go.com/passholder-program/passholder-benefits/" target="_blank" class="inline-block mt-4 text-disney font-medium hover:underline">
+                    View Current Offers →
+                </a>
+            </div>
+
+            <!-- Merchandise -->
+            <div class="bg-white rounded-xl shadow-sm p-6">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-12 h-12 bg-disney/10 rounded-xl flex items-center justify-center">
+                        <span class="text-2xl">🛍️</span>
+                    </div>
+                    <h3 class="font-bold text-lg">Merchandise</h3>
+                </div>
+                <ul class="space-y-3 text-gray-700">
+                    <li class="flex items-start gap-2">
+                        <span class="text-green-500">✓</span>
+                        <span><strong>20% off</strong> merchandise at most locations</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-green-500">✓</span>
+                        <span>Exclusive passholder merchandise</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-green-500">✓</span>
+                        <span>MagicBand+ discounts</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Dining -->
+            <div class="bg-white rounded-xl shadow-sm p-6">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-12 h-12 bg-disney/10 rounded-xl flex items-center justify-center">
+                        <span class="text-2xl">🍽️</span>
+                    </div>
+                    <h3 class="font-bold text-lg">Dining</h3>
+                </div>
+                <ul class="space-y-3 text-gray-700">
+                    <li class="flex items-start gap-2">
+                        <span class="text-green-500">✓</span>
+                        <span><strong>10-20% off</strong> dining at select locations</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-green-500">✓</span>
+                        <span>Disney Springs restaurant discounts</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-green-500">✓</span>
+                        <span>Tables in Wonderland available for purchase</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- PhotoPass -->
+            <div class="bg-white rounded-xl shadow-sm p-6">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-12 h-12 bg-disney/10 rounded-xl flex items-center justify-center">
+                        <span class="text-2xl">📸</span>
+                    </div>
+                    <h3 class="font-bold text-lg">PhotoPass</h3>
+                </div>
+                <ul class="space-y-3 text-gray-700">
+                    <li class="flex items-start gap-2">
+                        <span class="text-green-500">✓</span>
+                        <span><strong>Included</strong> with Incredi-Pass holders</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-green-500">✓</span>
+                        <span>Discounted Memory Maker for other tiers</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-green-500">✓</span>
+                        <span>Unlimited digital downloads</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Park Perks -->
+            <div class="bg-white rounded-xl shadow-sm p-6">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-12 h-12 bg-disney/10 rounded-xl flex items-center justify-center">
+                        <span class="text-2xl">🎡</span>
+                    </div>
+                    <h3 class="font-bold text-lg">Park Perks</h3>
+                </div>
+                <ul class="space-y-3 text-gray-700">
+                    <li class="flex items-start gap-2">
+                        <span class="text-green-500">✓</span>
+                        <span><strong>Free parking</strong> (value varies by tier)</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-green-500">✓</span>
+                        <span>Passholder-exclusive magnets and pins</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-green-500">✓</span>
+                        <span>Special preview events</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Ticket Discounts -->
+            <div class="bg-white rounded-xl shadow-sm p-6">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-12 h-12 bg-disney/10 rounded-xl flex items-center justify-center">
+                        <span class="text-2xl">🎫</span>
+                    </div>
+                    <h3 class="font-bold text-lg">Guest Tickets</h3>
+                </div>
+                <ul class="space-y-3 text-gray-700">
+                    <li class="flex items-start gap-2">
+                        <span class="text-green-500">✓</span>
+                        <span><strong>Discounted tickets</strong> for friends & family</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-green-500">✓</span>
+                        <span>Add-on tickets for special events</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-green-500">✓</span>
+                        <span>Water park discounts</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="mt-8 bg-gradient-to-r from-disney to-purple-700 text-white rounded-xl p-8 text-center">
+            <h3 class="text-2xl font-bold mb-2">Compare Disney Annual Pass Tiers</h3>
+            <p class="text-white/90 mb-4">Incredi-Pass • Sorcerer • Pirate • Pixie Dust</p>
+            <a href="https://disneyworld.disney.go.com/passes/" target="_blank" class="inline-block bg-white text-disney px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition">
+                View Pass Options on Disney.com →
+            </a>
+        </div>
+    </div>
+
+    <!-- Universal Passholder Section -->
+    <div id="content-universal" class="pass-content max-w-7xl mx-auto px-4 py-12 hidden">
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Hotel Discounts -->
+            <div class="bg-white rounded-xl shadow-sm p-6">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-12 h-12 bg-universal/10 rounded-xl flex items-center justify-center">
+                        <span class="text-2xl">🏨</span>
+                    </div>
+                    <h3 class="font-bold text-lg">Hotel Discounts</h3>
+                </div>
+                <ul class="space-y-3 text-gray-700">
+                    <li class="flex items-start gap-2">
+                        <span class="text-green-500">✓</span>
+                        <span><strong>Up to 40% off</strong> Universal Resort hotels</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-green-500">✓</span>
+                        <span>Exclusive passholder rates year-round</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-green-500">✓</span>
+                        <span>Epic Universe hotel discounts (coming soon)</span>
+                    </li>
+                </ul>
+                <a href="https://www.universalorlando.com/web/en/us/annual-pass" target="_blank" class="inline-block mt-4 text-universal font-medium hover:underline">
+                    View Current Offers →
+                </a>
+            </div>
+
+            <!-- Express Pass -->
+            <div class="bg-white rounded-xl shadow-sm p-6">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-12 h-12 bg-universal/10 rounded-xl flex items-center justify-center">
+                        <span class="text-2xl">⚡</span>
+                    </div>
+                    <h3 class="font-bold text-lg">Express Pass</h3>
+                </div>
+                <ul class="space-y-3 text-gray-700">
+                    <li class="flex items-start gap-2">
+                        <span class="text-green-500">✓</span>
+                        <span><strong>FREE Express after 4pm</strong> (Premier Pass)</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-green-500">✓</span>
+                        <span>Discounted Express Pass purchases</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-green-500">✓</span>
+                        <span>Early Park Admission every day</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Food & Beverage -->
+            <div class="bg-white rounded-xl shadow-sm p-6">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-12 h-12 bg-universal/10 rounded-xl flex items-center justify-center">
+                        <span class="text-2xl">🍺</span>
+                    </div>
+                    <h3 class="font-bold text-lg">Food & Beverage</h3>
+                </div>
+                <ul class="space-y-3 text-gray-700">
+                    <li class="flex items-start gap-2">
+                        <span class="text-green-500">✓</span>
+                        <span><strong>10-15% off</strong> food and beverage</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-green-500">✓</span>
+                        <span>Discounted CityWalk dining</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-green-500">✓</span>
+                        <span>Free Butterbeer birthday treat</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Merchandise -->
+            <div class="bg-white rounded-xl shadow-sm p-6">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-12 h-12 bg-universal/10 rounded-xl flex items-center justify-center">
+                        <span class="text-2xl">🛍️</span>
+                    </div>
+                    <h3 class="font-bold text-lg">Merchandise</h3>
+                </div>
+                <ul class="space-y-3 text-gray-700">
+                    <li class="flex items-start gap-2">
+                        <span class="text-green-500">✓</span>
+                        <span><strong>10-20% off</strong> merchandise</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-green-500">✓</span>
+                        <span>Exclusive passholder items</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-green-500">✓</span>
+                        <span>Harry Potter merchandise discounts</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Special Events -->
+            <div class="bg-white rounded-xl shadow-sm p-6">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-12 h-12 bg-universal/10 rounded-xl flex items-center justify-center">
+                        <span class="text-2xl">🎃</span>
+                    </div>
+                    <h3 class="font-bold text-lg">Special Events</h3>
+                </div>
+                <ul class="space-y-3 text-gray-700">
+                    <li class="flex items-start gap-2">
+                        <span class="text-green-500">✓</span>
+                        <span>Discounted Halloween Horror Nights</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-green-500">✓</span>
+                        <span>Exclusive passholder preview nights</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-green-500">✓</span>
+                        <span>Early Epic Universe access (Premier)</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Parking -->
+            <div class="bg-white rounded-xl shadow-sm p-6">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-12 h-12 bg-universal/10 rounded-xl flex items-center justify-center">
+                        <span class="text-2xl">🅿️</span>
+                    </div>
+                    <h3 class="font-bold text-lg">Parking</h3>
+                </div>
+                <ul class="space-y-3 text-gray-700">
+                    <li class="flex items-start gap-2">
+                        <span class="text-green-500">✓</span>
+                        <span><strong>Free self-parking</strong> (Premier & Preferred)</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-green-500">✓</span>
+                        <span>50% off parking (other tiers)</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-green-500">✓</span>
+                        <span>Free valet on select days (Premier)</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="mt-8 bg-gradient-to-r from-universal to-blue-700 text-white rounded-xl p-8 text-center">
+            <h3 class="text-2xl font-bold mb-2">Compare Universal Annual Pass Tiers</h3>
+            <p class="text-white/90 mb-4">Premier • Preferred • Seasonal • Power</p>
+            <a href="https://www.universalorlando.com/web/en/us/annual-pass" target="_blank" class="inline-block bg-white text-universal px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition">
+                View Pass Options on Universal.com →
+            </a>
+        </div>
+    </div>
+
+    <!-- SeaWorld Passholder Section -->
+    <div id="content-seaworld" class="pass-content max-w-7xl mx-auto px-4 py-12 hidden">
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Park Access -->
+            <div class="bg-white rounded-xl shadow-sm p-6">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-12 h-12 bg-seaworld/10 rounded-xl flex items-center justify-center">
+                        <span class="text-2xl">🎟️</span>
+                    </div>
+                    <h3 class="font-bold text-lg">Park Access</h3>
+                </div>
+                <ul class="space-y-3 text-gray-700">
+                    <li class="flex items-start gap-2">
+                        <span class="text-green-500">✓</span>
+                        <span><strong>3 parks included:</strong> SeaWorld, Aquatica, Busch Gardens</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-green-500">✓</span>
+                        <span>Adventure Island access (Gold+)</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-green-500">✓</span>
+                        <span>No blockout dates (Platinum)</span>
+                    </li>
+                </ul>
+                <a href="https://seaworld.com/orlando/annual-pass/" target="_blank" class="inline-block mt-4 text-seaworld font-medium hover:underline">
+                    View Pass Options →
+                </a>
+            </div>
+
+            <!-- Discounts -->
+            <div class="bg-white rounded-xl shadow-sm p-6">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-12 h-12 bg-seaworld/10 rounded-xl flex items-center justify-center">
+                        <span class="text-2xl">💰</span>
+                    </div>
+                    <h3 class="font-bold text-lg">In-Park Discounts</h3>
+                </div>
+                <ul class="space-y-3 text-gray-700">
+                    <li class="flex items-start gap-2">
+                        <span class="text-green-500">✓</span>
+                        <span><strong>Up to 50% off</strong> in-park purchases</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-green-500">✓</span>
+                        <span>10-20% off food and merchandise</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-green-500">✓</span>
+                        <span>Discounted Quick Queue</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Guest Tickets -->
+            <div class="bg-white rounded-xl shadow-sm p-6">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-12 h-12 bg-seaworld/10 rounded-xl flex items-center justify-center">
+                        <span class="text-2xl">👥</span>
+                    </div>
+                    <h3 class="font-bold text-lg">Guest Benefits</h3>
+                </div>
+                <ul class="space-y-3 text-gray-700">
+                    <li class="flex items-start gap-2">
+                        <span class="text-green-500">✓</span>
+                        <span><strong>Free guest tickets</strong> (Gold+ tiers)</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-green-500">✓</span>
+                        <span>50% off guest tickets</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-green-500">✓</span>
+                        <span>Bring-a-Friend free days</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Parking -->
+            <div class="bg-white rounded-xl shadow-sm p-6">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-12 h-12 bg-seaworld/10 rounded-xl flex items-center justify-center">
+                        <span class="text-2xl">🅿️</span>
+                    </div>
+                    <h3 class="font-bold text-lg">Parking</h3>
+                </div>
+                <ul class="space-y-3 text-gray-700">
+                    <li class="flex items-start gap-2">
+                        <span class="text-green-500">✓</span>
+                        <span><strong>Free general parking</strong> (Gold+)</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-green-500">✓</span>
+                        <span>Free preferred parking (Platinum)</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-green-500">✓</span>
+                        <span>50% parking discount (Silver)</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Quick Queue -->
+            <div class="bg-white rounded-xl shadow-sm p-6">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-12 h-12 bg-seaworld/10 rounded-xl flex items-center justify-center">
+                        <span class="text-2xl">⚡</span>
+                    </div>
+                    <h3 class="font-bold text-lg">Quick Queue</h3>
+                </div>
+                <ul class="space-y-3 text-gray-700">
+                    <li class="flex items-start gap-2">
+                        <span class="text-green-500">✓</span>
+                        <span><strong>FREE Quick Queue Unlimited</strong> (Platinum)</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-green-500">✓</span>
+                        <span>50% off Quick Queue (Gold)</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-green-500">✓</span>
+                        <span>Skip the line at top rides</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Special Events -->
+            <div class="bg-white rounded-xl shadow-sm p-6">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-12 h-12 bg-seaworld/10 rounded-xl flex items-center justify-center">
+                        <span class="text-2xl">🎉</span>
+                    </div>
+                    <h3 class="font-bold text-lg">Special Events</h3>
+                </div>
+                <ul class="space-y-3 text-gray-700">
+                    <li class="flex items-start gap-2">
+                        <span class="text-green-500">✓</span>
+                        <span>FREE seasonal events (Howl-O-Scream, etc.)</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-green-500">✓</span>
+                        <span>Exclusive passholder preview events</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-green-500">✓</span>
+                        <span>Reservation-free park access</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Military Program -->
+        <div class="mt-8 bg-gradient-to-r from-red-600 to-blue-600 text-white rounded-xl p-8">
+            <div class="flex items-center gap-4 flex-wrap justify-between">
+                <div>
+                    <div class="flex items-center gap-2 mb-2">
+                        <span class="text-2xl">🎖️</span>
+                        <h3 class="text-xl font-bold">Waves of Honor - Military Program</h3>
+                    </div>
+                    <p class="text-white/90">Active duty military, veterans, and up to 3 dependents receive <strong>FREE admission</strong> to SeaWorld and Aquatica!</p>
+                </div>
+                <a href="https://seaworld.com/orlando/tickets/military/" target="_blank" class="bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition">
+                    Learn More →
+                </a>
+            </div>
+        </div>
+
+        <div class="mt-8 bg-gradient-to-r from-seaworld to-cyan-600 text-white rounded-xl p-8 text-center">
+            <h3 class="text-2xl font-bold mb-2">Compare SeaWorld Annual Pass Tiers</h3>
+            <p class="text-white/90 mb-4">Platinum • Gold • Silver • Bronze</p>
+            <a href="https://seaworld.com/orlando/annual-pass/" target="_blank" class="inline-block bg-white text-seaworld px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition">
+                View Pass Options on SeaWorld.com →
+            </a>
+        </div>
+    </div>
+
+    <!-- Bottom CTA -->
+    <div class="bg-gray-100 py-12">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <h2 class="text-2xl font-bold text-gray-900 mb-4">Already a Passholder?</h2>
+            <p class="text-gray-600 mb-6">Use our trip builder to find the best hotel deals with your passholder discounts automatically applied</p>
+            <a href="/" class="inline-block bg-disney text-white px-8 py-3 rounded-xl font-semibold hover:bg-purple-800 transition">
+                Build Your Trip →
+            </a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8">
+        <div class="max-w-7xl mx-auto px-4 text-center text-gray-400 text-sm">
+            <p>Orlando Vacation Deals is not affiliated with Walt Disney World, Universal Orlando, or SeaWorld Parks.</p>
+            <p class="mt-2">All trademarks belong to their respective owners. Information subject to change.</p>
+        </div>
+    </footer>
+
+    <script>
+        function showPass(pass) {
+            // Hide all content
+            document.querySelectorAll('.pass-content').forEach(el => el.classList.add('hidden'));
+            
+            // Show selected content
+            document.getElementById(`content-${pass}`).classList.remove('hidden');
+            
+            // Update tabs
+            document.querySelectorAll('.pass-tab').forEach(tab => {
+                tab.classList.remove('bg-disney', 'bg-universal', 'bg-seaworld', 'text-white');
+                tab.classList.add('bg-white');
+            });
+            
+            const activeTab = document.getElementById(`tab-${pass}`);
+            activeTab.classList.remove('bg-white');
+            activeTab.classList.add(`bg-${pass}`, 'text-white');
+            
+            // Fix text colors for inactive tabs
+            document.getElementById('tab-disney').classList.toggle('text-disney', pass !== 'disney');
+            document.getElementById('tab-universal').classList.toggle('text-universal', pass !== 'universal');
+            document.getElementById('tab-seaworld').classList.toggle('text-seaworld', pass !== 'seaworld');
+        }
+    </script>
+</body>
+</html>
