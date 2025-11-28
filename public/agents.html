@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Agent Portal - Orlando Vacation Deals | B2B Partner Program</title>
+    <meta name="description" content="Travel agents: Access exclusive Orlando vacation deals, earn commissions, and get white-label booking tools for your agency.">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'disney': '#5B2C86',
+                        'universal': '#0033A0',
+                        'seaworld': '#0077B6',
+                        'crav': '#6366F1'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-3">
+            <div class="flex items-center justify-between">
+                <a href="/" class="flex items-center gap-3">
+                    <span class="text-2xl">🏰🎢🐋</span>
+                    <div>
+                        <span class="font-bold text-xl text-gray-900">Orlando Vacation Deals</span>
+                        <span class="text-xs text-gray-500 block">Travel Agent Portal</span>
+                    </div>
+                </a>
+                <div class="flex items-center gap-6">
+                    <a href="/" class="text-gray-600 hover:text-crav">Consumer Site</a>
+                    <a href="/investors" class="text-gray-600 hover:text-crav">Investors</a>
+                    <button onclick="scrollToForm()" class="bg-crav text-white px-4 py-2 rounded-lg hover:bg-indigo-600 transition">
+                        Apply Now
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="bg-gradient-to-br from-gray-900 via-crav to-purple-900 text-white py-20">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <span class="bg-white/20 text-white px-3 py-1 rounded-full text-sm font-medium mb-4 inline-block">
+                        🤝 Partner Program
+                    </span>
+                    <h1 class="text-4xl md:text-5xl font-bold mb-6">
+                        Grow Your Travel Business with Orlando's #1 Deal Platform
+                    </h1>
+                    <p class="text-xl text-white/90 mb-8">
+                        Access exclusive rates, earn competitive commissions, and delight your clients with unbeatable Orlando vacation deals.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <button onclick="scrollToForm()" class="bg-white text-crav px-6 py-3 rounded-lg font-bold hover:bg-gray-100 transition">
+                            Apply for Partnership
+                        </button>
+                        <a href="#benefits" class="border-2 border-white text-white px-6 py-3 rounded-lg font-bold hover:bg-white/10 transition">
+                            See Benefits
+                        </a>
+                    </div>
+                </div>
+                <div class="bg-white/10 backdrop-blur rounded-2xl p-8">
+                    <div class="text-center mb-6">
+                        <div class="text-5xl font-bold mb-2">$12.5M+</div>
+                        <div class="text-white/80">Booked by our agent partners in 2024</div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4 text-center">
+                        <div class="bg-white/10 rounded-lg p-4">
+                            <div class="text-2xl font-bold">850+</div>
+                            <div class="text-sm text-white/70">Active Agents</div>
+                        </div>
+                        <div class="bg-white/10 rounded-lg p-4">
+                            <div class="text-2xl font-bold">15%</div>
+                            <div class="text-sm text-white/70">Avg Commission</div>
+                        </div>
+                        <div class="bg-white/10 rounded-lg p-4">
+                            <div class="text-2xl font-bold">4.9★</div>
+                            <div class="text-sm text-white/70">Partner Rating</div>
+                        </div>
+                        <div class="bg-white/10 rounded-lg p-4">
+                            <div class="text-2xl font-bold">24/7</div>
+                            <div class="text-sm text-white/70">Agent Support</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Commission Structure -->
+    <section class="py-16 bg-white">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Competitive Commission Structure</h2>
+                <p class="text-gray-600 text-lg">Earn more on every booking - no hidden fees</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Hotels -->
+                <div class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-8 text-center">
+                    <div class="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-hotel text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Hotel Bookings</h3>
+                    <div class="text-4xl font-bold text-blue-600 mb-2">10-15%</div>
+                    <p class="text-gray-600 text-sm">Commission on all hotel reservations including Disney, Universal, and off-site properties</p>
+                    <ul class="text-left mt-4 space-y-2 text-sm text-gray-600">
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> Disney Resort Hotels</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> Universal Hotels</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> DVC Rental Referrals</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> Good Neighbor Hotels</li>
+                    </ul>
+                </div>
+
+                <!-- Tickets -->
+                <div class="bg-gradient-to-br from-purple-50 to-purple-100 rounded-2xl p-8 text-center">
+                    <div class="w-16 h-16 bg-purple-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-ticket-alt text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Theme Park Tickets</h3>
+                    <div class="text-4xl font-bold text-purple-600 mb-2">8-12%</div>
+                    <p class="text-gray-600 text-sm">Commission on all ticket sales across all Orlando theme parks</p>
+                    <ul class="text-left mt-4 space-y-2 text-sm text-gray-600">
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> Walt Disney World</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> Universal Orlando</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> SeaWorld Parks</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> LEGOLAND Florida</li>
+                    </ul>
+                </div>
+
+                <!-- Packages -->
+                <div class="bg-gradient-to-br from-green-50 to-green-100 rounded-2xl p-8 text-center">
+                    <div class="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-suitcase-rolling text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Vacation Packages</h3>
+                    <div class="text-4xl font-bold text-green-600 mb-2">12-18%</div>
+                    <p class="text-gray-600 text-sm">Higher commissions on bundled hotel + ticket packages</p>
+                    <ul class="text-left mt-4 space-y-2 text-sm text-gray-600">
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> Custom Packages</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> Multi-Park Bundles</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> Dining Plans</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> Transportation</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits -->
+    <section id="benefits" class="py-16 bg-gray-50">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Partner Benefits</h2>
+                <p class="text-gray-600 text-lg">Everything you need to sell more Orlando vacations</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-white rounded-xl p-6 shadow-sm">
+                    <div class="w-12 h-12 bg-crav/10 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-percent text-crav text-xl"></i>
+                    </div>
+                    <h3 class="font-bold text-gray-900 mb-2">Exclusive Agent Rates</h3>
+                    <p class="text-gray-600 text-sm">Access wholesale pricing not available to consumers, giving you more margin to work with.</p>
+                </div>
+
+                <div class="bg-white rounded-xl p-6 shadow-sm">
+                    <div class="w-12 h-12 bg-crav/10 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-code text-crav text-xl"></i>
+                    </div>
+                    <h3 class="font-bold text-gray-900 mb-2">White-Label Tools</h3>
+                    <p class="text-gray-600 text-sm">Embed our search and booking widgets on your website with your branding.</p>
+                </div>
+
+                <div class="bg-white rounded-xl p-6 shadow-sm">
+                    <div class="w-12 h-12 bg-crav/10 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-chart-line text-crav text-xl"></i>
+                    </div>
+                    <h3 class="font-bold text-gray-900 mb-2">Real-Time Dashboard</h3>
+                    <p class="text-gray-600 text-sm">Track bookings, commissions, and client activity in your personalized agent portal.</p>
+                </div>
+
+                <div class="bg-white rounded-xl p-6 shadow-sm">
+                    <div class="w-12 h-12 bg-crav/10 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-robot text-crav text-xl"></i>
+                    </div>
+                    <h3 class="font-bold text-gray-900 mb-2">AI Trip Planning</h3>
+                    <p class="text-gray-600 text-sm">Use Javari AI to quickly build custom itineraries for your clients.</p>
+                </div>
+
+                <div class="bg-white rounded-xl p-6 shadow-sm">
+                    <div class="w-12 h-12 bg-crav/10 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-headset text-crav text-xl"></i>
+                    </div>
+                    <h3 class="font-bold text-gray-900 mb-2">Dedicated Support</h3>
+                    <p class="text-gray-600 text-sm">Priority phone and email support for all partner agents, 7 days a week.</p>
+                </div>
+
+                <div class="bg-white rounded-xl p-6 shadow-sm">
+                    <div class="w-12 h-12 bg-crav/10 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-graduation-cap text-crav text-xl"></i>
+                    </div>
+                    <h3 class="font-bold text-gray-900 mb-2">Training & Resources</h3>
+                    <p class="text-gray-600 text-sm">Free webinars, destination guides, and sales materials to help you succeed.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="py-16 bg-white">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">How It Works</h2>
+                <p class="text-gray-600 text-lg">Get started in 3 simple steps</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-crav text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">1</div>
+                    <h3 class="font-bold text-gray-900 mb-2">Apply Online</h3>
+                    <p class="text-gray-600">Fill out our partner application. We review and approve qualified agents within 24-48 hours.</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-crav text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">2</div>
+                    <h3 class="font-bold text-gray-900 mb-2">Get Your Portal</h3>
+                    <p class="text-gray-600">Access your personalized agent dashboard with exclusive rates, booking tools, and marketing materials.</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-crav text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">3</div>
+                    <h3 class="font-bold text-gray-900 mb-2">Start Earning</h3>
+                    <p class="text-gray-600">Book your clients, track commissions, and get paid monthly via direct deposit or check.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-16 bg-gray-900 text-white">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4">What Our Partners Say</h2>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white/10 rounded-xl p-6">
+                    <div class="flex items-center gap-1 text-yellow-400 mb-4">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-white/90 mb-4">"The DVC rental calculator alone has helped me close dozens of deals. Clients love seeing the savings breakdown!"</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-crav rounded-full flex items-center justify-center">SM</div>
+                        <div>
+                            <div class="font-medium">Sarah M.</div>
+                            <div class="text-sm text-white/60">Magic Memories Travel</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white/10 rounded-xl p-6">
+                    <div class="flex items-center gap-1 text-yellow-400 mb-4">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-white/90 mb-4">"I've increased my Orlando bookings by 40% since partnering. The white-label tools look like they're part of my own site."</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-purple-500 rounded-full flex items-center justify-center">JR</div>
+                        <div>
+                            <div class="font-medium">James R.</div>
+                            <div class="text-sm text-white/60">Sunshine Vacations</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white/10 rounded-xl p-6">
+                    <div class="flex items-center gap-1 text-yellow-400 mb-4">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-white/90 mb-4">"The AI trip planner saves me hours per client. I just input their preferences and it builds the perfect itinerary."</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center">LT</div>
+                        <div>
+                            <div class="font-medium">Lisa T.</div>
+                            <div class="text-sm text-white/60">Dream Destinations</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Application Form -->
+    <section id="application" class="py-16 bg-white">
+        <div class="max-w-3xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Apply to Become a Partner</h2>
+                <p class="text-gray-600 text-lg">Join 850+ travel professionals already growing their Orlando business</p>
+            </div>
+
+            <form id="agentForm" onsubmit="submitAgentForm(event)" class="bg-gray-50 rounded-2xl p-8">
+                <div class="grid md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">First Name *</label>
+                        <input type="text" required class="w-full border-2 border-gray-200 rounded-lg px-4 py-3 focus:border-crav focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Last Name *</label>
+                        <input type="text" required class="w-full border-2 border-gray-200 rounded-lg px-4 py-3 focus:border-crav focus:outline-none">
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Email Address *</label>
+                        <input type="email" required class="w-full border-2 border-gray-200 rounded-lg px-4 py-3 focus:border-crav focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Phone Number *</label>
+                        <input type="tel" required class="w-full border-2 border-gray-200 rounded-lg px-4 py-3 focus:border-crav focus:outline-none">
+                    </div>
+                </div>
+
+                <div class="mb-6">
+                    <label class="block text-sm font-semibold text-gray-700 mb-2">Agency Name *</label>
+                    <input type="text" required class="w-full border-2 border-gray-200 rounded-lg px-4 py-3 focus:border-crav focus:outline-none">
+                </div>
+
+                <div class="mb-6">
+                    <label class="block text-sm font-semibold text-gray-700 mb-2">Agency Website</label>
+                    <input type="url" placeholder="https://" class="w-full border-2 border-gray-200 rounded-lg px-4 py-3 focus:border-crav focus:outline-none">
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Years in Business *</label>
+                        <select required class="w-full border-2 border-gray-200 rounded-lg px-4 py-3 focus:border-crav focus:outline-none">
+                            <option value="">Select...</option>
+                            <option value="0-1">Less than 1 year</option>
+                            <option value="1-3">1-3 years</option>
+                            <option value="3-5">3-5 years</option>
+                            <option value="5-10">5-10 years</option>
+                            <option value="10+">10+ years</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Annual Orlando Bookings *</label>
+                        <select required class="w-full border-2 border-gray-200 rounded-lg px-4 py-3 focus:border-crav focus:outline-none">
+                            <option value="">Select...</option>
+                            <option value="0-10">0-10 bookings</option>
+                            <option value="10-25">10-25 bookings</option>
+                            <option value="25-50">25-50 bookings</option>
+                            <option value="50-100">50-100 bookings</option>
+                            <option value="100+">100+ bookings</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="mb-6">
+                    <label class="block text-sm font-semibold text-gray-700 mb-2">What interests you most? (Select all that apply)</label>
+                    <div class="grid grid-cols-2 gap-3">
+                        <label class="flex items-center gap-2 cursor-pointer">
+                            <input type="checkbox" class="rounded text-crav">
+                            <span class="text-sm">Hotel commissions</span>
+                        </label>
+                        <label class="flex items-center gap-2 cursor-pointer">
+                            <input type="checkbox" class="rounded text-crav">
+                            <span class="text-sm">Ticket commissions</span>
+                        </label>
+                        <label class="flex items-center gap-2 cursor-pointer">
+                            <input type="checkbox" class="rounded text-crav">
+                            <span class="text-sm">DVC rental referrals</span>
+                        </label>
+                        <label class="flex items-center gap-2 cursor-pointer">
+                            <input type="checkbox" class="rounded text-crav">
+                            <span class="text-sm">White-label tools</span>
+                        </label>
+                        <label class="flex items-center gap-2 cursor-pointer">
+                            <input type="checkbox" class="rounded text-crav">
+                            <span class="text-sm">AI trip planning</span>
+                        </label>
+                        <label class="flex items-center gap-2 cursor-pointer">
+                            <input type="checkbox" class="rounded text-crav">
+                            <span class="text-sm">Training resources</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="mb-6">
+                    <label class="block text-sm font-semibold text-gray-700 mb-2">Tell us about your agency</label>
+                    <textarea rows="4" placeholder="What makes your agency unique? Who are your typical clients?" class="w-full border-2 border-gray-200 rounded-lg px-4 py-3 focus:border-crav focus:outline-none"></textarea>
+                </div>
+
+                <div class="mb-6">
+                    <label class="flex items-start gap-2 cursor-pointer">
+                        <input type="checkbox" required class="rounded text-crav mt-1">
+                        <span class="text-sm text-gray-600">I agree to the <a href="#" class="text-crav underline">Partner Terms of Service</a> and <a href="#" class="text-crav underline">Privacy Policy</a></span>
+                    </label>
+                </div>
+
+                <button type="submit" class="w-full bg-crav text-white py-4 rounded-xl font-bold text-lg hover:bg-indigo-600 transition">
+                    Submit Application
+                </button>
+
+                <p class="text-center text-gray-500 text-sm mt-4">We'll review your application and respond within 24-48 hours</p>
+            </form>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="py-16 bg-gray-50">
+        <div class="max-w-4xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
+            </div>
+
+            <div class="space-y-4">
+                <div class="bg-white rounded-xl p-6 shadow-sm">
+                    <h3 class="font-bold text-gray-900 mb-2">Is there a cost to join the partner program?</h3>
+                    <p class="text-gray-600">No! Our partner program is completely free. You only pay when you make a booking, and that cost is passed to your client.</p>
+                </div>
+                <div class="bg-white rounded-xl p-6 shadow-sm">
+                    <h3 class="font-bold text-gray-900 mb-2">How and when do I get paid?</h3>
+                    <p class="text-gray-600">Commissions are paid monthly via direct deposit or check, your choice. You'll receive payment around the 15th of each month for the previous month's completed stays.</p>
+                </div>
+                <div class="bg-white rounded-xl p-6 shadow-sm">
+                    <h3 class="font-bold text-gray-900 mb-2">Do I need any certifications?</h3>
+                    <p class="text-gray-600">While not required, we encourage partners to have relevant certifications (CLIA, ASTA, etc.) or a host agency affiliation. We accept both independent agents and agency employees.</p>
+                </div>
+                <div class="bg-white rounded-xl p-6 shadow-sm">
+                    <h3 class="font-bold text-gray-900 mb-2">Can I use your tools on my own website?</h3>
+                    <p class="text-gray-600">Yes! Our white-label widgets can be embedded on your website with your branding. This is available to partners with 25+ annual bookings.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer CTA -->
+    <section class="py-12 bg-crav text-white">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h2 class="text-2xl font-bold mb-4">Ready to Grow Your Orlando Business?</h2>
+            <p class="text-white/80 mb-6">Join 850+ travel professionals already partnering with us</p>
+            <button onclick="scrollToForm()" class="bg-white text-crav px-8 py-3 rounded-lg font-bold hover:bg-gray-100 transition">
+                Apply Now - It's Free
+            </button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex flex-wrap items-center justify-between gap-4">
+                <div class="flex items-center gap-2">
+                    <span class="text-xl">🏰🎢🐋</span>
+                    <span class="font-bold">Orlando Vacation Deals</span>
+                    <span class="text-gray-500">| Travel Agent Portal</span>
+                </div>
+                <div class="text-gray-400 text-sm">
+                    © 2025 CR AudioViz AI, LLC. All rights reserved.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function scrollToForm() {
+            document.getElementById('application').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function submitAgentForm(e) {
+            e.preventDefault();
+            // In production: send to backend/Supabase
+            const formData = new FormData(e.target);
+            console.log('Agent application submitted');
+            
+            // Track conversion
+            console.log('Track: agent_application');
+            
+            alert('🎉 Thank you for applying! We\'ll review your application and contact you within 24-48 hours.');
+            e.target.reset();
+        }
+    </script>
+</body>
+</html>
