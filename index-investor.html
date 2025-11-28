@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orlando Vacation Deals - Disney, Universal, SeaWorld & More | Plan Your Dream Trip</title>
+    <meta name="description" content="Plan your perfect Orlando vacation! Compare deals for Disney World, Universal, SeaWorld, and LEGOLAND. Find hotel discounts, passholder perks, and build your custom multi-park trip.">
+    <meta property="og:title" content="Orlando Vacation Deals - Plan Your Dream Trip">
+    <meta property="og:description" content="Save 30-60% on Disney hotels with DVC rentals. Compare deals across all Orlando theme parks.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1597466599360-3b9775841aec?w=1200">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'disney': '#5B2C86',
+                        'universal': '#0033A0',
+                        'seaworld': '#0077B6',
+                        'legoland': '#FFD700',
+                        'crav': '#6366F1'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Segoe UI', system-ui, sans-serif; }
+        .hero-bg {
+            background: linear-gradient(135deg, rgba(91, 44, 134, 0.9) 0%, rgba(0, 51, 160, 0.9) 50%, rgba(0, 119, 182, 0.9) 100%),
+                url('https://images.unsplash.com/photo-1597466599360-3b9775841aec?w=1600') center/cover;
+        }
+        .park-card { transition: all 0.3s; cursor: pointer; }
+        .park-card:hover { transform: scale(1.02); }
+        .park-card.selected { box-shadow: 0 0 0 4px currentColor; }
+        .fade-in { animation: fadeIn 0.5s ease-in; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .pulse { animation: pulse 2s infinite; }
+        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+        .savings-counter { animation: countUp 2s ease-out; }
+        @keyframes countUp { from { opacity: 0; transform: scale(0.5); } to { opacity: 1; transform: scale(1); } }
+        .chat-bubble { animation: slideIn 0.3s ease-out; }
+        @keyframes slideIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .sponsored-badge { font-size: 10px; letter-spacing: 0.5px; }
+        .native-ad { border-left: 3px solid #6366F1; }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Top Banner - Sponsor/Ad Space -->
+    <div class="bg-gradient-to-r from-green-600 to-green-700 text-white py-2 px-4 text-center text-sm">
+        <span class="font-medium">🎉 BLACK FRIDAY: Save up to 60% on Disney Deluxe Resorts with DVC Rentals!</span>
+        <a href="/dvc" class="ml-2 underline hover:no-underline">Calculate Savings →</a>
+        <span class="text-white/50 ml-4 text-xs">AD</span>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-3">
+            <div class="flex items-center justify-between">
+                <a href="/" class="flex items-center gap-3">
+                    <div class="flex -space-x-1">
+                        <span class="text-2xl">🏰</span>
+                        <span class="text-2xl">🎢</span>
+                        <span class="text-2xl">🐋</span>
+                    </div>
+                    <div>
+                        <span class="font-bold text-xl text-gray-900">Orlando Vacation Deals</span>
+                        <span class="text-xs text-gray-500 block">by CR AudioViz AI</span>
+                    </div>
+                </a>
+                
+                <div class="hidden md:flex items-center gap-6">
+                    <a href="/results" class="text-gray-600 hover:text-disney font-medium">Hotels</a>
+                    <a href="/deals" class="text-gray-600 hover:text-disney font-medium">Current Deals</a>
+                    <a href="/dvc" class="text-gray-600 hover:text-disney font-medium">DVC Calculator</a>
+                    <a href="/passholder" class="text-gray-600 hover:text-disney font-medium">Passholder Hub</a>
+                    <a href="/agents" class="text-gray-600 hover:text-disney font-medium">Travel Agents</a>
+                    <button onclick="openEmailModal()" class="bg-disney text-white px-4 py-2 rounded-lg hover:bg-purple-800 transition text-sm font-medium">
+                        Get Deal Alerts
+                    </button>
+                </div>
+                
+                <button id="mobileMenuBtn" class="md:hidden text-gray-600">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-bg text-white py-16 md:py-20">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="text-center mb-8">
+                <!-- Savings Counter -->
+                <div class="inline-flex items-center gap-2 bg-green-500/30 backdrop-blur px-4 py-2 rounded-full mb-6 savings-counter">
+                    <span class="text-green-300 text-sm">💰 Users have saved</span>
+                    <span class="text-2xl font-bold text-white" id="savingsCounter">$2,847,000</span>
+                    <span class="text-green-300 text-sm">using our tools</span>
+                </div>
+
+                <h1 class="text-4xl md:text-6xl font-bold mb-4">
+                    Your Orlando Adventure Starts Here
+                </h1>
+                <p class="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto">
+                    Disney World • Universal • SeaWorld • LEGOLAND
+                    <br><span class="text-lg">Compare hotels, find deals, and let AI plan your perfect trip</span>
+                </p>
+            </div>
+
+            <!-- Quick Action Buttons -->
+            <div class="flex flex-wrap justify-center gap-4 mb-8">
+                <a href="#trip-builder" class="bg-white text-disney px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition flex items-center gap-2 pulse">
+                    <i class="fas fa-magic"></i>
+                    Build My Custom Trip
+                </a>
+                <button onclick="openAIChat()" class="bg-crav text-white px-6 py-3 rounded-full font-semibold hover:bg-indigo-600 transition flex items-center gap-2">
+                    <i class="fas fa-robot"></i>
+                    Ask Javari AI
+                </button>
+                <a href="/deals" class="border-2 border-white text-white px-6 py-3 rounded-full font-semibold hover:bg-white/10 transition flex items-center gap-2">
+                    <i class="fas fa-tags"></i>
+                    Today's Hot Deals
+                </a>
+            </div>
+
+            <!-- Stats Bar -->
+            <div class="bg-white/10 backdrop-blur rounded-2xl p-6 max-w-4xl mx-auto">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                    <div>
+                        <div class="text-3xl font-bold">4</div>
+                        <div class="text-white/80 text-sm">Theme Park Resorts</div>
+                    </div>
+                    <div>
+                        <div class="text-3xl font-bold">700K+</div>
+                        <div class="text-white/80 text-sm">Hotels Compared</div>
+                    </div>
+                    <div>
+                        <div class="text-3xl font-bold">60%</div>
+                        <div class="text-white/80 text-sm">Max DVC Savings</div>
+                    </div>
+                    <div>
+                        <div class="text-3xl font-bold">$0</div>
+                        <div class="text-white/80 text-sm">Cost to Use</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Javari AI Chat Widget (Floating) -->
+    <div id="aiChatWidget" class="fixed bottom-6 right-6 z-50 hidden">
+        <div class="bg-white rounded-2xl shadow-2xl w-96 max-h-[500px] flex flex-col overflow-hidden">
+            <div class="bg-gradient-to-r from-crav to-purple-600 text-white p-4 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div>
+                        <div class="font-bold">Javari AI</div>
+                        <div class="text-xs text-white/80">Your Trip Planning Assistant</div>
+                    </div>
+                </div>
+                <button onclick="closeAIChat()" class="text-white/80 hover:text-white">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div id="chatMessages" class="flex-1 p-4 space-y-4 overflow-y-auto max-h-72 bg-gray-50">
+                <div class="chat-bubble bg-crav/10 rounded-lg p-3 max-w-[80%]">
+                    <p class="text-sm text-gray-800">👋 Hi! I'm Javari, your AI trip planner. Tell me about your dream Orlando vacation and I'll help you find the best deals!</p>
+                    <p class="text-xs text-gray-500 mt-2">Try: "Plan a Disney trip for a family of 4 under $3000"</p>
+                </div>
+            </div>
+            <div class="p-4 border-t bg-white">
+                <div class="flex gap-2">
+                    <input type="text" id="chatInput" placeholder="Describe your ideal trip..." 
+                        class="flex-1 border rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-crav"
+                        onkeypress="if(event.key==='Enter')sendChat()">
+                    <button onclick="sendChat()" class="bg-crav text-white px-4 py-2 rounded-lg hover:bg-indigo-600">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+                <p class="text-xs text-gray-400 mt-2 text-center">Powered by CR AudioViz AI</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- AI Chat FAB -->
+    <button id="aiFab" onclick="openAIChat()" class="fixed bottom-6 right-6 z-40 bg-crav text-white w-14 h-14 rounded-full shadow-lg hover:bg-indigo-600 transition flex items-center justify-center">
+        <i class="fas fa-robot text-xl"></i>
+    </button>
+
+    <!-- Featured Partners Section (Sponsored) -->
+    <section class="py-8 bg-white border-b">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex items-center justify-center gap-8 flex-wrap opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition">
+                <span class="text-xs text-gray-400 uppercase tracking-wider">Trusted Partners</span>
+                <span class="text-gray-400 font-bold">DVC Rental Store</span>
+                <span class="text-gray-400 font-bold">David's Vacation Club</span>
+                <span class="text-gray-400 font-bold">Undercover Tourist</span>
+                <span class="text-gray-400 font-bold">MouseSavers</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hot Deals Section -->
+    <section class="py-12 bg-gray-50">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex items-center justify-between mb-8">
+                <div>
+                    <h2 class="text-3xl font-bold text-gray-900">🔥 Today's Hot Deals</h2>
+                    <p class="text-gray-600">Real promotions, updated daily</p>
+                </div>
+                <a href="/deals" class="text-disney font-medium hover:underline">View All →</a>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- Disney Deal -->
+                <div class="bg-white rounded-xl shadow-sm p-6 border-l-4 border-disney">
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="text-2xl">🏰</span>
+                        <span class="bg-disney text-white text-xs font-bold px-2 py-1 rounded">DISNEY</span>
+                    </div>
+                    <h3 class="font-bold text-gray-900 text-lg mb-2">Save Up to 25% on Rooms</h3>
+                    <p class="text-gray-600 text-sm mb-4">Select Disney Resort hotels for stays most nights Jan 4 - Apr 30, 2026</p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs text-gray-500">Ends: Dec 24, 2025</span>
+                        <a href="https://disneyworld.disney.go.com/offers/" target="_blank" class="text-disney font-medium text-sm hover:underline">Book Now →</a>
+                    </div>
+                </div>
+
+                <!-- Universal Deal -->
+                <div class="bg-white rounded-xl shadow-sm p-6 border-l-4 border-universal">
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="text-2xl">🎢</span>
+                        <span class="bg-universal text-white text-xs font-bold px-2 py-1 rounded">UNIVERSAL</span>
+                        <span class="bg-yellow-100 text-yellow-800 text-xs font-bold px-2 py-1 rounded">HOT</span>
+                    </div>
+                    <h3 class="font-bold text-gray-900 text-lg mb-2">Epic Universe: Buy 3 Get 2 FREE</h3>
+                    <p class="text-gray-600 text-sm mb-4">5-day tickets for the price of 3! Includes new Epic Universe park opening 2025</p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs text-gray-500">Limited Time</span>
+                        <a href="https://www.universalorlando.com/web/en/us/tickets" target="_blank" class="text-universal font-medium text-sm hover:underline">Get Tickets →</a>
+                    </div>
+                </div>
+
+                <!-- DVC Deal (Our Monetization) -->
+                <div class="bg-gradient-to-br from-green-50 to-emerald-100 rounded-xl shadow-sm p-6 border-l-4 border-green-500 relative">
+                    <span class="absolute top-2 right-2 sponsored-badge bg-gray-200 text-gray-500 px-2 py-0.5 rounded uppercase">Featured</span>
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="text-2xl">💎</span>
+                        <span class="bg-green-600 text-white text-xs font-bold px-2 py-1 rounded">DVC RENTAL</span>
+                    </div>
+                    <h3 class="font-bold text-gray-900 text-lg mb-2">Grand Floridian: $441/night</h3>
+                    <p class="text-gray-600 text-sm mb-4">Save 44% vs Disney direct ($789/night). Same room, same perks!</p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs text-green-600 font-medium">Save $1,740 on 5 nights</span>
+                        <a href="/dvc" class="text-green-600 font-medium text-sm hover:underline">Calculate →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trip Builder Section -->
+    <section id="trip-builder" class="py-16 bg-white">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold text-gray-900 mb-3">Build Your Perfect Trip</h2>
+                <p class="text-gray-600 text-lg">Select your parks, dates, and preferences - we'll find the best deals</p>
+            </div>
+
+            <!-- Park Selection -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+                <div onclick="togglePark('disney')" data-park="disney" 
+                    class="park-card park-disney bg-gradient-to-br from-purple-100 to-purple-200 rounded-xl p-6 text-center relative">
+                    <div id="check-disney" class="absolute top-2 right-2 w-6 h-6 bg-disney rounded-full flex items-center justify-center">
+                        <i class="fas fa-check text-white text-xs hidden"></i>
+                    </div>
+                    <span class="text-4xl block mb-2">🏰</span>
+                    <h3 class="font-bold text-gray-900">Walt Disney World</h3>
+                    <p class="text-sm text-gray-600">4 Theme Parks</p>
+                </div>
+                <div onclick="togglePark('universal')" data-park="universal" 
+                    class="park-card park-universal bg-gradient-to-br from-blue-100 to-blue-200 rounded-xl p-6 text-center relative">
+                    <div id="check-universal" class="absolute top-2 right-2 w-6 h-6 bg-universal rounded-full flex items-center justify-center">
+                        <i class="fas fa-check text-white text-xs hidden"></i>
+                    </div>
+                    <span class="text-4xl block mb-2">🎢</span>
+                    <h3 class="font-bold text-gray-900">Universal Orlando</h3>
+                    <p class="text-sm text-gray-600">4 Parks + Epic Universe</p>
+                    <span class="text-xs bg-yellow-400 text-yellow-900 px-2 py-0.5 rounded-full font-bold">NEW 2025</span>
+                </div>
+                <div onclick="togglePark('seaworld')" data-park="seaworld" 
+                    class="park-card park-seaworld bg-gradient-to-br from-cyan-100 to-cyan-200 rounded-xl p-6 text-center relative">
+                    <div id="check-seaworld" class="absolute top-2 right-2 w-6 h-6 bg-seaworld rounded-full flex items-center justify-center">
+                        <i class="fas fa-check text-white text-xs hidden"></i>
+                    </div>
+                    <span class="text-4xl block mb-2">🐋</span>
+                    <h3 class="font-bold text-gray-900">SeaWorld Parks</h3>
+                    <p class="text-sm text-gray-600">SeaWorld + Aquatica + Busch</p>
+                </div>
+                <div onclick="togglePark('legoland')" data-park="legoland" 
+                    class="park-card park-legoland bg-gradient-to-br from-yellow-100 to-yellow-200 rounded-xl p-6 text-center relative">
+                    <div id="check-legoland" class="absolute top-2 right-2 w-6 h-6 bg-yellow-500 rounded-full flex items-center justify-center">
+                        <i class="fas fa-check text-white text-xs hidden"></i>
+                    </div>
+                    <span class="text-4xl block mb-2">🧱</span>
+                    <h3 class="font-bold text-gray-900">LEGOLAND Florida</h3>
+                    <p class="text-sm text-gray-600">Theme Park + Water Park</p>
+                </div>
+            </div>
+
+            <!-- Trip Details Form -->
+            <div class="bg-gray-50 rounded-2xl p-8">
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Check-in Date</label>
+                        <input type="date" id="tripCheckin" class="w-full border-2 border-gray-200 rounded-lg px-4 py-3 focus:border-disney focus:ring-0">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Check-out Date</label>
+                        <input type="date" id="tripCheckout" class="w-full border-2 border-gray-200 rounded-lg px-4 py-3 focus:border-disney focus:ring-0">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Adults</label>
+                        <select id="adults" class="w-full border-2 border-gray-200 rounded-lg px-4 py-3 focus:border-disney">
+                            <option value="1">1 Adult</option>
+                            <option value="2" selected>2 Adults</option>
+                            <option value="3">3 Adults</option>
+                            <option value="4">4 Adults</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Children</label>
+                        <select id="children" class="w-full border-2 border-gray-200 rounded-lg px-4 py-3 focus:border-disney">
+                            <option value="0">No Children</option>
+                            <option value="1">1 Child</option>
+                            <option value="2" selected>2 Children</option>
+                            <option value="3">3 Children</option>
+                            <option value="4">4 Children</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">🏰 Disney Days</label>
+                        <select id="daysDisney" class="w-full border-2 border-gray-200 rounded-lg px-4 py-3 focus:border-disney">
+                            <option value="0">0 days</option>
+                            <option value="1">1 day</option>
+                            <option value="2">2 days</option>
+                            <option value="3">3 days</option>
+                            <option value="4" selected>4 days</option>
+                            <option value="5">5 days</option>
+                            <option value="6">6 days</option>
+                            <option value="7">7+ days</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">🎢 Universal Days</label>
+                        <select id="daysUniversal" class="w-full border-2 border-gray-200 rounded-lg px-4 py-3 focus:border-disney">
+                            <option value="0">0 days</option>
+                            <option value="1">1 day</option>
+                            <option value="2" selected>2 days</option>
+                            <option value="3">3 days</option>
+                            <option value="4">4 days</option>
+                            <option value="5">5+ days</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">🐋 SeaWorld Days</label>
+                        <select id="daysSeaworld" class="w-full border-2 border-gray-200 rounded-lg px-4 py-3 focus:border-disney">
+                            <option value="0">0 days</option>
+                            <option value="1" selected>1 day</option>
+                            <option value="2">2 days</option>
+                            <option value="3">3+ days</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">🧱 LEGOLAND Days</label>
+                        <select id="daysLegoland" class="w-full border-2 border-gray-200 rounded-lg px-4 py-3 focus:border-disney">
+                            <option value="0" selected>0 days</option>
+                            <option value="1">1 day</option>
+                            <option value="2">2 days</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-6 mb-6">
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Budget Per Night</label>
+                        <select id="budget" class="w-full border-2 border-gray-200 rounded-lg px-4 py-3 focus:border-disney">
+                            <option value="100">$100 or less</option>
+                            <option value="200" selected>$100 - $200</option>
+                            <option value="350">$200 - $350</option>
+                            <option value="500">$350 - $500</option>
+                            <option value="9999">$500+ (Deluxe)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Passholder?</label>
+                        <select id="passholder" class="w-full border-2 border-gray-200 rounded-lg px-4 py-3 focus:border-disney">
+                            <option value="none" selected>Not a Passholder</option>
+                            <option value="disney">Disney Annual Pass</option>
+                            <option value="universal">Universal Annual Pass</option>
+                            <option value="seaworld">SeaWorld Annual Pass</option>
+                            <option value="multi">Multiple Passes</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Rooms Needed</label>
+                        <select id="rooms" class="w-full border-2 border-gray-200 rounded-lg px-4 py-3 focus:border-disney">
+                            <option value="1" selected>1 Room</option>
+                            <option value="2">2 Rooms</option>
+                            <option value="3">3 Rooms</option>
+                            <option value="4">4+ Rooms</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap items-center gap-4 mb-8">
+                    <label class="flex items-center gap-2 cursor-pointer">
+                        <input type="checkbox" id="includeDVC" checked class="rounded text-green-600">
+                        <span class="text-sm">💎 Include DVC Rentals (30-60% savings)</span>
+                    </label>
+                    <label class="flex items-center gap-2 cursor-pointer">
+                        <input type="checkbox" id="militaryDiscount" class="rounded text-disney">
+                        <span class="text-sm">🎖️ Military Discount</span>
+                    </label>
+                    <label class="flex items-center gap-2 cursor-pointer">
+                        <input type="checkbox" id="floridaResident" class="rounded text-disney">
+                        <span class="text-sm">🌴 Florida Resident</span>
+                    </label>
+                </div>
+
+                <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+                    <div class="text-center md:text-left">
+                        <div class="text-sm text-gray-500">Trip Length</div>
+                        <div class="text-2xl font-bold text-gray-900" id="tripLength">7 nights</div>
+                    </div>
+                    <button onclick="searchTrip()" class="bg-disney text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-purple-800 transition flex items-center gap-2">
+                        <i class="fas fa-search"></i>
+                        Find Best Deals
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sponsored Section: DVC Deep Dive -->
+    <section class="py-16 bg-gray-900 text-white">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <span class="sponsored-badge bg-white/20 text-white/80 px-2 py-1 rounded uppercase mb-4 inline-block">Featured Partner</span>
+                    <h2 class="text-3xl font-bold mb-4">DVC Rentals: Disney Deluxe for Less</h2>
+                    <p class="text-gray-300 mb-6">
+                        Disney Vacation Club owners rent their unused points to guests like you. 
+                        Stay at Deluxe resorts like Grand Floridian and Polynesian for the price of a Moderate!
+                    </p>
+                    <div class="space-y-3 mb-6">
+                        <div class="flex items-center gap-3">
+                            <i class="fas fa-check-circle text-green-400"></i>
+                            <span>Same rooms, same amenities, same perks</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i class="fas fa-check-circle text-green-400"></i>
+                            <span>Early Entry & Extended Evening Hours included</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i class="fas fa-check-circle text-green-400"></i>
+                            <span>Free parking at all theme parks ($30/day value)</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i class="fas fa-check-circle text-green-400"></i>
+                            <span>Book through trusted, insured DVC brokers</span>
+                        </div>
+                    </div>
+                    <a href="/dvc" class="bg-green-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-600 transition inline-flex items-center gap-2">
+                        <i class="fas fa-calculator"></i>
+                        Calculate My DVC Savings
+                    </a>
+                </div>
+                
+                <div class="bg-gray-800 rounded-2xl p-6">
+                    <h4 class="font-bold text-lg mb-4">Example: 5 Nights at Grand Floridian</h4>
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between p-3 bg-gray-700 rounded-lg">
+                            <span class="text-gray-300">Disney Direct Price</span>
+                            <span class="font-bold text-xl line-through text-gray-400">$3,945</span>
+                        </div>
+                        <div class="flex items-center justify-between p-3 bg-green-500/20 rounded-lg border border-green-500/50">
+                            <span class="text-green-400">DVC Rental Price</span>
+                            <span class="font-bold text-2xl text-green-400">$2,205</span>
+                        </div>
+                        <div class="text-center py-3 bg-green-500 rounded-lg">
+                            <span class="font-bold text-xl">You Save: $1,740 (44%)</span>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 text-xs mt-4 text-center">*Based on $21/point DVC rental rate</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Email Capture Section -->
+    <section class="py-16 bg-gradient-to-r from-disney to-universal text-white">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-4">🔔 Never Miss a Deal</h2>
+            <p class="text-xl text-white/90 mb-8">Get exclusive Orlando vacation deals, price drops, and insider tips delivered to your inbox</p>
+            
+            <form id="emailForm" onsubmit="submitEmail(event)" class="flex flex-col sm:flex-row gap-4 max-w-xl mx-auto">
+                <input type="email" id="emailInput" required placeholder="Enter your email address" 
+                    class="flex-1 px-6 py-4 rounded-xl text-gray-900 focus:outline-none focus:ring-4 focus:ring-white/50">
+                <button type="submit" class="bg-white text-disney px-8 py-4 rounded-xl font-bold hover:bg-gray-100 transition whitespace-nowrap">
+                    Get Deal Alerts
+                </button>
+            </form>
+            <p class="text-white/60 text-sm mt-4">No spam, unsubscribe anytime. Join 25,000+ Orlando vacation planners.</p>
+        </div>
+    </section>
+
+    <!-- Tools & Resources -->
+    <section class="py-16 bg-white">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold text-gray-900 mb-3">Free Planning Tools</h2>
+                <p class="text-gray-600 text-lg">Everything you need to plan the perfect Orlando vacation</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <a href="/dvc" class="bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-6 hover:shadow-lg transition">
+                    <div class="w-12 h-12 bg-green-500 rounded-xl flex items-center justify-center mb-4">
+                        <i class="fas fa-calculator text-white text-xl"></i>
+                    </div>
+                    <h3 class="font-bold text-gray-900 mb-2">DVC Calculator</h3>
+                    <p class="text-sm text-gray-600">Calculate savings on Disney Deluxe resorts using DVC point rentals</p>
+                </a>
+
+                <a href="/results" class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-6 hover:shadow-lg transition">
+                    <div class="w-12 h-12 bg-blue-500 rounded-xl flex items-center justify-center mb-4">
+                        <i class="fas fa-hotel text-white text-xl"></i>
+                    </div>
+                    <h3 class="font-bold text-gray-900 mb-2">Hotel Comparison</h3>
+                    <p class="text-sm text-gray-600">Compare prices across Disney, Universal, and off-site hotels</p>
+                </a>
+
+                <a href="/deals" class="bg-gradient-to-br from-red-50 to-red-100 rounded-xl p-6 hover:shadow-lg transition">
+                    <div class="w-12 h-12 bg-red-500 rounded-xl flex items-center justify-center mb-4">
+                        <i class="fas fa-tags text-white text-xl"></i>
+                    </div>
+                    <h3 class="font-bold text-gray-900 mb-2">Current Deals</h3>
+                    <p class="text-sm text-gray-600">Today's best promotions from all Orlando theme parks</p>
+                </a>
+
+                <a href="/passholder" class="bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl p-6 hover:shadow-lg transition">
+                    <div class="w-12 h-12 bg-purple-500 rounded-xl flex items-center justify-center mb-4">
+                        <i class="fas fa-id-card text-white text-xl"></i>
+                    </div>
+                    <h3 class="font-bold text-gray-900 mb-2">Passholder Hub</h3>
+                    <p class="text-sm text-gray-600">Exclusive perks and discounts for annual passholders</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Native Ad Section: Best Time to Visit -->
+    <section class="py-12 bg-gray-50">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="native-ad bg-white rounded-xl p-8 pl-6">
+                <div class="flex items-start gap-6 flex-wrap md:flex-nowrap">
+                    <div class="flex-1">
+                        <span class="sponsored-badge bg-gray-200 text-gray-500 px-2 py-0.5 rounded uppercase">Sponsored</span>
+                        <h3 class="font-bold text-xl text-gray-900 mt-2 mb-2">📅 Best Time to Visit Orlando in 2026</h3>
+                        <p class="text-gray-600 mb-4">Based on crowd levels, weather, and special events. January offers lowest crowds and best deals!</p>
+                        <div class="flex items-center gap-4 text-sm">
+                            <span class="text-green-600">🟢 Low Crowds: Jan, Feb, Sep</span>
+                            <span class="text-yellow-600">🟡 Moderate: Mar, Apr, Oct, Nov</span>
+                            <span class="text-red-600">🔴 High: Jun, Jul, Dec</span>
+                        </div>
+                    </div>
+                    <div class="shrink-0">
+                        <a href="#trip-builder" class="bg-disney text-white px-6 py-3 rounded-lg font-semibold hover:bg-purple-800 transition inline-block">
+                            Plan January Trip →
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Travel Agent / B2B Section -->
+    <section class="py-16 bg-gray-900 text-white">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <span class="bg-crav/20 text-crav px-3 py-1 rounded-full text-sm font-medium mb-4 inline-block">For Travel Professionals</span>
+                    <h2 class="text-3xl font-bold mb-4">Travel Agent Portal</h2>
+                    <p class="text-gray-300 mb-6">
+                        Access wholesale rates, earn commissions, and provide your clients with the best Orlando vacation deals.
+                    </p>
+                    <ul class="space-y-3 mb-6">
+                        <li class="flex items-center gap-3">
+                            <i class="fas fa-check text-green-400"></i>
+                            <span>Exclusive agent rates and commissions</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fas fa-check text-green-400"></i>
+                            <span>White-label booking tools</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fas fa-check text-green-400"></i>
+                            <span>Real-time availability and pricing</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fas fa-check text-green-400"></i>
+                            <span>Dedicated agent support</span>
+                        </li>
+                    </ul>
+                    <a href="/agents" class="bg-crav text-white px-6 py-3 rounded-lg font-semibold hover:bg-indigo-600 transition inline-flex items-center gap-2">
+                        <i class="fas fa-briefcase"></i>
+                        Agent Sign Up
+                    </a>
+                </div>
+                <div class="bg-gray-800 rounded-2xl p-8 text-center">
+                    <div class="text-5xl mb-4">💼</div>
+                    <h3 class="text-xl font-bold mb-2">Partner With Us</h3>
+                    <p class="text-gray-400 mb-6">Hotels, attractions, and travel companies - let's work together!</p>
+                    <a href="/investors" class="text-crav hover:underline font-medium">Business Inquiries →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12 border-t border-gray-800">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center gap-2 mb-4">
+                        <span class="text-2xl">🏰🎢🐋</span>
+                        <span class="font-bold">Orlando Vacation Deals</span>
+                    </div>
+                    <p class="text-gray-400 text-sm mb-4">
+                        Your one-stop shop for planning the perfect Orlando vacation. Real deals, real savings, powered by AI.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-instagram text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-youtube text-xl"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Planning Tools</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#trip-builder" class="hover:text-white">Trip Builder</a></li>
+                        <li><a href="/results" class="hover:text-white">Hotel Search</a></li>
+                        <li><a href="/dvc" class="hover:text-white">DVC Calculator</a></li>
+                        <li><a href="/deals" class="hover:text-white">Current Deals</a></li>
+                        <li><a href="/passholder" class="hover:text-white">Passholder Hub</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Company</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="/investors" class="hover:text-white">Investors</a></li>
+                        <li><a href="/agents" class="hover:text-white">Travel Agents</a></li>
+                        <li><a href="https://craudiovizai.com" class="hover:text-white">CR AudioViz AI</a></li>
+                        <li><a href="/contact" class="hover:text-white">Contact Us</a></li>
+                        <li><a href="/privacy" class="hover:text-white">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Get Deal Alerts</h4>
+                    <p class="text-gray-400 text-sm mb-4">Be the first to know about Orlando vacation deals</p>
+                    <form onsubmit="submitFooterEmail(event)" class="flex gap-2">
+                        <input type="email" required placeholder="Email" class="flex-1 px-3 py-2 rounded bg-gray-800 border border-gray-700 text-white text-sm focus:outline-none focus:border-crav">
+                        <button type="submit" class="bg-crav px-4 py-2 rounded font-medium text-sm hover:bg-indigo-600">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <!-- Affiliate Disclosure -->
+            <div class="border-t border-gray-800 pt-8 mb-8">
+                <p class="text-gray-500 text-xs text-center">
+                    <strong>Affiliate Disclosure:</strong> Some links on this site are affiliate links. We may earn a commission when you book through our partners at no extra cost to you. This helps us keep our tools free and up-to-date.
+                </p>
+            </div>
+            
+            <div class="text-center text-gray-500 text-sm">
+                <p>© 2025 CR AudioViz AI, LLC. All rights reserved.</p>
+                <p class="mt-2">Not affiliated with Walt Disney World, Universal Orlando Resort, SeaWorld Parks, or LEGOLAND Florida. All trademarks are property of their respective owners.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Email Capture Modal -->
+    <div id="emailModal" class="fixed inset-0 bg-black/50 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-lg w-full p-8 relative">
+            <button onclick="closeEmailModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600">
+                <i class="fas fa-times text-xl"></i>
+            </button>
+            <div class="text-center">
+                <div class="text-5xl mb-4">🎉</div>
+                <h2 class="text-2xl font-bold text-gray-900 mb-2">Get Exclusive Orlando Deals</h2>
+                <p class="text-gray-600 mb-6">Join 25,000+ travelers who get our best deals first. We'll send you price drops, flash sales, and insider tips!</p>
+                <form onsubmit="submitModalEmail(event)">
+                    <input type="email" required placeholder="Enter your email" 
+                        class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg mb-4 focus:border-disney focus:outline-none">
+                    <button type="submit" class="w-full bg-disney text-white py-3 rounded-lg font-bold hover:bg-purple-800 transition">
+                        Send Me Deals →
+                    </button>
+                </form>
+                <p class="text-gray-400 text-xs mt-4">No spam. Unsubscribe anytime.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ========== PARK SELECTION ==========
+        const selectedParks = new Set();
+
+        function togglePark(park) {
+            const card = document.querySelector(`[data-park="${park}"]`);
+            const check = document.getElementById(`check-${park}`);
+            const icon = check.querySelector('i');
+            
+            if (selectedParks.has(park)) {
+                selectedParks.delete(park);
+                card.classList.remove('selected');
+                icon.classList.add('hidden');
+            } else {
+                selectedParks.add(park);
+                card.classList.add('selected');
+                icon.classList.remove('hidden');
+            }
+        }
+
+        // ========== DATE HANDLING ==========
+        const today = new Date();
+        const checkinDate = new Date(today);
+        checkinDate.setDate(today.getDate() + 60);
+        const checkoutDate = new Date(checkinDate);
+        checkoutDate.setDate(checkinDate.getDate() + 7);
+
+        document.getElementById('tripCheckin').valueAsDate = checkinDate;
+        document.getElementById('tripCheckout').valueAsDate = checkoutDate;
+        updateTripLength();
+
+        document.getElementById('tripCheckin').addEventListener('change', updateTripLength);
+        document.getElementById('tripCheckout').addEventListener('change', updateTripLength);
+
+        function updateTripLength() {
+            const checkin = new Date(document.getElementById('tripCheckin').value);
+            const checkout = new Date(document.getElementById('tripCheckout').value);
+            const nights = Math.round((checkout - checkin) / (1000 * 60 * 60 * 24));
+            document.getElementById('tripLength').textContent = nights > 0 ? `${nights} nights` : 'Invalid dates';
+        }
+
+        // ========== SEARCH FUNCTION ==========
+        function searchTrip() {
+            const params = new URLSearchParams({
+                checkin: document.getElementById('tripCheckin').value,
+                checkout: document.getElementById('tripCheckout').value,
+                adults: document.getElementById('adults').value,
+                children: document.getElementById('children').value,
+                rooms: document.getElementById('rooms').value,
+                budget: document.getElementById('budget').value,
+                passholder: document.getElementById('passholder').value,
+                daysDisney: document.getElementById('daysDisney').value,
+                daysUniversal: document.getElementById('daysUniversal').value,
+                daysSeaworld: document.getElementById('daysSeaworld').value,
+                daysLegoland: document.getElementById('daysLegoland').value,
+                includeDVC: document.getElementById('includeDVC').checked,
+                military: document.getElementById('militaryDiscount').checked,
+                florida: document.getElementById('floridaResident').checked
+            });
+            
+            // Track search event
+            trackEvent('trip_search', params.toString());
+            
+            window.location.href = `/results?${params.toString()}`;
+        }
+
+        // ========== AI CHAT ==========
+        function openAIChat() {
+            document.getElementById('aiChatWidget').classList.remove('hidden');
+            document.getElementById('aiFab').classList.add('hidden');
+        }
+
+        function closeAIChat() {
+            document.getElementById('aiChatWidget').classList.add('hidden');
+            document.getElementById('aiFab').classList.remove('hidden');
+        }
+
+        function sendChat() {
+            const input = document.getElementById('chatInput');
+            const message = input.value.trim();
+            if (!message) return;
+
+            const container = document.getElementById('chatMessages');
+            
+            // Add user message
+            container.innerHTML += `
+                <div class="chat-bubble bg-disney text-white rounded-lg p-3 max-w-[80%] ml-auto">
+                    <p class="text-sm">${message}</p>
+                </div>
+            `;
+            
+            input.value = '';
+            
+            // Simulate AI response
+            setTimeout(() => {
+                const responses = getAIResponse(message);
+                container.innerHTML += `
+                    <div class="chat-bubble bg-crav/10 rounded-lg p-3 max-w-[80%]">
+                        <p class="text-sm text-gray-800">${responses}</p>
+                    </div>
+                `;
+                container.scrollTop = container.scrollHeight;
+            }, 1000);
+            
+            container.scrollTop = container.scrollHeight;
+        }
+
+        function getAIResponse(message) {
+            const lower = message.toLowerCase();
+            
+            if (lower.includes('disney') && lower.includes('family')) {
+                return "🏰 For a family Disney trip, I'd recommend:<br><br>• <strong>Stay:</strong> Pop Century ($199/night) or DVC rental at Animal Kingdom ($294/night - 45% savings!)<br>• <strong>Tickets:</strong> 4-day Park Hopper, best value at ~$135/day<br>• <strong>Must-do:</strong> Magic Kingdom + Hollywood Studios<br><br>Want me to search for specific dates?";
+            }
+            if (lower.includes('budget') || lower.includes('cheap') || lower.includes('save')) {
+                return "💰 Best ways to save on Orlando vacations:<br><br>1. <strong>DVC Rentals</strong> - Save 30-60% on Disney Deluxe resorts<br>2. <strong>Off-season</strong> - January & September have lowest prices<br>3. <strong>Universal AP</strong> - 40% off hotels<br>4. <strong>SeaWorld Fun Card</strong> - $49.99 unlimited visits<br><br>Use our <a href='/dvc' class='text-crav underline'>DVC Calculator</a> to see exact savings!";
+            }
+            if (lower.includes('universal') || lower.includes('epic')) {
+                return "🎢 Universal Orlando tips:<br><br>• <strong>Epic Universe</strong> opens 2025 - buy 3-day, get 2 FREE!<br>• <strong>Premier Pass</strong> = FREE Express after 4pm<br>• <strong>Stay on-site</strong> for Early Park Admission<br>• <strong>Best value:</strong> Endless Summer Resort from $119/night<br><br>Want me to find Universal hotel deals?";
+            }
+            if (lower.includes('dvc') || lower.includes('deluxe')) {
+                return "💎 DVC Rentals explained:<br><br>Disney Vacation Club owners rent their unused points. You get:<br>• Same deluxe rooms (Grand Floridian, Polynesian, etc.)<br>• Same perks (Early Entry, Extended Hours)<br>• 30-60% less than Disney direct<br><br>Example: Grand Floridian $441/night vs $789 direct!<br><br><a href='/dvc' class='text-crav underline'>Calculate your savings →</a>";
+            }
+            
+            return "I can help you plan the perfect Orlando trip! Tell me:<br><br>• Which parks? (Disney, Universal, SeaWorld)<br>• How many people?<br>• What's your budget?<br>• Any specific dates?<br><br>Or try our <a href='#trip-builder' class='text-crav underline'>Trip Builder</a> to see all your options!";
+        }
+
+        // ========== EMAIL FUNCTIONS ==========
+        function openEmailModal() {
+            document.getElementById('emailModal').classList.remove('hidden');
+        }
+
+        function closeEmailModal() {
+            document.getElementById('emailModal').classList.add('hidden');
+        }
+
+        function submitEmail(e) {
+            e.preventDefault();
+            const email = document.getElementById('emailInput').value;
+            saveEmail(email, 'inline');
+            document.getElementById('emailInput').value = '';
+            alert('🎉 You\'re on the list! Check your email for a confirmation.');
+        }
+
+        function submitModalEmail(e) {
+            e.preventDefault();
+            const email = e.target.querySelector('input').value;
+            saveEmail(email, 'modal');
+            closeEmailModal();
+            alert('🎉 Welcome! You\'ll receive our best deals first.');
+        }
+
+        function submitFooterEmail(e) {
+            e.preventDefault();
+            const email = e.target.querySelector('input').value;
+            saveEmail(email, 'footer');
+            e.target.querySelector('input').value = '';
+            alert('🎉 Subscribed! Deal alerts coming your way.');
+        }
+
+        function saveEmail(email, source) {
+            // In production, this would send to your backend/Supabase
+            console.log('Email captured:', email, 'Source:', source);
+            trackEvent('email_signup', { email, source });
+            
+            // Store locally for demo
+            const emails = JSON.parse(localStorage.getItem('capturedEmails') || '[]');
+            emails.push({ email, source, timestamp: new Date().toISOString() });
+            localStorage.setItem('capturedEmails', JSON.stringify(emails));
+        }
+
+        // ========== ANALYTICS ==========
+        function trackEvent(event, data) {
+            console.log('Track:', event, data);
+            // In production: send to analytics service
+        }
+
+        // ========== SAVINGS COUNTER ANIMATION ==========
+        function animateSavings() {
+            const counter = document.getElementById('savingsCounter');
+            const target = 2847000;
+            let current = 0;
+            const increment = target / 50;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                }
+                counter.textContent = '$' + Math.floor(current).toLocaleString();
+            }, 40);
+        }
+
+        // Show email modal after 30 seconds
+        setTimeout(() => {
+            if (!localStorage.getItem('emailModalShown')) {
+                openEmailModal();
+                localStorage.setItem('emailModalShown', 'true');
+            }
+        }, 30000);
+
+        // Initialize
+        animateSavings();
+    </script>
+</body>
+</html>
