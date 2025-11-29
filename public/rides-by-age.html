@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Best Orlando Rides by Age - Toddlers, Kids, Teens & Adults (2025)</title>
+    <meta name="description" content="Find the perfect rides for every age at Disney World, Universal, and SeaWorld. From toddler-friendly to thrill rides for teens.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>tailwind.config = { theme: { extend: { colors: { 'disney': '#5B2C86', 'universal': '#0033A0', 'crav': '#6366F1' }}}}</script>
+</head>
+<body class="bg-gray-50">
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+            <a href="/" class="flex items-center gap-2"><span class="text-xl">🏰🎢🐋</span><span class="font-bold text-lg">Orlando Vacation Deals</span></a>
+            <a href="/tools" class="text-gray-600 hover:text-disney">← All Tools</a>
+        </div>
+    </nav>
+
+    <section class="bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 text-white py-12">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <h1 class="text-4xl font-bold mb-3">🎠 Best Rides by Age</h1>
+            <p class="text-white/90">Perfect attractions for every member of your family</p>
+        </div>
+    </section>
+
+    <!-- Age Selector -->
+    <section class="py-6 bg-white shadow-sm sticky top-16 z-40">
+        <div class="max-w-4xl mx-auto px-4">
+            <div class="flex flex-wrap justify-center gap-2">
+                <button onclick="showAge('toddler')" id="tab-toddler" class="age-tab px-4 py-2 bg-pink-500 text-white rounded-full text-sm font-medium">👶 Toddlers (0-3)</button>
+                <button onclick="showAge('preschool')" id="tab-preschool" class="age-tab px-4 py-2 bg-gray-200 rounded-full text-sm font-medium">🧒 Preschool (4-6)</button>
+                <button onclick="showAge('kids')" id="tab-kids" class="age-tab px-4 py-2 bg-gray-200 rounded-full text-sm font-medium">👧 Kids (7-11)</button>
+                <button onclick="showAge('teens')" id="tab-teens" class="age-tab px-4 py-2 bg-gray-200 rounded-full text-sm font-medium">🧑 Teens (12-17)</button>
+                <button onclick="showAge('adults')" id="tab-adults" class="age-tab px-4 py-2 bg-gray-200 rounded-full text-sm font-medium">👨 Adults (18+)</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-8">
+        <div class="max-w-5xl mx-auto px-4">
+            <div id="content"></div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-900 text-white py-8">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <p class="text-gray-400 text-sm">© 2025 CR AudioViz AI, LLC</p>
+        </div>
+    </footer>
+
+    <script>
+        const ageData = {
+            toddler: {
+                title: "Best Rides for Toddlers (Ages 0-3)",
+                tip: "Focus on gentle rides, character meets, and sensory experiences. Take breaks often!",
+                disney: {
+                    magic_kingdom: [
+                        { name: "it's a small world", icon: "🌍", note: "Gentle boat ride, colorful, no height requirement" },
+                        { name: "Peter Pan's Flight", icon: "✨", note: "Dark ride over London, may have long waits" },
+                        { name: "The Many Adventures of Winnie the Pooh", icon: "🍯", note: "Perfect for toddlers, Pooh themed" },
+                        { name: "Jungle Cruise", icon: "🦁", note: "Boat ride with animatronic animals, fun for all ages" },
+                        { name: "Pirates of the Caribbean", icon: "🏴‍☠️", note: "Dark ride, some drops/cannons may startle" },
+                        { name: "Dumbo the Flying Elephant", icon: "🐘", note: "Classic spinner, indoor queue with play area" },
+                        { name: "Magic Carpets of Aladdin", icon: "🧞", note: "Similar to Dumbo, near Adventureland" },
+                        { name: "Carousel of Progress", icon: "🎠", note: "Rotating theater, air conditioned, relaxing" },
+                        { name: "Tomorrowland Transit Authority", icon: "🚝", note: "Gentle ride, views of Tomorrowland" }
+                    ],
+                    epcot: [
+                        { name: "The Seas with Nemo & Friends", icon: "🐠", note: "Gentle clamshell ride, aquarium after" },
+                        { name: "Turtle Talk with Crush", icon: "🐢", note: "Interactive show, kids talk to Crush" },
+                        { name: "Frozen Ever After", icon: "❄️", note: "Boat ride, may have small drop, Anna & Elsa" },
+                        { name: "Gran Fiesta Tour", icon: "🌮", note: "Gentle boat ride with Three Caballeros" },
+                        { name: "Living with the Land", icon: "🌱", note: "Slow boat through greenhouses" },
+                        { name: "Spaceship Earth", icon: "🌐", note: "Slow dark ride through history" }
+                    ],
+                    hollywood: [
+                        { name: "Toy Story Mania!", icon: "🎯", note: "3D shooting game, fun for all ages" },
+                        { name: "Alien Swirling Saucers", icon: "👽", note: "32\" min, gentle spinner" },
+                        { name: "Mickey & Minnie's Runaway Railway", icon: "🚂", note: "No height req, gentle dark ride" },
+                        { name: "Vacation Fun Animated Short", icon: "🎬", note: "Fun Mickey cartoon show" }
+                    ],
+                    animal_kingdom: [
+                        { name: "Kilimanjaro Safaris", icon: "🦒", note: "Real animals! Best in morning when active" },
+                        { name: "Na'vi River Journey", icon: "🌿", note: "Gentle boat ride, beautiful Avatar bioluminescence" },
+                        { name: "TriceraTop Spin", icon: "🦕", note: "Dumbo-style spinner with dinosaurs" },
+                        { name: "The Animation Experience", icon: "✏️", note: "Draw Disney characters (may be closed)" }
+                    ]
+                },
+                universal: {
+                    studios: [
+                        { name: "Curious George Goes to Town", icon: "🐵", note: "Water play area, great for cooling off" },
+                        { name: "Fievel's Playland", icon: "🐭", note: "Playground themed to American Tail" },
+                        { name: "DreamWorks Land", icon: "🌈", note: "NEW! Shrek, Trolls, interactive play" }
+                    ],
+                    islands: [
+                        { name: "Caro-Seuss-El", icon: "🎠", note: "Seuss-themed carousel, no height req" },
+                        { name: "One Fish Two Fish Red Fish Blue Fish", icon: "🐟", note: "Gentle spinner with water squirts" },
+                        { name: "The Cat in the Hat", icon: "🎩", note: "36\" min, spinning may upset some" },
+                        { name: "If I Ran the Zoo", icon: "🦁", note: "Interactive play area" }
+                    ]
+                },
+                avoid: [
+                    "Any roller coasters", "Tower of Terror", "Rock 'n' Roller Coaster", "Expedition Everest", 
+                    "DINOSAUR (very loud/scary)", "Haunted Mansion (may scare)", "Most Universal thrill rides"
+                ]
+            },
+            preschool: {
+                title: "Best Rides for Preschoolers (Ages 4-6)",
+                tip: "This is the MAGICAL age for Disney! Characters are real, experiences are incredible. Don't rush - savor the wonder!",
+                disney: {
+                    magic_kingdom: [
+                        { name: "Seven Dwarfs Mine Train", icon: "⛏️", note: "38\" min - First 'big kid' coaster, gentle" },
+                        { name: "The Barnstormer", icon: "✈️", note: "35\" min - Perfect first roller coaster" },
+                        { name: "Pirates of the Caribbean", icon: "🏴‍☠️", note: "Slightly more thrilling, darkness" },
+                        { name: "Haunted Mansion", icon: "👻", note: "No height req - May be scary but iconic" },
+                        { name: "Buzz Lightyear Space Ranger Spin", icon: "🔫", note: "Shoot aliens, kids love competing" },
+                        { name: "Monsters Inc. Laugh Floor", icon: "😂", note: "Interactive comedy show" },
+                        { name: "Mickey's PhilharMagic", icon: "🎵", note: "3D show, magical experience" },
+                        { name: "Under the Sea - Journey of Little Mermaid", icon: "🧜‍♀️", note: "Gentle dark ride" },
+                        { name: "Tomorrowland Speedway", icon: "🏎️", note: "32\" to ride, 54\" to drive alone" }
+                    ],
+                    epcot: [
+                        { name: "Remy's Ratatouille Adventure", icon: "🐀", note: "Trackless ride, shrunk to rat size!" },
+                        { name: "Journey Into Imagination", icon: "💜", note: "Gentle ride with Figment" },
+                        { name: "Soarin' Around the World", icon: "🌍", note: "40\" min - Flying over world landmarks" }
+                    ],
+                    hollywood: [
+                        { name: "Slinky Dog Dash", icon: "🐕", note: "38\" min - Family coaster, not too intense" },
+                        { name: "Millennium Falcon: Smugglers Run", icon: "🚀", note: "38\" min - Pilot the Falcon!" },
+                        { name: "Star Tours", icon: "⭐", note: "40\" min - Motion simulator, may be intense" }
+                    ],
+                    animal_kingdom: [
+                        { name: "Kali River Rapids", icon: "🌊", note: "38\" min - YOU WILL GET SOAKED" },
+                        { name: "Flight of Passage", icon: "🐉", note: "44\" min - Check height! Amazing if tall enough" },
+                        { name: "Gorilla Falls Exploration Trail", icon: "🦍", note: "Walk through wildlife habitats" }
+                    ]
+                },
+                universal: {
+                    studios: [
+                        { name: "E.T. Adventure", icon: "👽", note: "34\" min - Classic, gentle ride" },
+                        { name: "Trolls Trollercoaster", icon: "🌈", note: "36\" min - Perfect first coaster" },
+                        { name: "Despicable Me Minion Mayhem", icon: "🍌", note: "40\" for motion, stationary available" }
+                    ],
+                    islands: [
+                        { name: "Pteranodon Flyers", icon: "🦅", note: "36-56\" - Adults must ride WITH child!" },
+                        { name: "Skull Island: Reign of Kong", icon: "🦍", note: "36\" min - Intense but amazing" },
+                        { name: "The High in the Sky Seuss Trolley", icon: "🚡", note: "36\" min - Gentle sky ride" }
+                    ]
+                },
+                avoid: [
+                    "TRON (too intense)", "Space Mountain (dark + fast)", "Tower of Terror", "Rock 'n' Roller Coaster",
+                    "Guardians of the Galaxy (backward launches)", "Hulk Coaster", "VelociCoaster"
+                ]
+            },
+            kids: {
+                title: "Best Rides for Kids (Ages 7-11)",
+                tip: "The ADVENTURE age! Kids are tall enough for most rides and ready for thrills. Check heights - 44\" unlocks almost everything at Disney!",
+                disney: {
+                    magic_kingdom: [
+                        { name: "TRON Lightcycle / Run", icon: "🏍️", note: "48\" min - Most thrilling coaster at MK!" },
+                        { name: "Space Mountain", icon: "🚀", note: "44\" min - Classic dark coaster" },
+                        { name: "Big Thunder Mountain", icon: "⛰️", note: "40\" min - Runaway mine train, iconic" },
+                        { name: "Tiana's Bayou Adventure", icon: "🐸", note: "40\" min - Log flume with a splash" },
+                        { name: "Seven Dwarfs Mine Train", icon: "⛏️", note: "38\" min - Swinging cars through mine" }
+                    ],
+                    epcot: [
+                        { name: "Guardians of the Galaxy: Cosmic Rewind", icon: "🎸", note: "42\" min - Backward launch coaster!" },
+                        { name: "Test Track", icon: "🏎️", note: "40\" min - Design a car, test it at 65 mph" },
+                        { name: "Mission: SPACE", icon: "🛸", note: "40\"/44\" min - Intense spinning (Orange more intense)" }
+                    ],
+                    hollywood: [
+                        { name: "Tower of Terror", icon: "🗼", note: "40\" min - Drop ride, genuinely scary!" },
+                        { name: "Rock 'n' Roller Coaster", icon: "🎸", note: "48\" min - Indoor launch coaster, inversions" },
+                        { name: "Rise of the Resistance", icon: "⭐", note: "40\" min - BEST RIDE AT DISNEY - immersive Star Wars" }
+                    ],
+                    animal_kingdom: [
+                        { name: "Expedition Everest", icon: "🏔️", note: "44\" min - Coaster goes BACKWARD!" },
+                        { name: "Avatar Flight of Passage", icon: "🐉", note: "44\" min - Flying on a banshee, incredible" },
+                        { name: "DINOSAUR", icon: "🦖", note: "40\" min - Dark, loud, intense - may scare younger kids" }
+                    ]
+                },
+                universal: {
+                    studios: [
+                        { name: "Harry Potter Escape from Gringotts", icon: "🐉", note: "42\" min - Coaster + dark ride combo" },
+                        { name: "Revenge of the Mummy", icon: "🧟", note: "48\" min - Indoor coaster, fire effects" },
+                        { name: "MEN IN BLACK Alien Attack", icon: "👽", note: "42\" min - Shooting game ride" },
+                        { name: "Transformers: The Ride 3D", icon: "🤖", note: "40\" min - Intense 3D simulator" }
+                    ],
+                    islands: [
+                        { name: "Hagrid's Magical Creatures", icon: "🏍️", note: "48\" min - BEST HP RIDE, motorcycle coaster" },
+                        { name: "Forbidden Journey", icon: "🧙", note: "48\" min - Fly through Hogwarts castle" },
+                        { name: "The Amazing Spider-Man", icon: "🕷️", note: "40\" min - 3D dark ride, fun story" },
+                        { name: "Jurassic World VelociCoaster", icon: "🦖", note: "51\" min - Intense! 4 inversions" }
+                    ]
+                },
+                avoid: [
+                    "VelociCoaster if under 51\"", "Incredible Hulk if under 54\"", 
+                    "Check heights before hyping any ride!"
+                ]
+            },
+            teens: {
+                title: "Best Rides for Teens (Ages 12-17)",
+                tip: "THRILL TIME! Teens want intensity, speed, and bragging rights. Universal often wins for pure thrills, but Disney has incredible immersion.",
+                disney: {
+                    top_thrills: [
+                        { name: "TRON Lightcycle / Run", icon: "🏍️", note: "48\" - Fastest Disney coaster, motorcycle-style seating" },
+                        { name: "Guardians of the Galaxy: Cosmic Rewind", icon: "🎸", note: "42\" - First Disney coaster to go backward" },
+                        { name: "Rock 'n' Roller Coaster", icon: "🎸", note: "48\" - 0-60 in 2.8 seconds, 3 inversions" },
+                        { name: "Tower of Terror", icon: "🗼", note: "40\" - Randomized drops, genuinely scary" },
+                        { name: "Expedition Everest", icon: "🏔️", note: "44\" - Goes backward through dark mountain" },
+                        { name: "Avatar Flight of Passage", icon: "🐉", note: "44\" - Flying simulator, breathtaking" }
+                    ],
+                    immersive: [
+                        { name: "Rise of the Resistance", icon: "⭐", note: "40\" - 18-minute experience, captured by First Order" },
+                        { name: "Millennium Falcon: Smugglers Run", icon: "🚀", note: "38\" - YOU pilot the Falcon" },
+                        { name: "Test Track", icon: "🏎️", note: "40\" - Design your car, test at 65 mph" }
+                    ]
+                },
+                universal: {
+                    extreme: [
+                        { name: "VelociCoaster", icon: "🦖", note: "51\" - BEST COASTER IN ORLANDO - 70 mph, 4 inversions" },
+                        { name: "Incredible Hulk Coaster", icon: "💚", note: "54\" - Launch coaster, 7 inversions" },
+                        { name: "Hollywood Rip Ride Rockit", icon: "🎵", note: "51\" - Pick your music, 90° drop" },
+                        { name: "Hagrid's Magical Creatures", icon: "🏍️", note: "48\" - Motorcycle coaster, 7 launches" }
+                    ],
+                    intense: [
+                        { name: "Escape from Gringotts", icon: "🐉", note: "42\" - Coaster + dark ride, dragon fire" },
+                        { name: "Forbidden Journey", icon: "🧙", note: "48\" - Fly through Quidditch match" },
+                        { name: "Revenge of the Mummy", icon: "🧟", note: "48\" - Fire, mummies, indoor coaster" },
+                        { name: "Doctor Doom's Fearfall", icon: "⚡", note: "52\" - Launch UP then drop" }
+                    ],
+                    epic_universe: [
+                        { name: "Harry Potter Battle at Ministry", icon: "⚔️", note: "40\" - NEW! Dark ride through Ministry" },
+                        { name: "Mario Kart: Bowser's Challenge", icon: "🍄", note: "40\" - AR racing experience" },
+                        { name: "Mine-Cart Madness", icon: "💎", note: "40\" - Donkey Kong themed coaster" }
+                    ]
+                },
+                tips: [
+                    "Single Rider lines can cut waits by 50-75%",
+                    "Rope drop VelociCoaster or Hagrid's - lines get long",
+                    "TRON and Guardians use virtual queues - book at 7 AM",
+                    "Take photos/videos on non-motion rides (Tower of Terror, etc.)"
+                ]
+            },
+            adults: {
+                title: "Best Rides for Adults (Ages 18+)",
+                tip: "Whether you're thrill-seekers, nostalgic Disney fans, or parents getting a rare night out - here's your guide.",
+                disney: {
+                    must_do: [
+                        { name: "Rise of the Resistance", icon: "⭐", note: "The most immersive ride experience in any park" },
+                        { name: "Avatar Flight of Passage", icon: "🐉", note: "Emotional, breathtaking, unforgettable" },
+                        { name: "TRON Lightcycle / Run", icon: "🏍️", note: "Quick but intense, amazing at night" },
+                        { name: "Guardians of the Galaxy", icon: "🎸", note: "Different song each time, backward launch" },
+                        { name: "Haunted Mansion", icon: "👻", note: "999 happy haunts, classic dark ride" },
+                        { name: "Pirates of the Caribbean", icon: "🏴‍☠️", note: "Original Disney magic, inspired the movies" }
+                    ],
+                    food_and_drink: [
+                        { name: "EPCOT World Showcase", icon: "🍷", note: "Drink around the world - 11 countries" },
+                        { name: "Oga's Cantina", icon: "🍸", note: "Star Wars themed bar, unique cocktails" },
+                        { name: "Be Our Guest", icon: "🥀", note: "Dine inside Beast's Castle (book 60 days out)" },
+                        { name: "Space 220", icon: "🚀", note: "Dine 'in space' with Earth views" }
+                    ]
+                },
+                universal: {
+                    coasters: [
+                        { name: "VelociCoaster", icon: "🦖", note: "Top 10 coaster in the WORLD - bucket list" },
+                        { name: "Incredible Hulk", icon: "💚", note: "Launch into zero-G roll, 7 inversions" },
+                        { name: "Hagrid's Magical Creatures", icon: "🏍️", note: "Story-driven coaster, feels like flying" },
+                        { name: "Hollywood Rip Ride Rockit", icon: "🎵", note: "Choose your soundtrack, near-vertical drop" }
+                    ],
+                    experiences: [
+                        { name: "Escape from Gringotts", icon: "🐉", note: "Perfect blend of coaster + dark ride" },
+                        { name: "Forbidden Journey", icon: "🧙", note: "Roboarm ride, fly through Hogwarts" },
+                        { name: "Butterbeer at Hogsmeade", icon: "🍺", note: "Frozen or regular, must-try!" }
+                    ],
+                    nightlife: [
+                        { name: "CityWalk", icon: "🎉", note: "Clubs, restaurants, bars - no park ticket needed" },
+                        { name: "Toothsome Chocolate Emporium", icon: "🍫", note: "Steampunk restaurant, insane milkshakes" }
+                    ]
+                },
+                date_night: [
+                    "EPCOT after 5 PM - World Showcase for drinks/dinner + fireworks",
+                    "Disney Springs - Free parking, great restaurants, no park ticket",
+                    "Universal CityWalk - Live music, clubs, no park ticket needed",
+                    "Victoria & Albert's at Grand Floridian - AAA Five Diamond dining"
+                ]
+            }
+        };
+
+        let currentAge = 'toddler';
+
+        function showAge(age) {
+            currentAge = age;
+            document.querySelectorAll('.age-tab').forEach(tab => {
+                tab.classList.remove('bg-pink-500', 'bg-yellow-500', 'bg-green-500', 'bg-blue-500', 'bg-purple-500', 'text-white');
+                tab.classList.add('bg-gray-200');
+            });
+            const colors = { toddler: 'bg-pink-500', preschool: 'bg-yellow-500', kids: 'bg-green-500', teens: 'bg-blue-500', adults: 'bg-purple-500' };
+            document.getElementById('tab-' + age).classList.remove('bg-gray-200');
+            document.getElementById('tab-' + age).classList.add(colors[age], 'text-white');
+            renderContent();
+        }
+
+        function renderContent() {
+            const data = ageData[currentAge];
+            let html = `
+                <div class="bg-white rounded-xl shadow-sm p-6 mb-6">
+                    <h2 class="text-2xl font-bold mb-2">${data.title}</h2>
+                    <p class="text-gray-600 bg-yellow-50 rounded-lg p-3 border-l-4 border-yellow-500">${data.tip}</p>
+                </div>
+            `;
+
+            // Disney Section
+            html += `<div class="mb-8"><h3 class="text-xl font-bold text-disney mb-4">🏰 Walt Disney World</h3><div class="grid md:grid-cols-2 gap-4">`;
+            
+            const disneyData = data.disney;
+            for (const [park, rides] of Object.entries(disneyData)) {
+                const parkName = park.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+                html += `<div class="bg-purple-50 rounded-xl p-4">
+                    <h4 class="font-bold text-disney mb-3">${parkName}</h4>
+                    <div class="space-y-2">`;
+                rides.forEach(ride => {
+                    html += `<div class="bg-white rounded-lg p-2 text-sm">
+                        <div class="flex items-center gap-2">
+                            <span class="text-xl">${ride.icon}</span>
+                            <span class="font-medium">${ride.name}</span>
+                        </div>
+                        <p class="text-gray-500 text-xs mt-1 ml-8">${ride.note}</p>
+                    </div>`;
+                });
+                html += `</div></div>`;
+            }
+            html += `</div></div>`;
+
+            // Universal Section
+            if (data.universal) {
+                html += `<div class="mb-8"><h3 class="text-xl font-bold text-universal mb-4">🎢 Universal Orlando</h3><div class="grid md:grid-cols-2 gap-4">`;
+                
+                for (const [park, rides] of Object.entries(data.universal)) {
+                    const parkName = park.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+                    html += `<div class="bg-blue-50 rounded-xl p-4">
+                        <h4 class="font-bold text-universal mb-3">${parkName}</h4>
+                        <div class="space-y-2">`;
+                    rides.forEach(ride => {
+                        html += `<div class="bg-white rounded-lg p-2 text-sm">
+                            <div class="flex items-center gap-2">
+                                <span class="text-xl">${ride.icon}</span>
+                                <span class="font-medium">${ride.name}</span>
+                            </div>
+                            <p class="text-gray-500 text-xs mt-1 ml-8">${ride.note}</p>
+                        </div>`;
+                    });
+                    html += `</div></div>`;
+                }
+                html += `</div></div>`;
+            }
+
+            // Avoid Section
+            if (data.avoid) {
+                html += `<div class="bg-red-50 rounded-xl p-6 mb-6">
+                    <h3 class="font-bold text-red-800 mb-3">⚠️ Consider Skipping</h3>
+                    <div class="flex flex-wrap gap-2">
+                        ${data.avoid.map(r => `<span class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm">${r}</span>`).join('')}
+                    </div>
+                </div>`;
+            }
+
+            // Tips Section
+            if (data.tips) {
+                html += `<div class="bg-green-50 rounded-xl p-6 mb-6">
+                    <h3 class="font-bold text-green-800 mb-3">💡 Pro Tips</h3>
+                    <ul class="space-y-2">
+                        ${data.tips.map(t => `<li class="flex gap-2 text-sm"><span>✓</span><span>${t}</span></li>`).join('')}
+                    </ul>
+                </div>`;
+            }
+
+            // Date Night Section
+            if (data.date_night) {
+                html += `<div class="bg-pink-50 rounded-xl p-6 mb-6">
+                    <h3 class="font-bold text-pink-800 mb-3">💕 Date Night Ideas</h3>
+                    <ul class="space-y-2">
+                        ${data.date_night.map(t => `<li class="flex gap-2 text-sm"><span>❤️</span><span>${t}</span></li>`).join('')}
+                    </ul>
+                </div>`;
+            }
+
+            document.getElementById('content').innerHTML = html;
+        }
+
+        renderContent();
+    </script>
+</body>
+</html>
