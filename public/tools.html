@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Orlando Planning Tools - Crowd Calendar, Budget Calculator & More</title>
+    <meta name="description" content="Free Orlando vacation planning tools: crowd calendar, trip cost calculator, packing list generator, transportation estimator, and more.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: { extend: { colors: { 'disney': '#5B2C86', 'universal': '#0033A0', 'seaworld': '#0077B6', 'crav': '#6366F1' }}}
+        }
+    </script>
+</head>
+<body class="bg-gray-50">
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-3">
+            <div class="flex items-center justify-between">
+                <a href="/" class="flex items-center gap-3">
+                    <span class="text-2xl">🏰🎢🐋</span>
+                    <span class="font-bold text-xl text-gray-900">Orlando Vacation Deals</span>
+                </a>
+                <a href="/" class="text-gray-600 hover:text-disney">← Back to Home</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="bg-gradient-to-r from-crav to-purple-600 text-white py-16">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">Free Orlando Planning Tools</h1>
+            <p class="text-xl text-white/90">Everything you need to plan your perfect vacation - 100% free, no signup required</p>
+        </div>
+    </section>
+
+    <section class="py-12">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="grid md:grid-cols-3 gap-6">
+                <a href="/crowd-calendar" class="bg-white rounded-xl p-6 shadow-sm hover:shadow-lg transition border-l-4 border-disney">
+                    <div class="w-14 h-14 bg-disney/10 rounded-xl flex items-center justify-center mb-4">
+                        <i class="fas fa-calendar-alt text-disney text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-xl text-gray-900 mb-2">Crowd Calendar</h3>
+                    <p class="text-gray-600 mb-4">See which days are busiest at Disney, Universal, and SeaWorld. Plan around the crowds!</p>
+                    <span class="text-disney font-medium">Open Tool →</span>
+                </a>
+                
+                <a href="/budget-calculator" class="bg-white rounded-xl p-6 shadow-sm hover:shadow-lg transition border-l-4 border-green-500">
+                    <div class="w-14 h-14 bg-green-100 rounded-xl flex items-center justify-center mb-4">
+                        <i class="fas fa-calculator text-green-600 text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-xl text-gray-900 mb-2">Trip Budget Calculator</h3>
+                    <p class="text-gray-600 mb-4">Estimate your total vacation cost including hotels, tickets, food, and transportation.</p>
+                    <span class="text-green-600 font-medium">Open Tool →</span>
+                </a>
+                
+                <a href="/packing-list" class="bg-white rounded-xl p-6 shadow-sm hover:shadow-lg transition border-l-4 border-blue-500">
+                    <div class="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center mb-4">
+                        <i class="fas fa-suitcase text-blue-600 text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-xl text-gray-900 mb-2">Packing List Generator</h3>
+                    <p class="text-gray-600 mb-4">Customizable packing checklist for your Orlando trip. Never forget essentials!</p>
+                    <span class="text-blue-600 font-medium">Open Tool →</span>
+                </a>
+                
+                <a href="/transportation" class="bg-white rounded-xl p-6 shadow-sm hover:shadow-lg transition border-l-4 border-yellow-500">
+                    <div class="w-14 h-14 bg-yellow-100 rounded-xl flex items-center justify-center mb-4">
+                        <i class="fas fa-shuttle-van text-yellow-600 text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-xl text-gray-900 mb-2">Transportation Guide</h3>
+                    <p class="text-gray-600 mb-4">Compare MCO airport shuttle, Uber, taxi, and car rental prices to your hotel.</p>
+                    <span class="text-yellow-600 font-medium">Open Tool →</span>
+                </a>
+                
+                <a href="/date-calculator" class="bg-white rounded-xl p-6 shadow-sm hover:shadow-lg transition border-l-4 border-red-500">
+                    <div class="w-14 h-14 bg-red-100 rounded-xl flex items-center justify-center mb-4">
+                        <i class="fas fa-clock text-red-600 text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-xl text-gray-900 mb-2">Important Dates Calculator</h3>
+                    <p class="text-gray-600 mb-4">Know when to book dining, Lightning Lane, and hotel reservations.</p>
+                    <span class="text-red-600 font-medium">Open Tool →</span>
+                </a>
+                
+                <a href="/weather-guide" class="bg-white rounded-xl p-6 shadow-sm hover:shadow-lg transition border-l-4 border-cyan-500">
+                    <div class="w-14 h-14 bg-cyan-100 rounded-xl flex items-center justify-center mb-4">
+                        <i class="fas fa-cloud-sun text-cyan-600 text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-xl text-gray-900 mb-2">Weather Guide</h3>
+                    <p class="text-gray-600 mb-4">Monthly weather averages, what to pack, and rainy season tips.</p>
+                    <span class="text-cyan-600 font-medium">Open Tool →</span>
+                </a>
+                
+                <a href="/dvc" class="bg-white rounded-xl p-6 shadow-sm hover:shadow-lg transition border-l-4 border-emerald-500">
+                    <div class="w-14 h-14 bg-emerald-100 rounded-xl flex items-center justify-center mb-4">
+                        <i class="fas fa-gem text-emerald-600 text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-xl text-gray-900 mb-2">DVC Savings Calculator</h3>
+                    <p class="text-gray-600 mb-4">Calculate how much you save renting DVC points vs booking direct.</p>
+                    <span class="text-emerald-600 font-medium">Open Tool →</span>
+                </a>
+                
+                <a href="/results" class="bg-white rounded-xl p-6 shadow-sm hover:shadow-lg transition border-l-4 border-indigo-500">
+                    <div class="w-14 h-14 bg-indigo-100 rounded-xl flex items-center justify-center mb-4">
+                        <i class="fas fa-hotel text-indigo-600 text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-xl text-gray-900 mb-2">Hotel Comparison</h3>
+                    <p class="text-gray-600 mb-4">Compare Disney, Universal, and off-site hotels by price and amenities.</p>
+                    <span class="text-indigo-600 font-medium">Open Tool →</span>
+                </a>
+                
+                <a href="/passholder" class="bg-white rounded-xl p-6 shadow-sm hover:shadow-lg transition border-l-4 border-purple-500">
+                    <div class="w-14 h-14 bg-purple-100 rounded-xl flex items-center justify-center mb-4">
+                        <i class="fas fa-id-card text-purple-600 text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-xl text-gray-900 mb-2">Passholder Hub</h3>
+                    <p class="text-gray-600 mb-4">Disney, Universal, and SeaWorld annual pass discounts in one place.</p>
+                    <span class="text-purple-600 font-medium">Open Tool →</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partner Ads Section -->
+    <section class="py-12 bg-gray-100">
+        <div class="max-w-6xl mx-auto px-4">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6 text-center">Our Partners</h2>
+            <div class="grid md:grid-cols-4 gap-4">
+                <div class="bg-white rounded-lg p-4 text-center shadow-sm">
+                    <span class="text-[10px] text-gray-400 uppercase">Sponsored</span>
+                    <div class="text-3xl my-3">🚐</div>
+                    <h4 class="font-bold text-sm">Mears Connect</h4>
+                    <p class="text-xs text-gray-500">Airport shuttle from $19</p>
+                    <a href="https://www.mearsconnect.com" target="_blank" class="text-xs text-crav hover:underline">Book Now</a>
+                </div>
+                <div class="bg-white rounded-lg p-4 text-center shadow-sm">
+                    <span class="text-[10px] text-gray-400 uppercase">Sponsored</span>
+                    <div class="text-3xl my-3">🎟️</div>
+                    <h4 class="font-bold text-sm">Undercover Tourist</h4>
+                    <p class="text-xs text-gray-500">Discount tickets</p>
+                    <a href="https://www.undercovertourist.com" target="_blank" class="text-xs text-crav hover:underline">Get Tickets</a>
+                </div>
+                <div class="bg-white rounded-lg p-4 text-center shadow-sm">
+                    <span class="text-[10px] text-gray-400 uppercase">Sponsored</span>
+                    <div class="text-3xl my-3">🏠</div>
+                    <h4 class="font-bold text-sm">Moving to Florida?</h4>
+                    <p class="text-xs text-gray-500">Local realtors</p>
+                    <a href="/contact" class="text-xs text-crav hover:underline">Connect Now</a>
+                </div>
+                <div class="bg-white rounded-lg p-4 text-center shadow-sm">
+                    <span class="text-[10px] text-gray-400 uppercase">Sponsored</span>
+                    <div class="text-3xl my-3">✈️</div>
+                    <h4 class="font-bold text-sm">Travel Agents</h4>
+                    <p class="text-xs text-gray-500">Free planning help</p>
+                    <a href="/agents" class="text-xs text-crav hover:underline">Find Agent</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-900 text-white py-8">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <p class="text-gray-400 text-sm">© 2025 CR AudioViz AI, LLC. All tools are free to use.</p>
+            <p class="text-gray-500 text-xs mt-2">Not affiliated with Disney, Universal, SeaWorld, or LEGOLAND.</p>
+        </div>
+    </footer>
+</body>
+</html>
