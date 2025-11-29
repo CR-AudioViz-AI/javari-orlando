@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Orlando Packing List Generator - Disney & Universal</title>
+    <meta name="description" content="Free customizable Orlando packing list for Disney World and Universal trips. Print or save your personalized checklist.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @media print {
+            .no-print { display: none !important; }
+            .print-only { display: block !important; }
+            body { background: white; }
+        }
+        .print-only { display: none; }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <nav class="bg-white shadow-sm sticky top-0 z-50 no-print">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+            <a href="/" class="flex items-center gap-2"><span class="text-xl">🏰🎢🐋</span><span class="font-bold text-lg">Orlando Vacation Deals</span></a>
+            <a href="/tools" class="text-gray-600 hover:text-blue-600">← All Tools</a>
+        </div>
+    </nav>
+
+    <section class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-12 no-print">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <h1 class="text-4xl font-bold mb-3">Orlando Packing List Generator</h1>
+            <p class="text-white/90">Customize your checklist, then print or save</p>
+        </div>
+    </section>
+
+    <div class="print-only text-center py-4">
+        <h1 class="text-2xl font-bold">🏰 Orlando Vacation Packing List 🎢</h1>
+        <p class="text-gray-500">OrlandoVacationDeals.com</p>
+    </div>
+
+    <section class="py-8 no-print">
+        <div class="max-w-4xl mx-auto px-4">
+            <div class="bg-white rounded-xl shadow-sm p-6 mb-6">
+                <h3 class="font-bold text-lg mb-4">Customize Your List</h3>
+                <div class="flex flex-wrap gap-4">
+                    <label class="flex items-center gap-2 cursor-pointer">
+                        <input type="checkbox" id="hasKids" checked class="rounded text-blue-600" onchange="updateList()">
+                        <span class="text-sm">Traveling with Kids</span>
+                    </label>
+                    <label class="flex items-center gap-2 cursor-pointer">
+                        <input type="checkbox" id="hasBaby" class="rounded text-blue-600" onchange="updateList()">
+                        <span class="text-sm">Baby/Toddler</span>
+                    </label>
+                    <label class="flex items-center gap-2 cursor-pointer">
+                        <input type="checkbox" id="waterParks" checked class="rounded text-blue-600" onchange="updateList()">
+                        <span class="text-sm">Water Parks/Pool</span>
+                    </label>
+                    <label class="flex items-center gap-2 cursor-pointer">
+                        <input type="checkbox" id="summer" checked class="rounded text-blue-600" onchange="updateList()">
+                        <span class="text-sm">Summer Visit (Hot Weather)</span>
+                    </label>
+                </div>
+                <div class="mt-4 flex gap-4">
+                    <button onclick="window.print()" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700">
+                        <i class="fas fa-print mr-2"></i>Print List
+                    </button>
+                    <button onclick="checkAll()" class="bg-gray-200 text-gray-700 px-6 py-2 rounded-lg hover:bg-gray-300">
+                        Uncheck All
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pb-12">
+        <div class="max-w-4xl mx-auto px-4">
+            <div class="grid md:grid-cols-2 gap-6" id="packingLists">
+                <!-- Essentials -->
+                <div class="bg-white rounded-xl shadow-sm p-6">
+                    <h3 class="font-bold text-lg mb-4 text-red-600"><i class="fas fa-exclamation-circle mr-2"></i>Must-Have Essentials</h3>
+                    <div class="space-y-2 text-sm" id="essentials">
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="pack-item"><span>Photo ID / Driver's License</span></label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="pack-item"><span>Credit/Debit Cards</span></label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="pack-item"><span>Phone & Charger</span></label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="pack-item"><span>Portable Power Bank</span></label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="pack-item"><span>Hotel Confirmation</span></label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="pack-item"><span>Theme Park Tickets (digital or print)</span></label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="pack-item"><span>MagicBand / MagicBand+</span></label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="pack-item"><span>Health Insurance Card</span></label>
+                    </div>
+                </div>
+
+                <!-- Clothing -->
+                <div class="bg-white rounded-xl shadow-sm p-6">
+                    <h3 class="font-bold text-lg mb-4 text-blue-600"><i class="fas fa-tshirt mr-2"></i>Clothing</h3>
+                    <div class="space-y-2 text-sm" id="clothing">
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="pack-item"><span>Comfortable Walking Shoes (2 pairs)</span></label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="pack-item"><span>Broken-in Sneakers</span></label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="pack-item"><span>T-shirts / Tops (1.5 per day)</span></label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="pack-item"><span>Shorts / Pants</span></label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="pack-item"><span>Underwear & Socks (extra pairs)</span></label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="pack-item"><span>Rain Poncho or Light Rain Jacket</span></label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="pack-item"><span>Light Sweater/Jacket (AC is cold!)</span></label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="pack-item"><span>Pajamas</span></label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="pack-item"><span>Flip Flops (for hotel/pool)</span></label>
+                    </div>
+                </div>
+
+                <!-- Sun & Weather -->
+                <div class="bg-white rounded-xl shadow-sm p-6">
+                    <h3 class="font-bold text-lg mb-4 text-yellow-600"><i class="fas fa-sun mr-2"></i>Sun & Weather</h3>
+                    <div class="space-y-2 text-sm" id="sunweather">
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="pack-item"><span>Sunscreen SPF 30+ (travel size for bag)</span></label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="pack-item"><span>Sunglasses</span></label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="pack-item"><span>Hat or Baseball Cap</span></label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="pack-item"><span>Lip Balm with SPF</span></label>
+                        <label class="flex items-center gap-2 cursor-pointer summer-item"><input type="checkbox" class="pack-item"><span>Cooling Towel</span></label>
+                        <label class="flex items-center gap-2 cursor-pointer summer-item"><input type="checkbox" class="pack-item"><span>Portable Fan / Neck Fan</span></label>
+                        <label class="flex items-center gap-2 cursor-pointer summer-item"><input type="checkbox" class="pack-item"><span>Insulated Water Bottle</span></label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="pack-item"><span>Umbrella (compact)</span></label>
+                    </div>
+                </div>
+
+                <!-- Park Bag -->
+                <div class="bg-white rounded-xl shadow-sm p-6">
+                    <h3 class="font-bold text-lg mb-4 text-green-600"><i class="fas fa-backpack mr-2"></i>Park Day Bag</h3>
+                    <div class="space-y-2 text-sm" id="parkbag">
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="pack-item"><span>Small Backpack or Crossbody</span></label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="pack-item"><span>Refillable Water Bottle</span></label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="pack-item"><span>Snacks (granola bars, crackers)</span></label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="pack-item"><span>Hand Sanitizer</span></label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="pack-item"><span>Wet Wipes</span></label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="pack-item"><span>Tissues</span></label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="pack-item"><span>Band-aids / Moleskin (for blisters)</span></label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="pack-item"><span>Pain Reliever (Advil/Tylenol)</span></label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="pack-item"><span>Motion Sickness Meds (if needed)</span></label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="pack-item"><span>Ziplock Bags (protect phone on water rides)</span></label>
+                    </div>
+                </div>
+
+                <!-- Kids Items -->
+                <div class="bg-white rounded-xl shadow-sm p-6 kids-section">
+                    <h3 class="font-bold text-lg mb-4 text-purple-600"><i class="fas fa-child mr-2"></i>Kids Essentials</h3>
+                    <div class="space-y-2 text-sm" id="kids">
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="pack-item"><span>Stroller (or rent at park)</span></label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="pack-item"><span>Autograph Book & Thick Marker</span></label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="pack-item"><span>Glow Sticks/Toys for Evening</span></label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="pack-item"><span>Small Toys for Lines</span></label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="pack-item"><span>Character Shirts / Costumes</span></label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="pack-item"><span>Mickey/Minnie Ears</span></label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="pack-item"><span>Extra Change of Clothes (in bag)</span></label>
+                    </div>
+                </div>
+
+                <!-- Baby Items -->
+                <div class="bg-white rounded-xl shadow-sm p-6 baby-section hidden">
+                    <h3 class="font-bold text-lg mb-4 text-pink-600"><i class="fas fa-baby mr-2"></i>Baby/Toddler</h3>
+                    <div class="space-y-2 text-sm" id="baby">
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="pack-item"><span>Diapers (lots of extras)</span></label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="pack-item"><span>Baby Wipes</span></label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="pack-item"><span>Changing Pad</span></label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="pack-item"><span>Formula/Bottles/Sippy Cups</span></label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="pack-item"><span>Baby Food/Snacks</span></label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="pack-item"><span>Pacifiers (extras!)</span></label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="pack-item"><span>Baby Carrier/Wrap</span></label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="pack-item"><span>Stroller Fan</span></label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="pack-item"><span>Blanket for AC</span></label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="pack-item"><span>Swim Diapers</span></label>
+                    </div>
+                </div>
+
+                <!-- Water Parks -->
+                <div class="bg-white rounded-xl shadow-sm p-6 water-section">
+                    <h3 class="font-bold text-lg mb-4 text-cyan-600"><i class="fas fa-swimmer mr-2"></i>Water Parks & Pool</h3>
+                    <div class="space-y-2 text-sm" id="water">
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="pack-item"><span>Swimsuits (2+ per person)</span></label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="pack-item"><span>Rash Guard / Swim Shirt</span></label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="pack-item"><span>Waterproof Phone Case</span></label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="pack-item"><span>Beach Towel</span></label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="pack-item"><span>Water Shoes</span></label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="pack-item"><span>Goggles</span></label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="pack-item"><span>Waterproof Sunscreen</span></label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="pack-item"><span>Wet Bag for Wet Clothes</span></label>
+                    </div>
+                </div>
+
+                <!-- Toiletries -->
+                <div class="bg-white rounded-xl shadow-sm p-6">
+                    <h3 class="font-bold text-lg mb-4 text-indigo-600"><i class="fas fa-pump-soap mr-2"></i>Toiletries</h3>
+                    <div class="space-y-2 text-sm" id="toiletries">
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="pack-item"><span>Toothbrush & Toothpaste</span></label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="pack-item"><span>Deodorant</span></label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="pack-item"><span>Shampoo/Conditioner</span></label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="pack-item"><span>Body Wash</span></label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="pack-item"><span>Razor</span></label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="pack-item"><span>Makeup / Skincare</span></label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="pack-item"><span>Hair Brush / Ties</span></label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="pack-item"><span>Medications (prescription)</span></label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="pack-item"><span>Anti-Chafe Stick/Powder</span></label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="pack-item"><span>Bug Spray</span></label>
+                        <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="pack-item"><span>Aloe Vera (for sunburn)</span></label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-900 text-white py-8 no-print">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <p class="text-gray-400 text-sm">© 2025 CR AudioViz AI, LLC</p>
+        </div>
+    </footer>
+
+    <script>
+        function updateList() {
+            const hasKids = document.getElementById('hasKids').checked;
+            const hasBaby = document.getElementById('hasBaby').checked;
+            const waterParks = document.getElementById('waterParks').checked;
+            const summer = document.getElementById('summer').checked;
+            
+            document.querySelectorAll('.kids-section').forEach(el => el.style.display = hasKids ? 'block' : 'none');
+            document.querySelectorAll('.baby-section').forEach(el => el.style.display = hasBaby ? 'block' : 'none');
+            document.querySelectorAll('.water-section').forEach(el => el.style.display = waterParks ? 'block' : 'none');
+            document.querySelectorAll('.summer-item').forEach(el => el.style.display = summer ? 'flex' : 'none');
+        }
+        
+        function checkAll() {
+            document.querySelectorAll('.pack-item').forEach(cb => cb.checked = false);
+        }
+        
+        updateList();
+    </script>
+</body>
+</html>
