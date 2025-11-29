@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Orlando Trip Budget Calculator - Disney, Universal Cost Estimator</title>
+    <meta name="description" content="Free Orlando vacation budget calculator. Estimate costs for Disney World, Universal, hotels, food, transportation, and more.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>tailwind.config = { theme: { extend: { colors: { 'disney': '#5B2C86', 'universal': '#0033A0', 'crav': '#6366F1' }}}}</script>
+</head>
+<body class="bg-gray-50">
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+            <a href="/" class="flex items-center gap-2"><span class="text-xl">🏰🎢🐋</span><span class="font-bold text-lg">Orlando Vacation Deals</span></a>
+            <a href="/tools" class="text-gray-600 hover:text-green-600">← All Tools</a>
+        </div>
+    </nav>
+
+    <section class="bg-gradient-to-r from-green-600 to-emerald-700 text-white py-12">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <h1 class="text-4xl font-bold mb-3">Orlando Trip Budget Calculator</h1>
+            <p class="text-white/90">Estimate your total vacation cost - 100% free, no signup</p>
+        </div>
+    </section>
+
+    <section class="py-8">
+        <div class="max-w-4xl mx-auto px-4">
+            <div class="bg-white rounded-2xl shadow-sm p-6 md:p-8">
+                <form id="budgetForm" class="space-y-8">
+                    <!-- Trip Basics -->
+                    <div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2"><i class="fas fa-calendar text-green-600"></i> Trip Details</h3>
+                        <div class="grid md:grid-cols-3 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Number of Nights</label>
+                                <input type="number" id="nights" value="5" min="1" max="30" class="w-full border-2 border-gray-200 rounded-lg px-4 py-2 focus:border-green-500" onchange="calculate()">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Adults</label>
+                                <input type="number" id="adults" value="2" min="1" max="10" class="w-full border-2 border-gray-200 rounded-lg px-4 py-2 focus:border-green-500" onchange="calculate()">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Children (3-9)</label>
+                                <input type="number" id="children" value="2" min="0" max="10" class="w-full border-2 border-gray-200 rounded-lg px-4 py-2 focus:border-green-500" onchange="calculate()">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Accommodation -->
+                    <div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2"><i class="fas fa-hotel text-green-600"></i> Accommodation</h3>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Hotel Type</label>
+                                <select id="hotelType" class="w-full border-2 border-gray-200 rounded-lg px-4 py-2 focus:border-green-500" onchange="calculate()">
+                                    <option value="100">Off-Site Budget ($100/night)</option>
+                                    <option value="150">Off-Site Mid-Range ($150/night)</option>
+                                    <option value="180">Disney Value Resort ($180/night)</option>
+                                    <option value="280" selected>Disney Moderate Resort ($280/night)</option>
+                                    <option value="500">Disney Deluxe Resort ($500/night)</option>
+                                    <option value="350">DVC Rental - Deluxe ($350/night)</option>
+                                    <option value="250">Universal Premier Hotel ($250/night)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Rooms Needed</label>
+                                <input type="number" id="rooms" value="1" min="1" max="5" class="w-full border-2 border-gray-200 rounded-lg px-4 py-2 focus:border-green-500" onchange="calculate()">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Theme Park Tickets -->
+                    <div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2"><i class="fas fa-ticket-alt text-green-600"></i> Theme Park Tickets</h3>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Disney World Days</label>
+                                <select id="disneyDays" class="w-full border-2 border-gray-200 rounded-lg px-4 py-2 focus:border-green-500" onchange="calculate()">
+                                    <option value="0">None</option>
+                                    <option value="1">1 Day ($119 adult / $114 child)</option>
+                                    <option value="2">2 Days ($114/day)</option>
+                                    <option value="3" selected>3 Days ($111/day)</option>
+                                    <option value="4">4 Days ($107/day)</option>
+                                    <option value="5">5 Days ($96/day)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Universal Days</label>
+                                <select id="universalDays" class="w-full border-2 border-gray-200 rounded-lg px-4 py-2 focus:border-green-500" onchange="calculate()">
+                                    <option value="0">None</option>
+                                    <option value="1">1 Day ($119)</option>
+                                    <option value="2" selected>2 Days ($100/day)</option>
+                                    <option value="3">3 Days ($85/day)</option>
+                                    <option value="5">5 Days (3 for price of 5)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <label class="flex items-center gap-2 cursor-pointer">
+                                <input type="checkbox" id="parkHopper" class="rounded text-green-600" onchange="calculate()">
+                                <span class="text-sm">Add Disney Park Hopper (+$65/ticket)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Food -->
+                    <div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2"><i class="fas fa-utensils text-green-600"></i> Food & Dining</h3>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Dining Style</label>
+                            <select id="diningStyle" class="w-full border-2 border-gray-200 rounded-lg px-4 py-2 focus:border-green-500" onchange="calculate()">
+                                <option value="40">Budget - Mostly quick service ($40/person/day)</option>
+                                <option value="75" selected>Moderate - Mix of quick & table service ($75/person/day)</option>
+                                <option value="120">Premium - Mostly table service ($120/person/day)</option>
+                                <option value="25">Bring Own Food - Minimal park food ($25/person/day)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Transportation -->
+                    <div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2"><i class="fas fa-car text-green-600"></i> Transportation</h3>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Getting to Orlando</label>
+                                <select id="travel" class="w-full border-2 border-gray-200 rounded-lg px-4 py-2 focus:border-green-500" onchange="calculate()">
+                                    <option value="0">Already in Orlando</option>
+                                    <option value="400" selected>Flight (~$200/person avg)</option>
+                                    <option value="200">Drive (estimated gas)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Airport to Hotel</label>
+                                <select id="airport" class="w-full border-2 border-gray-200 rounded-lg px-4 py-2 focus:border-green-500" onchange="calculate()">
+                                    <option value="0">N/A - Driving</option>
+                                    <option value="40">Shuttle ($19-20/person each way)</option>
+                                    <option value="60" selected>Uber/Lyft (~$30 each way)</option>
+                                    <option value="120">Private Car Service (~$60 each way)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <label class="flex items-center gap-2 cursor-pointer">
+                                <input type="checkbox" id="rentalCar" class="rounded text-green-600" onchange="calculate()">
+                                <span class="text-sm">Rental Car (+$50/day avg)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Extras -->
+                    <div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2"><i class="fas fa-gift text-green-600"></i> Extras</h3>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Souvenirs Budget</label>
+                                <select id="souvenirs" class="w-full border-2 border-gray-200 rounded-lg px-4 py-2 focus:border-green-500" onchange="calculate()">
+                                    <option value="0">None</option>
+                                    <option value="100">Minimal ($100 total)</option>
+                                    <option value="250" selected>Moderate ($250 total)</option>
+                                    <option value="500">Generous ($500 total)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Lightning Lane</label>
+                                <select id="lightningLane" class="w-full border-2 border-gray-200 rounded-lg px-4 py-2 focus:border-green-500" onchange="calculate()">
+                                    <option value="0" selected>None - Using free Genie</option>
+                                    <option value="25">Multi Pass ($25/person/day)</option>
+                                    <option value="40">Multi Pass + Singles ($40/person/day)</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+                <!-- Results -->
+                <div class="mt-8 pt-8 border-t-2 border-gray-100">
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">Estimated Total Cost</h3>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="space-y-3">
+                            <div class="flex justify-between"><span class="text-gray-600">Accommodation:</span><span id="costHotel" class="font-medium">$0</span></div>
+                            <div class="flex justify-between"><span class="text-gray-600">Theme Park Tickets:</span><span id="costTickets" class="font-medium">$0</span></div>
+                            <div class="flex justify-between"><span class="text-gray-600">Food & Dining:</span><span id="costFood" class="font-medium">$0</span></div>
+                            <div class="flex justify-between"><span class="text-gray-600">Transportation:</span><span id="costTransport" class="font-medium">$0</span></div>
+                            <div class="flex justify-between"><span class="text-gray-600">Extras:</span><span id="costExtras" class="font-medium">$0</span></div>
+                        </div>
+                        <div class="bg-green-50 rounded-xl p-6 text-center">
+                            <div class="text-sm text-green-600 font-medium mb-1">ESTIMATED TOTAL</div>
+                            <div id="totalCost" class="text-4xl font-bold text-green-700">$0</div>
+                            <div class="text-sm text-gray-500 mt-2">For <span id="totalPeople">4</span> people, <span id="totalNights">5</span> nights</div>
+                            <div class="text-xs text-gray-400 mt-1">~$<span id="perPerson">0</span>/person</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tips Section -->
+    <section class="py-12 bg-white">
+        <div class="max-w-4xl mx-auto px-4">
+            <h2 class="text-2xl font-bold mb-6">💰 Money-Saving Tips</h2>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="bg-green-50 rounded-xl p-6">
+                    <h3 class="font-bold text-green-800 mb-3">Save on Hotels</h3>
+                    <ul class="text-sm text-green-900 space-y-2">
+                        <li>• <strong>DVC Rentals:</strong> Save 30-60% on Deluxe resorts</li>
+                        <li>• <strong>Good Neighbor Hotels:</strong> Get Early Entry perks</li>
+                        <li>• <strong>Book Direct:</strong> AP discounts up to 30%</li>
+                        <li>• <a href="/dvc" class="text-green-600 underline">Use our DVC Calculator →</a></li>
+                    </ul>
+                </div>
+                <div class="bg-blue-50 rounded-xl p-6">
+                    <h3 class="font-bold text-blue-800 mb-3">Save on Food</h3>
+                    <ul class="text-sm text-blue-900 space-y-2">
+                        <li>• Bring snacks & water bottles into parks</li>
+                        <li>• Mobile order to skip lines</li>
+                        <li>• Split large portions with kids</li>
+                        <li>• Eat breakfast at hotel or bring groceries</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ad Section -->
+    <section class="py-8 bg-gray-100">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <p class="text-xs text-gray-400 mb-2">SPONSORED</p>
+            <div class="bg-white rounded-xl p-6 shadow-sm">
+                <h3 class="font-bold text-lg mb-2">💎 Save 30-60% with DVC Rentals</h3>
+                <p class="text-gray-600 mb-4">Stay at Disney Deluxe resorts for the price of Moderate</p>
+                <a href="/dvc" class="inline-block bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700">Calculate My Savings →</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-900 text-white py-8">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <p class="text-gray-400 text-sm">© 2025 CR AudioViz AI, LLC</p>
+            <p class="text-gray-500 text-xs mt-2">Estimates based on average prices. Actual costs may vary by date and availability.</p>
+        </div>
+    </footer>
+
+    <script>
+        function calculate() {
+            const nights = parseInt(document.getElementById('nights').value) || 5;
+            const adults = parseInt(document.getElementById('adults').value) || 2;
+            const children = parseInt(document.getElementById('children').value) || 0;
+            const totalPeople = adults + children;
+            const rooms = parseInt(document.getElementById('rooms').value) || 1;
+            
+            // Hotel
+            const hotelRate = parseInt(document.getElementById('hotelType').value);
+            const costHotel = hotelRate * nights * rooms;
+            
+            // Tickets
+            const disneyDays = parseInt(document.getElementById('disneyDays').value);
+            const universalDays = parseInt(document.getElementById('universalDays').value);
+            const parkHopper = document.getElementById('parkHopper').checked;
+            
+            const disneyRates = {1: 119, 2: 114, 3: 111, 4: 107, 5: 96};
+            const childDiscount = 5;
+            let disneyAdult = disneyDays * (disneyRates[disneyDays] || 100);
+            let disneyChild = disneyDays * ((disneyRates[disneyDays] || 100) - childDiscount);
+            if(parkHopper && disneyDays > 0) { disneyAdult += 65; disneyChild += 65; }
+            
+            const universalRates = {1: 119, 2: 100, 3: 85, 5: 71};
+            let universalCost = universalDays * (universalRates[universalDays] || 85) * totalPeople;
+            
+            const costTickets = (disneyAdult * adults) + (disneyChild * children) + universalCost;
+            
+            // Food
+            const foodRate = parseInt(document.getElementById('diningStyle').value);
+            const costFood = foodRate * (nights + 1) * totalPeople;
+            
+            // Transportation
+            const travelCost = parseInt(document.getElementById('travel').value) * (adults + Math.ceil(children / 2));
+            const airportCost = parseInt(document.getElementById('airport').value);
+            const rentalCar = document.getElementById('rentalCar').checked ? (50 * nights) : 0;
+            const costTransport = travelCost + airportCost + rentalCar;
+            
+            // Extras
+            const souvenirs = parseInt(document.getElementById('souvenirs').value);
+            const lightningLane = parseInt(document.getElementById('lightningLane').value) * disneyDays * totalPeople;
+            const costExtras = souvenirs + lightningLane;
+            
+            // Total
+            const total = costHotel + costTickets + costFood + costTransport + costExtras;
+            
+            // Update display
+            document.getElementById('costHotel').textContent = '$' + costHotel.toLocaleString();
+            document.getElementById('costTickets').textContent = '$' + costTickets.toLocaleString();
+            document.getElementById('costFood').textContent = '$' + costFood.toLocaleString();
+            document.getElementById('costTransport').textContent = '$' + costTransport.toLocaleString();
+            document.getElementById('costExtras').textContent = '$' + costExtras.toLocaleString();
+            document.getElementById('totalCost').textContent = '$' + total.toLocaleString();
+            document.getElementById('totalPeople').textContent = totalPeople;
+            document.getElementById('totalNights').textContent = nights;
+            document.getElementById('perPerson').textContent = Math.round(total / totalPeople).toLocaleString();
+        }
+        
+        // Calculate on load
+        calculate();
+    </script>
+</body>
+</html>
