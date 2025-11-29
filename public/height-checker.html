@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disney & Universal Height Requirements Checker - What Can My Kid Ride?</title>
+    <meta name="description" content="Enter your child's height to instantly see which rides they can experience at Disney World, Universal Orlando, and SeaWorld.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>tailwind.config = { theme: { extend: { colors: { 'disney': '#5B2C86', 'universal': '#0033A0', 'seaworld': '#0077B6', 'crav': '#6366F1' }}}}</script>
+</head>
+<body class="bg-gray-50">
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+            <a href="/" class="flex items-center gap-2"><span class="text-xl">🏰🎢🐋</span><span class="font-bold text-lg">Orlando Vacation Deals</span></a>
+            <a href="/tools" class="text-gray-600 hover:text-disney">← All Tools</a>
+        </div>
+    </nav>
+
+    <section class="bg-gradient-to-r from-disney to-universal text-white py-12">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <h1 class="text-4xl font-bold mb-3">Height Requirements Checker</h1>
+            <p class="text-white/90">Instantly see which rides your child can experience</p>
+        </div>
+    </section>
+
+    <section class="py-8">
+        <div class="max-w-4xl mx-auto px-4">
+            <div class="bg-white rounded-xl shadow-sm p-6 mb-8">
+                <h3 class="font-bold text-lg mb-4">Enter Your Child's Height</h3>
+                <div class="flex flex-wrap gap-4 items-end">
+                    <div class="flex-1 min-w-[200px]">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Height in Inches</label>
+                        <div class="flex gap-2">
+                            <input type="number" id="heightInches" value="40" min="30" max="72" class="flex-1 border-2 border-gray-200 rounded-lg px-4 py-3 text-2xl font-bold text-center focus:border-disney" onchange="checkHeight()" oninput="checkHeight()">
+                            <span class="text-2xl text-gray-400 self-center">in</span>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <span class="text-gray-400">OR</span>
+                    </div>
+                    <div class="flex-1 min-w-[200px]">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Feet & Inches</label>
+                        <div class="flex gap-2">
+                            <select id="heightFeet" class="border-2 border-gray-200 rounded-lg px-3 py-3 text-xl" onchange="convertFeet()">
+                                <option value="2">2'</option>
+                                <option value="3" selected>3'</option>
+                                <option value="4">4'</option>
+                                <option value="5">5'</option>
+                            </select>
+                            <select id="heightInchPart" class="border-2 border-gray-200 rounded-lg px-3 py-3 text-xl" onchange="convertFeet()">
+                                <option value="0">0"</option>
+                                <option value="1">1"</option>
+                                <option value="2">2"</option>
+                                <option value="3">3"</option>
+                                <option value="4" selected>4"</option>
+                                <option value="5">5"</option>
+                                <option value="6">6"</option>
+                                <option value="7">7"</option>
+                                <option value="8">8"</option>
+                                <option value="9">9"</option>
+                                <option value="10">10"</option>
+                                <option value="11">11"</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div id="heightSummary" class="mt-4 text-center text-lg font-medium text-gray-700"></div>
+            </div>
+
+            <!-- Results Tabs -->
+            <div class="flex gap-2 mb-4 overflow-x-auto">
+                <button onclick="showPark('disney')" id="tab-disney" class="park-tab px-4 py-2 bg-disney text-white rounded-lg text-sm whitespace-nowrap">🏰 Disney World</button>
+                <button onclick="showPark('universal')" id="tab-universal" class="park-tab px-4 py-2 bg-gray-200 rounded-lg text-sm whitespace-nowrap">🎢 Universal</button>
+                <button onclick="showPark('seaworld')" id="tab-seaworld" class="park-tab px-4 py-2 bg-gray-200 rounded-lg text-sm whitespace-nowrap">🐋 SeaWorld</button>
+            </div>
+
+            <div id="results" class="space-y-6"></div>
+        </div>
+    </section>
+
+    <!-- Tips Section -->
+    <section class="py-8 bg-white">
+        <div class="max-w-4xl mx-auto px-4">
+            <h2 class="text-xl font-bold mb-4">💡 Height Requirement Tips</h2>
+            <div class="grid md:grid-cols-2 gap-4">
+                <div class="bg-green-50 rounded-lg p-4">
+                    <h4 class="font-bold text-green-800 mb-2">Rider Switch / Child Swap</h4>
+                    <p class="text-sm text-green-900">If your child doesn't meet the height requirement, ask about Rider Switch! One adult waits with the child while others ride, then they swap without waiting in line again.</p>
+                </div>
+                <div class="bg-blue-50 rounded-lg p-4">
+                    <h4 class="font-bold text-blue-800 mb-2">Measurement Tips</h4>
+                    <ul class="text-sm text-blue-900 space-y-1">
+                        <li>• Cast members measure in shoes</li>
+                        <li>• Practice standing up straight at home</li>
+                        <li>• Kids often get checked twice if close</li>
+                        <li>• Don't hype rides they might not make</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-900 text-white py-8">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <p class="text-gray-400 text-sm">© 2025 CR AudioViz AI, LLC</p>
+            <p class="text-gray-500 text-xs mt-2">Height requirements as of November 2025. Always verify at the park.</p>
+        </div>
+    </footer>
+
+    <script>
+        const rides = {
+            disney: {
+                magic_kingdom: [
+                    { name: "TRON Lightcycle / Run", height: 48, thrill: "high" },
+                    { name: "Space Mountain", height: 44, thrill: "high" },
+                    { name: "Big Thunder Mountain", height: 40, thrill: "moderate" },
+                    { name: "Tiana's Bayou Adventure", height: 40, thrill: "moderate" },
+                    { name: "Seven Dwarfs Mine Train", height: 38, thrill: "moderate" },
+                    { name: "The Barnstormer", height: 35, thrill: "low" },
+                    { name: "Tomorrowland Speedway (drive alone)", height: 54, thrill: "low" },
+                    { name: "Tomorrowland Speedway (passenger)", height: 32, thrill: "low" },
+                    { name: "Alien Swirling Saucers", height: 32, thrill: "low" }
+                ],
+                epcot: [
+                    { name: "Guardians of the Galaxy: Cosmic Rewind", height: 42, thrill: "high" },
+                    { name: "Test Track", height: 40, thrill: "moderate" },
+                    { name: "Mission: SPACE (Orange)", height: 44, thrill: "high" },
+                    { name: "Mission: SPACE (Green)", height: 40, thrill: "moderate" },
+                    { name: "Soarin' Around the World", height: 40, thrill: "low" }
+                ],
+                hollywood: [
+                    { name: "Rock 'n' Roller Coaster", height: 48, thrill: "high" },
+                    { name: "Tower of Terror", height: 40, thrill: "high" },
+                    { name: "Star Wars: Rise of the Resistance", height: 40, thrill: "moderate" },
+                    { name: "Millennium Falcon: Smugglers Run", height: 38, thrill: "moderate" },
+                    { name: "Slinky Dog Dash", height: 38, thrill: "moderate" },
+                    { name: "Alien Swirling Saucers", height: 32, thrill: "low" }
+                ],
+                animal_kingdom: [
+                    { name: "Expedition Everest", height: 44, thrill: "high" },
+                    { name: "Avatar Flight of Passage", height: 44, thrill: "high" },
+                    { name: "DINOSAUR", height: 40, thrill: "moderate" },
+                    { name: "Kali River Rapids", height: 38, thrill: "moderate" }
+                ]
+            },
+            universal: {
+                studios: [
+                    { name: "Hollywood Rip Ride Rockit", height: 51, thrill: "high" },
+                    { name: "Revenge of the Mummy", height: 48, thrill: "high" },
+                    { name: "Harry Potter Escape from Gringotts", height: 42, thrill: "high" },
+                    { name: "MEN IN BLACK Alien Attack", height: 42, thrill: "moderate" },
+                    { name: "Transformers: The Ride 3D", height: 40, thrill: "moderate" },
+                    { name: "Fast & Furious: Supercharged", height: 40, thrill: "moderate" },
+                    { name: "Despicable Me Minion Mayhem", height: 40, thrill: "low" },
+                    { name: "The Simpsons Ride", height: 40, thrill: "moderate" },
+                    { name: "Trolls Trollercoaster", height: 36, thrill: "low" },
+                    { name: "E.T. Adventure", height: 34, thrill: "low" }
+                ],
+                islands: [
+                    { name: "Incredible Hulk Coaster", height: 54, thrill: "high" },
+                    { name: "VelociCoaster", height: 51, thrill: "high" },
+                    { name: "Hagrid's Magical Creatures", height: 48, thrill: "high" },
+                    { name: "Harry Potter Forbidden Journey", height: 48, thrill: "high" },
+                    { name: "Doctor Doom's Fearfall", height: 52, thrill: "high" },
+                    { name: "Jurassic World VelociCoaster", height: 51, thrill: "high" },
+                    { name: "The Amazing Spider-Man", height: 40, thrill: "moderate" },
+                    { name: "Skull Island: Reign of Kong", height: 36, thrill: "moderate" },
+                    { name: "Cat in the Hat", height: 36, thrill: "low" },
+                    { name: "Pteranodon Flyers", height: 36, thrill: "low" }
+                ],
+                epic: [
+                    { name: "Harry Potter Battle at Ministry", height: 40, thrill: "moderate" },
+                    { name: "Mario Kart: Bowser's Challenge", height: 40, thrill: "moderate" },
+                    { name: "Yoshi's Adventure", height: 34, thrill: "low" },
+                    { name: "Mine-Cart Madness", height: 40, thrill: "moderate" }
+                ]
+            },
+            seaworld: {
+                main: [
+                    { name: "Mako", height: 54, thrill: "high" },
+                    { name: "Kraken", height: 54, thrill: "high" },
+                    { name: "Manta", height: 54, thrill: "high" },
+                    { name: "Pipeline: The Surf Coaster", height: 54, thrill: "high" },
+                    { name: "Ice Breaker", height: 48, thrill: "high" },
+                    { name: "Journey to Atlantis", height: 42, thrill: "moderate" },
+                    { name: "Infinity Falls", height: 42, thrill: "moderate" },
+                    { name: "Super Grover's Box Car Derby", height: 42, thrill: "low" }
+                ]
+            }
+        };
+
+        let currentPark = 'disney';
+
+        function convertFeet() {
+            const feet = parseInt(document.getElementById('heightFeet').value);
+            const inches = parseInt(document.getElementById('heightInchPart').value);
+            document.getElementById('heightInches').value = (feet * 12) + inches;
+            checkHeight();
+        }
+
+        function showPark(park) {
+            currentPark = park;
+            document.querySelectorAll('.park-tab').forEach(tab => {
+                tab.classList.remove('bg-disney', 'bg-universal', 'bg-seaworld', 'text-white');
+                tab.classList.add('bg-gray-200');
+            });
+            const colors = { disney: 'bg-disney', universal: 'bg-universal', seaworld: 'bg-seaworld' };
+            document.getElementById('tab-' + park).classList.remove('bg-gray-200');
+            document.getElementById('tab-' + park).classList.add(colors[park], 'text-white');
+            checkHeight();
+        }
+
+        function checkHeight() {
+            const height = parseInt(document.getElementById('heightInches').value) || 40;
+            const feet = Math.floor(height / 12);
+            const inches = height % 12;
+            
+            document.getElementById('heightSummary').innerHTML = `<span class="text-disney text-2xl">${height}"</span> = ${feet}'${inches}" (${Math.round(height * 2.54)} cm)`;
+
+            let html = '';
+            const parkData = rides[currentPark];
+            const parkNames = {
+                disney: { magic_kingdom: 'Magic Kingdom', epcot: 'EPCOT', hollywood: 'Hollywood Studios', animal_kingdom: 'Animal Kingdom' },
+                universal: { studios: 'Universal Studios Florida', islands: 'Islands of Adventure', epic: 'Epic Universe' },
+                seaworld: { main: 'SeaWorld Orlando' }
+            };
+
+            for (const [area, areaRides] of Object.entries(parkData)) {
+                const canRide = areaRides.filter(r => height >= r.height);
+                const cantRide = areaRides.filter(r => height < r.height);
+                
+                html += `
+                    <div class="bg-white rounded-xl shadow-sm overflow-hidden">
+                        <div class="bg-gray-100 p-4 border-b">
+                            <h3 class="font-bold text-lg">${parkNames[currentPark][area]}</h3>
+                            <p class="text-sm text-gray-600">${canRide.length} of ${areaRides.length} rides available</p>
+                        </div>
+                        <div class="p-4">
+                            ${canRide.length > 0 ? `
+                                <h4 class="text-green-600 font-medium text-sm mb-2">✅ CAN RIDE (${canRide.length})</h4>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-2 mb-4">
+                                    ${canRide.map(r => `
+                                        <div class="flex items-center justify-between bg-green-50 rounded-lg px-3 py-2">
+                                            <span class="text-sm">${r.name}</span>
+                                            <span class="text-xs text-gray-500">${r.height}"</span>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            ` : ''}
+                            ${cantRide.length > 0 ? `
+                                <h4 class="text-red-600 font-medium text-sm mb-2">❌ TOO SHORT (${cantRide.length})</h4>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
+                                    ${cantRide.map(r => `
+                                        <div class="flex items-center justify-between bg-red-50 rounded-lg px-3 py-2">
+                                            <span class="text-sm text-gray-500">${r.name}</span>
+                                            <span class="text-xs text-red-600">Need ${r.height}"</span>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            ` : ''}
+                        </div>
+                    </div>
+                `;
+            }
+            
+            document.getElementById('results').innerHTML = html;
+        }
+
+        checkHeight();
+    </script>
+</body>
+</html>
