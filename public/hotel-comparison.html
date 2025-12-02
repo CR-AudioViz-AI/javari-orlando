@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disney World Hotel Comparison 2025 - Find Your Perfect Resort</title>
+    <meta name="description" content="Compare all Disney World and Universal hotels. Filter by price, perks, transportation, pools, and more.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>tailwind.config={theme:{extend:{colors:{'disney':'#5B2C86','universal':'#0033A0','value':'#22C55E','moderate':'#EAB308','deluxe':'#9333EA'}}}}</script>
+</head>
+<body class="bg-gray-50">
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+            <a href="/" class="flex items-center gap-2"><span class="text-xl">🏰🎢🐋</span><span class="font-bold text-lg">Orlando Vacation Deals</span></a>
+            <a href="/tools" class="text-gray-600 hover:text-disney">← All Tools</a>
+        </div>
+    </nav>
+
+    <section class="bg-gradient-to-r from-disney via-purple-600 to-pink-500 text-white py-10">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <h1 class="text-4xl font-bold mb-2">🏨 Hotel Comparison Tool</h1>
+            <p class="text-white/90">Compare all Disney & Universal hotels side-by-side</p>
+        </div>
+    </section>
+
+    <!-- Filters -->
+    <section class="bg-white shadow-sm py-4 sticky top-14 z-40">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex flex-wrap gap-3 items-center">
+                <select id="resortFilter" onchange="filterHotels()" class="border rounded-lg px-3 py-2 text-sm">
+                    <option value="">All Resorts</option>
+                    <option value="disney">Disney World</option>
+                    <option value="universal">Universal Orlando</option>
+                    <option value="offsite">Off-Site (Near Disney)</option>
+                </select>
+                <select id="tierFilter" onchange="filterHotels()" class="border rounded-lg px-3 py-2 text-sm">
+                    <option value="">All Tiers</option>
+                    <option value="value">Value ($150-250)</option>
+                    <option value="moderate">Moderate ($250-400)</option>
+                    <option value="deluxe">Deluxe ($400-700)</option>
+                    <option value="villa">Deluxe Villa ($500+)</option>
+                </select>
+                <select id="transportFilter" onchange="filterHotels()" class="border rounded-lg px-3 py-2 text-sm">
+                    <option value="">Any Transportation</option>
+                    <option value="monorail">Monorail</option>
+                    <option value="skyliner">Skyliner</option>
+                    <option value="boat">Boat</option>
+                    <option value="walking">Walking Distance</option>
+                </select>
+                <label class="flex items-center gap-2 text-sm">
+                    <input type="checkbox" id="hasPool" onchange="filterHotels()">
+                    <span>Feature Pool</span>
+                </label>
+                <label class="flex items-center gap-2 text-sm">
+                    <input type="checkbox" id="hasExpress" onchange="filterHotels()">
+                    <span>Free Express Pass</span>
+                </label>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results -->
+    <section class="py-8">
+        <div class="max-w-6xl mx-auto px-4">
+            <p class="text-sm text-gray-500 mb-4"><span id="resultCount">0</span> hotels match your criteria</p>
+            
+            <!-- Comparison Table View -->
+            <div class="overflow-x-auto">
+                <table class="w-full bg-white rounded-xl shadow-sm">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th class="text-left p-4 font-medium">Hotel</th>
+                            <th class="text-left p-4 font-medium">Tier</th>
+                            <th class="text-left p-4 font-medium">Price/Night</th>
+                            <th class="text-left p-4 font-medium">Transport</th>
+                            <th class="text-left p-4 font-medium">Perks</th>
+                            <th class="text-left p-4 font-medium">Rating</th>
+                        </tr>
+                    </thead>
+                    <tbody id="hotelTable">
+                        <!-- Populated by JS -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Tier Explanation -->
+            <div class="mt-8 grid md:grid-cols-4 gap-4">
+                <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+                    <h4 class="font-bold text-green-800">💚 Value Resorts</h4>
+                    <p class="text-sm text-green-700 mt-2">$150-250/night. Basic rooms, fun theming, all Disney perks. Best for families who spend little time in room.</p>
+                </div>
+                <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+                    <h4 class="font-bold text-yellow-800">💛 Moderate Resorts</h4>
+                    <p class="text-sm text-yellow-700 mt-2">$250-400/night. Larger rooms, nicer pools, some have boats. Good balance of price and quality.</p>
+                </div>
+                <div class="bg-purple-50 border border-purple-200 rounded-lg p-4">
+                    <h4 class="font-bold text-purple-800">💜 Deluxe Resorts</h4>
+                    <p class="text-sm text-purple-700 mt-2">$400-700/night. Premium locations, monorail/skyliner access, signature dining, best pools.</p>
+                </div>
+                <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                    <h4 class="font-bold text-blue-800">🏠 DVC Villas</h4>
+                    <p class="text-sm text-blue-700 mt-2">$500+/night. Full kitchens, washers, multiple bedrooms. Rent DVC points for 30-50% off!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Universal Section -->
+    <section class="py-8 bg-blue-50">
+        <div class="max-w-6xl mx-auto px-4">
+            <h2 class="text-2xl font-bold mb-4 text-universal">🌟 Universal Hotel Perks</h2>
+            <div class="bg-white rounded-xl p-6 shadow-sm">
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="border-l-4 border-yellow-500 pl-4">
+                        <h4 class="font-bold text-yellow-700">Premier Hotels</h4>
+                        <p class="text-sm text-gray-600 mt-1">Portofino Bay, Hard Rock, Royal Pacific</p>
+                        <p class="text-sm font-bold text-green-600 mt-2">✅ FREE Unlimited Express Pass</p>
+                        <p class="text-xs text-gray-500">Saves $100+/person/day!</p>
+                    </div>
+                    <div class="border-l-4 border-blue-500 pl-4">
+                        <h4 class="font-bold text-blue-700">Preferred Hotels</h4>
+                        <p class="text-sm text-gray-600 mt-1">Sapphire Falls, Aventura, etc.</p>
+                        <p class="text-sm font-bold text-blue-600 mt-2">✅ Early Park Admission</p>
+                        <p class="text-xs text-gray-500">1 hour early to Wizarding World</p>
+                    </div>
+                    <div class="border-l-4 border-green-500 pl-4">
+                        <h4 class="font-bold text-green-700">Prime Value Hotels</h4>
+                        <p class="text-sm text-gray-600 mt-1">Endless Summer, Dockside, etc.</p>
+                        <p class="text-sm font-bold text-green-600 mt-2">✅ Early Park + Low Price</p>
+                        <p class="text-xs text-gray-500">Best budget option for Universal</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-900 text-white py-8">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <p class="text-gray-400 text-sm">Prices are estimates and vary by season. © 2025 CR AudioViz AI, LLC</p>
+        </div>
+    </footer>
+
+    <script>
+        const hotels = [
+            // Disney Value
+            { name: "Pop Century", resort: "disney", tier: "value", price: 180, transport: ["bus"], perks: ["iconic theming", "skyliner nearby"], pool: true, express: false, rating: 4.1, tip: "Ask for rooms near Skyliner" },
+            { name: "Art of Animation", resort: "disney", tier: "value", price: 200, transport: ["bus"], perks: ["family suites", "amazing pools", "themed"], pool: true, express: false, rating: 4.3, tip: "Finding Nemo pool is incredible" },
+            { name: "All-Star Movies", resort: "disney", tier: "value", price: 150, transport: ["bus"], perks: ["budget friendly", "fun theming"], pool: true, express: false, rating: 3.8, tip: "Cheapest Disney resort" },
+            { name: "All-Star Music", resort: "disney", tier: "value", price: 155, transport: ["bus"], perks: ["family suites available", "music theme"], pool: true, express: false, rating: 3.7, tip: "Family suites are great value" },
+            { name: "All-Star Sports", resort: "disney", tier: "value", price: 150, transport: ["bus"], perks: ["most affordable", "sports theme"], pool: true, express: false, rating: 3.6, tip: "Recently refurbished" },
+            
+            // Disney Moderate
+            { name: "Caribbean Beach", resort: "disney", tier: "moderate", price: 280, transport: ["bus", "skyliner"], perks: ["skyliner to EPCOT/HS", "pirates rooms"], pool: true, express: false, rating: 4.0, tip: "Skyliner makes this worth it" },
+            { name: "Coronado Springs", resort: "disney", tier: "moderate", price: 290, transport: ["bus"], perks: ["convention center", "rooftop dining", "tower rooms"], pool: true, express: false, rating: 4.1, tip: "Tower rooms are amazing" },
+            { name: "Port Orleans Riverside", resort: "disney", tier: "moderate", price: 270, transport: ["bus", "boat"], perks: ["boat to Disney Springs", "royal rooms"], pool: true, express: false, rating: 4.2, tip: "Most romantic moderate" },
+            { name: "Port Orleans French Quarter", resort: "disney", tier: "moderate", price: 265, transport: ["bus", "boat"], perks: ["compact", "beignets", "boat"], pool: true, express: false, rating: 4.1, tip: "Walking distance to Riverside" },
+            { name: "Fort Wilderness Cabins", resort: "disney", tier: "moderate", price: 450, transport: ["bus", "boat"], perks: ["full kitchen", "golf cart rentals", "campfire"], pool: true, express: false, rating: 4.4, tip: "Unique Disney experience" },
+            
+            // Disney Deluxe
+            { name: "Contemporary", resort: "disney", tier: "deluxe", price: 550, transport: ["monorail", "walking"], perks: ["WALK to MK", "monorail", "Chef Mickey's"], pool: true, express: false, rating: 4.5, tip: "Only hotel inside monorail loop" },
+            { name: "Polynesian Village", resort: "disney", tier: "deluxe", price: 650, transport: ["monorail", "boat"], perks: ["monorail", "Trader Sam's", "beach"], pool: true, express: false, rating: 4.6, tip: "Best fireworks views from beach" },
+            { name: "Grand Floridian", resort: "disney", tier: "deluxe", price: 750, transport: ["monorail", "boat", "walking"], perks: ["most luxurious", "walk to MK", "spa"], pool: true, express: false, rating: 4.7, tip: "Disney's flagship resort" },
+            { name: "Wilderness Lodge", resort: "disney", tier: "deluxe", price: 480, transport: ["bus", "boat"], perks: ["National Park theme", "boat to MK", "geyser"], pool: true, express: false, rating: 4.5, tip: "Best theming at Disney" },
+            { name: "Animal Kingdom Lodge", resort: "disney", tier: "deluxe", price: 500, transport: ["bus"], perks: ["savanna views", "animals", "African dining"], pool: true, express: false, rating: 4.6, tip: "Wake up to giraffes!" },
+            { name: "Beach Club", resort: "disney", tier: "deluxe", price: 580, transport: ["skyliner", "boat", "walking"], perks: ["WALK to EPCOT", "Stormalong Bay pool"], pool: true, express: false, rating: 4.6, tip: "Best pool at Disney" },
+            { name: "Yacht Club", resort: "disney", tier: "deluxe", price: 600, transport: ["skyliner", "boat", "walking"], perks: ["walk to EPCOT", "shares Stormalong Bay"], pool: true, express: false, rating: 4.5, tip: "Quieter than Beach Club" },
+            { name: "BoardWalk Inn", resort: "disney", tier: "deluxe", price: 550, transport: ["skyliner", "boat", "walking"], perks: ["walk to EPCOT & HS", "entertainment district"], pool: true, express: false, rating: 4.4, tip: "Best location for park hoppers" },
+            { name: "Riviera", resort: "disney", tier: "deluxe", price: 520, transport: ["skyliner"], perks: ["skyliner hub", "rooftop dining", "DVC"], pool: true, express: false, rating: 4.5, tip: "Best skyliner access" },
+            
+            // Universal Premier
+            { name: "Portofino Bay", resort: "universal", tier: "deluxe", price: 450, transport: ["boat", "walking"], perks: ["FREE Express Pass", "Italian Riviera theme"], pool: true, express: true, rating: 4.5, tip: "Express Pass saves $100+/day" },
+            { name: "Hard Rock Hotel", resort: "universal", tier: "deluxe", price: 420, transport: ["walking"], perks: ["FREE Express Pass", "WALK to parks", "rock memorabilia"], pool: true, express: true, rating: 4.4, tip: "Closest to parks" },
+            { name: "Royal Pacific", resort: "universal", tier: "deluxe", price: 380, transport: ["boat", "walking"], perks: ["FREE Express Pass", "South Pacific theme"], pool: true, express: true, rating: 4.3, tip: "Best value for Express" },
+            
+            // Universal Preferred
+            { name: "Sapphire Falls", resort: "universal", tier: "moderate", price: 250, transport: ["boat", "bus"], perks: ["early admission", "Caribbean theme"], pool: true, express: false, rating: 4.2, tip: "Great middle-ground option" },
+            { name: "Aventura Hotel", resort: "universal", tier: "moderate", price: 220, transport: ["bus"], perks: ["early admission", "modern design", "rooftop bar"], pool: true, express: false, rating: 4.1, tip: "Most modern Universal hotel" },
+            
+            // Universal Value
+            { name: "Endless Summer Surfside", resort: "universal", tier: "value", price: 130, transport: ["bus"], perks: ["early admission", "beach theme"], pool: true, express: false, rating: 4.0, tip: "Best budget Universal option" },
+            { name: "Endless Summer Dockside", resort: "universal", tier: "value", price: 130, transport: ["bus"], perks: ["early admission", "largest value"], pool: true, express: false, rating: 4.0, tip: "Newer than Surfside" },
+            
+            // Off-site
+            { name: "Swan & Dolphin", resort: "offsite", tier: "deluxe", price: 320, transport: ["boat", "walking"], perks: ["walk to EPCOT/HS", "Marriott points", "cheaper than Disney"], pool: true, express: false, rating: 4.3, tip: "Best off-site for park access" },
+            { name: "Wyndham Bonnet Creek", resort: "offsite", tier: "moderate", price: 180, transport: ["bus"], perks: ["on Disney property", "full kitchen", "lazy river"], pool: true, express: false, rating: 4.2, tip: "Feels like Disney, fraction of price" },
+            { name: "Drury Inn Disney Springs", resort: "offsite", tier: "value", price: 160, transport: ["bus"], perks: ["free breakfast", "free dinner", "Disney buses"], pool: true, express: false, rating: 4.4, tip: "Free food saves hundreds" }
+        ];
+
+        function filterHotels() {
+            const resort = document.getElementById('resortFilter').value;
+            const tier = document.getElementById('tierFilter').value;
+            const transport = document.getElementById('transportFilter').value;
+            const hasPool = document.getElementById('hasPool').checked;
+            const hasExpress = document.getElementById('hasExpress').checked;
+
+            const filtered = hotels.filter(h => {
+                if (resort && h.resort !== resort) return false;
+                if (tier && h.tier !== tier) return false;
+                if (transport && !h.transport.includes(transport)) return false;
+                if (hasPool && !h.pool) return false;
+                if (hasExpress && !h.express) return false;
+                return true;
+            });
+
+            renderHotels(filtered);
+        }
+
+        function renderHotels(list) {
+            document.getElementById('resultCount').textContent = list.length;
+            const table = document.getElementById('hotelTable');
+            
+            if (list.length === 0) {
+                table.innerHTML = '<tr><td colspan="6" class="text-center py-8 text-gray-500">No hotels match your filters</td></tr>';
+                return;
+            }
+
+            table.innerHTML = list.map(h => `
+                <tr class="border-t hover:bg-gray-50">
+                    <td class="p-4">
+                        <p class="font-bold">${h.name}</p>
+                        <p class="text-xs text-gray-500">${h.resort === 'disney' ? 'Walt Disney World' : h.resort === 'universal' ? 'Universal Orlando' : 'Off-Site'}</p>
+                    </td>
+                    <td class="p-4">
+                        <span class="px-2 py-1 rounded text-xs font-medium ${h.tier === 'value' ? 'bg-green-100 text-green-700' : h.tier === 'moderate' ? 'bg-yellow-100 text-yellow-700' : h.tier === 'deluxe' ? 'bg-purple-100 text-purple-700' : 'bg-blue-100 text-blue-700'}">${h.tier}</span>
+                    </td>
+                    <td class="p-4 font-bold">$${h.price}<span class="text-xs text-gray-400 font-normal">/night</span></td>
+                    <td class="p-4">
+                        <div class="flex flex-wrap gap-1">
+                            ${h.transport.map(t => `<span class="text-xs px-2 py-0.5 bg-gray-100 rounded">${t}</span>`).join('')}
+                        </div>
+                    </td>
+                    <td class="p-4">
+                        <div class="text-xs space-y-1">
+                            ${h.express ? '<span class="text-green-600 font-bold">✅ FREE Express Pass</span><br>' : ''}
+                            ${h.perks.slice(0, 2).map(p => `<span class="text-gray-600">• ${p}</span>`).join('<br>')}
+                        </div>
+                    </td>
+                    <td class="p-4">
+                        <span class="text-yellow-500">★</span> ${h.rating}
+                        <p class="text-xs text-blue-600 mt-1">${h.tip}</p>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        // Initial render
+        filterHotels();
+    </script>
+</body>
+</html>
