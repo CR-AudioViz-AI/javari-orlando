@@ -3,277 +3,207 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Disney & Universal Wait Time Predictor - Plan Your Day</title>
-    <meta name="description" content="Predict ride wait times for any date at Disney World and Universal Orlando. See historical averages and best times to ride.">
+    <title>Orlando Wait Time Estimates - Disney & Universal</title>
+    <meta name="description" content="General wait time estimates for Disney World and Universal Orlando rides. Understand typical waits by crowd level.">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script>tailwind.config={theme:{extend:{colors:{'disney':'#5B2C86','universal':'#0033A0','crav':'#6366F1'}}}}</script>
 </head>
 <body class="bg-gray-50">
     <nav class="bg-white shadow-sm sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
-            <a href="/" class="flex items-center gap-2"><span class="text-xl">🏰🎢🐋</span><span class="font-bold text-lg">Orlando Vacation Deals</span></a>
-            <a href="/tools" class="text-gray-600 hover:text-disney">← All Tools</a>
+            <a href="/" class="flex items-center gap-2">
+                <span class="text-xl">🏰🎢🐋</span>
+                <span class="font-bold text-lg">Orlando Vacation Deals</span>
+            </a>
+            <a href="/tools" class="text-gray-600 hover:text-purple-600">← All Tools</a>
         </div>
     </nav>
 
+    <!-- Important Disclaimer -->
+    <div class="bg-amber-50 border-b border-amber-200 py-3 px-4">
+        <div class="max-w-4xl mx-auto text-center text-sm text-amber-800">
+            <strong>Note:</strong> These are general estimates, not real-time data. For live wait times, use the official <a href="https://disneyworld.disney.go.com/genie/" target="_blank" class="underline">My Disney Experience</a> or <a href="https://www.universalorlando.com/web/en/us/plan-your-visit/app" target="_blank" class="underline">Universal Orlando</a> apps.
+        </div>
+    </div>
+
     <section class="bg-gradient-to-r from-blue-600 to-cyan-500 text-white py-10">
-        <div class="max-w-6xl mx-auto px-4 text-center">
-            <h1 class="text-4xl font-bold mb-2">⏱️ Wait Time Predictor</h1>
-            <p class="text-white/90">See predicted wait times for any ride, any date</p>
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h1 class="text-3xl font-bold mb-2">Wait Time Estimates</h1>
+            <p class="text-white/80">Typical waits by ride and crowd level</p>
         </div>
     </section>
 
     <section class="py-8">
-        <div class="max-w-6xl mx-auto px-4">
-            
-            <!-- Date & Park Selection -->
-            <div class="bg-white rounded-xl shadow-sm p-6 mb-6">
-                <div class="grid md:grid-cols-3 gap-4">
-                    <div>
-                        <label class="block text-sm font-medium mb-2">Select Date</label>
-                        <input type="date" id="visitDate" class="w-full border rounded-lg p-3" onchange="updatePredictions()">
+        <div class="max-w-4xl mx-auto px-4">
+
+            <!-- How to Use -->
+            <div class="bg-white rounded-xl shadow-sm p-5 mb-8">
+                <h2 class="font-bold mb-3">How to Use This Guide</h2>
+                <p class="text-sm text-gray-600 mb-3">This shows typical wait time ranges for popular rides during different crowd levels. Use it to set expectations and plan your strategy.</p>
+                <div class="flex flex-wrap gap-4 text-sm">
+                    <div class="flex items-center gap-2"><span class="w-4 h-4 bg-green-500 rounded"></span> Low: 0-30 min</div>
+                    <div class="flex items-center gap-2"><span class="w-4 h-4 bg-yellow-500 rounded"></span> Moderate: 30-60 min</div>
+                    <div class="flex items-center gap-2"><span class="w-4 h-4 bg-orange-500 rounded"></span> High: 60-90 min</div>
+                    <div class="flex items-center gap-2"><span class="w-4 h-4 bg-red-500 rounded"></span> Very High: 90+ min</div>
+                </div>
+            </div>
+
+            <!-- Magic Kingdom -->
+            <div class="bg-white rounded-xl shadow-sm mb-6">
+                <div class="p-4 border-b bg-purple-50">
+                    <h2 class="font-bold text-purple-800">🏰 Magic Kingdom</h2>
+                </div>
+                <div class="divide-y">
+                    <div class="p-4 flex justify-between items-center">
+                        <div>
+                            <p class="font-medium">TRON Lightcycle / Run</p>
+                            <p class="text-xs text-gray-500">Lightning Lane available</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-sm"><span class="text-green-600">Low:</span> 45-60min | <span class="text-red-600">Busy:</span> 90-120min</p>
+                        </div>
                     </div>
-                    <div>
-                        <label class="block text-sm font-medium mb-2">Select Park</label>
-                        <select id="parkSelect" class="w-full border rounded-lg p-3" onchange="updatePredictions()">
-                            <option value="mk">Magic Kingdom</option>
-                            <option value="epcot">EPCOT</option>
-                            <option value="hs">Hollywood Studios</option>
-                            <option value="ak">Animal Kingdom</option>
-                            <option value="usf">Universal Studios Florida</option>
-                            <option value="ioa">Islands of Adventure</option>
-                        </select>
+                    <div class="p-4 flex justify-between items-center">
+                        <div>
+                            <p class="font-medium">Seven Dwarfs Mine Train</p>
+                            <p class="text-xs text-gray-500">Lightning Lane available</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-sm"><span class="text-green-600">Low:</span> 40-50min | <span class="text-red-600">Busy:</span> 80-100min</p>
+                        </div>
                     </div>
-                    <div>
-                        <label class="block text-sm font-medium mb-2">Crowd Level Prediction</label>
-                        <div id="crowdLevel" class="border rounded-lg p-3 text-center">
-                            <span class="text-2xl font-bold">-</span>
-                            <span class="text-sm text-gray-500">/10</span>
+                    <div class="p-4 flex justify-between items-center">
+                        <div>
+                            <p class="font-medium">Peter Pan's Flight</p>
+                            <p class="text-xs text-gray-500">Consistently long waits</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-sm"><span class="text-green-600">Low:</span> 35-45min | <span class="text-red-600">Busy:</span> 70-90min</p>
+                        </div>
+                    </div>
+                    <div class="p-4 flex justify-between items-center">
+                        <div>
+                            <p class="font-medium">Space Mountain</p>
+                            <p class="text-xs text-gray-500">Lightning Lane available</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-sm"><span class="text-green-600">Low:</span> 25-35min | <span class="text-red-600">Busy:</span> 55-75min</p>
+                        </div>
+                    </div>
+                    <div class="p-4 flex justify-between items-center">
+                        <div>
+                            <p class="font-medium">Haunted Mansion</p>
+                            <p class="text-xs text-gray-500">High capacity, moves quickly</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-sm"><span class="text-green-600">Low:</span> 15-25min | <span class="text-red-600">Busy:</span> 35-50min</p>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Legend -->
-            <div class="flex flex-wrap gap-4 mb-6 text-sm">
-                <div class="flex items-center gap-2"><span class="w-4 h-4 bg-green-500 rounded"></span> Low (0-30 min)</div>
-                <div class="flex items-center gap-2"><span class="w-4 h-4 bg-yellow-500 rounded"></span> Moderate (30-60 min)</div>
-                <div class="flex items-center gap-2"><span class="w-4 h-4 bg-orange-500 rounded"></span> High (60-90 min)</div>
-                <div class="flex items-center gap-2"><span class="w-4 h-4 bg-red-500 rounded"></span> Very High (90+ min)</div>
-            </div>
-
-            <!-- Ride Predictions -->
-            <div id="ridePredictions" class="space-y-4">
-                <!-- Populated by JS -->
-            </div>
-
-            <!-- Pro Tips -->
-            <div class="mt-8 bg-gradient-to-r from-disney to-purple-600 text-white rounded-xl p-6">
-                <h3 class="text-xl font-bold mb-4">💡 Beat the Lines - Pro Strategies</h3>
-                <div class="grid md:grid-cols-2 gap-4 text-sm">
-                    <div class="bg-white/10 rounded-lg p-4">
-                        <h4 class="font-bold mb-2">🌅 Rope Drop Strategy</h4>
-                        <p>Arrive 45-60 minutes before park opening. Head DIRECTLY to the #1 ride. You can often ride 2-3 major attractions before lines build.</p>
+            <!-- Hollywood Studios -->
+            <div class="bg-white rounded-xl shadow-sm mb-6">
+                <div class="p-4 border-b bg-red-50">
+                    <h2 class="font-bold text-red-800">🎬 Hollywood Studios</h2>
+                </div>
+                <div class="divide-y">
+                    <div class="p-4 flex justify-between items-center">
+                        <div>
+                            <p class="font-medium">Rise of the Resistance</p>
+                            <p class="text-xs text-gray-500">Disney's most popular ride</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-sm"><span class="text-green-600">Low:</span> 60-80min | <span class="text-red-600">Busy:</span> 120-180min</p>
+                        </div>
                     </div>
-                    <div class="bg-white/10 rounded-lg p-4">
-                        <h4 class="font-bold mb-2">🌙 Evening Magic</h4>
-                        <p>Lines drop 30-50% during fireworks. While others watch, you ride! Last hour of park is often the shortest waits.</p>
+                    <div class="p-4 flex justify-between items-center">
+                        <div>
+                            <p class="font-medium">Slinky Dog Dash</p>
+                            <p class="text-xs text-gray-500">Family coaster, popular</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-sm"><span class="text-green-600">Low:</span> 45-60min | <span class="text-red-600">Busy:</span> 90-120min</p>
+                        </div>
                     </div>
-                    <div class="bg-white/10 rounded-lg p-4">
-                        <h4 class="font-bold mb-2">☔ Rain = Opportunity</h4>
-                        <p>When it rains, crowds flee. Florida storms last 20-40 minutes. Stay in a show, then hit rides with minimal waits after.</p>
-                    </div>
-                    <div class="bg-white/10 rounded-lg p-4">
-                        <h4 class="font-bold mb-2">🚶 Single Rider Lines</h4>
-                        <p>Available at select attractions. Often 50-75% shorter than standby. Great if your party doesn't mind splitting up.</p>
+                    <div class="p-4 flex justify-between items-center">
+                        <div>
+                            <p class="font-medium">Tower of Terror</p>
+                            <p class="text-xs text-gray-500">Classic attraction</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-sm"><span class="text-green-600">Low:</span> 30-40min | <span class="text-red-600">Busy:</span> 60-80min</p>
+                        </div>
                     </div>
                 </div>
             </div>
+
+            <!-- Universal -->
+            <div class="bg-white rounded-xl shadow-sm mb-6">
+                <div class="p-4 border-b bg-blue-50">
+                    <h2 class="font-bold text-blue-800">🎢 Universal Orlando</h2>
+                </div>
+                <div class="divide-y">
+                    <div class="p-4 flex justify-between items-center">
+                        <div>
+                            <p class="font-medium">Hagrid's Magical Creatures</p>
+                            <p class="text-xs text-gray-500">No Express Pass available</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-sm"><span class="text-green-600">Low:</span> 60-80min | <span class="text-red-600">Busy:</span> 120-180min</p>
+                        </div>
+                    </div>
+                    <div class="p-4 flex justify-between items-center">
+                        <div>
+                            <p class="font-medium">VelociCoaster</p>
+                            <p class="text-xs text-gray-500">Express Pass & Single Rider available</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-sm"><span class="text-green-600">Low:</span> 45-60min | <span class="text-red-600">Busy:</span> 90-120min</p>
+                        </div>
+                    </div>
+                    <div class="p-4 flex justify-between items-center">
+                        <div>
+                            <p class="font-medium">Forbidden Journey</p>
+                            <p class="text-xs text-gray-500">Express Pass & Single Rider available</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-sm"><span class="text-green-600">Low:</span> 30-45min | <span class="text-red-600">Busy:</span> 60-90min</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Strategy Tips -->
+            <div class="bg-purple-50 rounded-xl p-5 mb-8">
+                <h3 class="font-bold text-purple-800 mb-3">⚡ Tips to Minimize Waits</h3>
+                <ul class="text-sm text-purple-900 space-y-2">
+                    <li>• <strong>Rope drop:</strong> Arrive 45 min before opening. The first 2 hours have the shortest waits.</li>
+                    <li>• <strong>Single Rider lines:</strong> Available on many rides. Often 50-75% shorter than standby.</li>
+                    <li>• <strong>During shows/fireworks:</strong> While others watch, you ride with shorter lines.</li>
+                    <li>• <strong>Lightning Lane/Express:</strong> Worth it on busy days. Less necessary on slow days.</li>
+                </ul>
+            </div>
+
+            <!-- For Real-Time Data -->
+            <div class="bg-gray-100 rounded-xl p-5 text-sm text-gray-600">
+                <h3 class="font-bold text-gray-800 mb-2">For Real-Time Wait Times</h3>
+                <p class="mb-2">These are general estimates. For actual current wait times, use:</p>
+                <ul class="space-y-1">
+                    <li>• <a href="https://disneyworld.disney.go.com/genie/" target="_blank" class="text-purple-600 hover:underline">My Disney Experience App</a> - Official Disney wait times</li>
+                    <li>• <a href="https://www.universalorlando.com/web/en/us/plan-your-visit/app" target="_blank" class="text-purple-600 hover:underline">Universal Orlando App</a> - Official Universal wait times</li>
+                    <li>• <a href="https://touringplans.com" target="_blank" class="text-purple-600 hover:underline">TouringPlans Lines App</a> - Crowd-sourced wait times</li>
+                </ul>
+            </div>
+
         </div>
     </section>
 
-    <footer class="bg-gray-900 text-white py-8 mt-8">
-        <div class="max-w-6xl mx-auto px-4 text-center">
-            <p class="text-gray-400 text-sm">Wait times are estimates based on historical data. Actual times may vary.</p>
-            <p class="text-gray-400 text-sm mt-2">© 2025 CR AudioViz AI, LLC</p>
+    <footer class="bg-gray-900 text-white py-8">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <p class="text-gray-400 text-sm">Wait times are estimates and vary significantly by day, time, and conditions.</p>
+            <p class="text-gray-500 text-xs mt-2">© 2025 CR AudioViz AI, LLC</p>
         </div>
     </footer>
-
-    <script>
-        // Set default date to tomorrow
-        const tomorrow = new Date();
-        tomorrow.setDate(tomorrow.getDate() + 1);
-        document.getElementById('visitDate').value = tomorrow.toISOString().split('T')[0];
-
-        const rideData = {
-            mk: [
-                { name: "TRON Lightcycle / Run", tier: "headliner", base: 85, ropeDrop: 25, evening: 55, ll: true, single: false },
-                { name: "Seven Dwarfs Mine Train", tier: "headliner", base: 75, ropeDrop: 20, evening: 50, ll: true, single: false },
-                { name: "Peter Pan's Flight", tier: "headliner", base: 65, ropeDrop: 15, evening: 45, ll: true, single: false },
-                { name: "Space Mountain", tier: "major", base: 55, ropeDrop: 15, evening: 35, ll: true, single: false },
-                { name: "Big Thunder Mountain", tier: "major", base: 50, ropeDrop: 15, evening: 30, ll: true, single: false },
-                { name: "Splash Mountain", tier: "major", base: 55, ropeDrop: 20, evening: 35, ll: true, single: false },
-                { name: "Haunted Mansion", tier: "major", base: 40, ropeDrop: 10, evening: 25, ll: true, single: false },
-                { name: "Pirates of the Caribbean", tier: "moderate", base: 30, ropeDrop: 10, evening: 20, ll: false, single: false },
-                { name: "Jungle Cruise", tier: "moderate", base: 45, ropeDrop: 15, evening: 30, ll: true, single: false },
-                { name: "it's a small world", tier: "low", base: 20, ropeDrop: 5, evening: 15, ll: false, single: false },
-                { name: "Buzz Lightyear", tier: "moderate", base: 35, ropeDrop: 10, evening: 25, ll: true, single: false }
-            ],
-            epcot: [
-                { name: "Guardians of the Galaxy: Cosmic Rewind", tier: "headliner", base: 95, ropeDrop: 35, evening: 65, ll: true, single: true, note: "Virtual Queue at 7am!" },
-                { name: "Frozen Ever After", tier: "headliner", base: 70, ropeDrop: 25, evening: 45, ll: true, single: false },
-                { name: "Test Track", tier: "major", base: 65, ropeDrop: 20, evening: 40, ll: true, single: true },
-                { name: "Remy's Ratatouille Adventure", tier: "major", base: 55, ropeDrop: 15, evening: 35, ll: true, single: false },
-                { name: "Soarin' Around the World", tier: "major", base: 50, ropeDrop: 15, evening: 35, ll: true, single: false },
-                { name: "Spaceship Earth", tier: "moderate", base: 25, ropeDrop: 10, evening: 15, ll: false, single: false },
-                { name: "Journey Into Imagination", tier: "low", base: 15, ropeDrop: 5, evening: 10, ll: false, single: false },
-                { name: "The Seas with Nemo", tier: "low", base: 20, ropeDrop: 5, evening: 15, ll: false, single: false },
-                { name: "Living with the Land", tier: "low", base: 20, ropeDrop: 10, evening: 15, ll: false, single: false }
-            ],
-            hs: [
-                { name: "Rise of the Resistance", tier: "headliner", base: 105, ropeDrop: 45, evening: 70, ll: true, single: false, note: "Disney's best ride - expect long waits" },
-                { name: "Slinky Dog Dash", tier: "headliner", base: 80, ropeDrop: 25, evening: 55, ll: true, single: false },
-                { name: "Millennium Falcon: Smugglers Run", tier: "major", base: 55, ropeDrop: 20, evening: 35, ll: true, single: true },
-                { name: "Tower of Terror", tier: "major", base: 50, ropeDrop: 15, evening: 30, ll: true, single: false },
-                { name: "Rock 'n' Roller Coaster", tier: "major", base: 55, ropeDrop: 20, evening: 35, ll: true, single: true },
-                { name: "Toy Story Mania", tier: "moderate", base: 45, ropeDrop: 15, evening: 30, ll: true, single: false },
-                { name: "Mickey & Minnie's Runaway Railway", tier: "major", base: 50, ropeDrop: 15, evening: 35, ll: true, single: false },
-                { name: "Star Tours", tier: "moderate", base: 30, ropeDrop: 10, evening: 20, ll: true, single: false },
-                { name: "Alien Swirling Saucers", tier: "low", base: 25, ropeDrop: 10, evening: 15, ll: false, single: false }
-            ],
-            ak: [
-                { name: "Flight of Passage", tier: "headliner", base: 95, ropeDrop: 30, evening: 60, ll: true, single: false, note: "Best ride at AK - ride at rope drop!" },
-                { name: "Na'vi River Journey", tier: "major", base: 55, ropeDrop: 15, evening: 40, ll: true, single: false },
-                { name: "Kilimanjaro Safaris", tier: "major", base: 50, ropeDrop: 15, evening: 30, ll: true, single: false, note: "Animals most active at rope drop" },
-                { name: "Expedition Everest", tier: "major", base: 45, ropeDrop: 15, evening: 25, ll: true, single: true },
-                { name: "Kali River Rapids", tier: "moderate", base: 35, ropeDrop: 10, evening: 25, ll: true, single: false, note: "You WILL get wet" },
-                { name: "Dinosaur", tier: "moderate", base: 30, ropeDrop: 10, evening: 20, ll: true, single: false },
-                { name: "It's Tough to Be a Bug", tier: "low", base: 15, ropeDrop: 5, evening: 10, ll: false, single: false }
-            ],
-            usf: [
-                { name: "Hagrid's Magical Creatures", tier: "headliner", base: 100, ropeDrop: 35, evening: 65, ll: false, single: false, note: "No Express - early arrival essential" },
-                { name: "Escape from Gringotts", tier: "headliner", base: 70, ropeDrop: 25, evening: 45, ll: true, single: true },
-                { name: "Hollywood Rip Ride Rockit", tier: "major", base: 55, ropeDrop: 20, evening: 35, ll: true, single: true },
-                { name: "Revenge of the Mummy", tier: "major", base: 45, ropeDrop: 15, evening: 30, ll: true, single: true },
-                { name: "Transformers", tier: "moderate", base: 40, ropeDrop: 15, evening: 25, ll: true, single: true },
-                { name: "MEN IN BLACK", tier: "moderate", base: 35, ropeDrop: 10, evening: 25, ll: true, single: false },
-                { name: "Simpsons Ride", tier: "moderate", base: 30, ropeDrop: 10, evening: 20, ll: true, single: false },
-                { name: "E.T. Adventure", tier: "low", base: 25, ropeDrop: 10, evening: 15, ll: true, single: false }
-            ],
-            ioa: [
-                { name: "Hagrid's Magical Creatures", tier: "headliner", base: 100, ropeDrop: 35, evening: 65, ll: false, single: false },
-                { name: "VelociCoaster", tier: "headliner", base: 80, ropeDrop: 25, evening: 50, ll: true, single: true, note: "One of the best coasters in Florida!" },
-                { name: "Forbidden Journey", tier: "headliner", base: 65, ropeDrop: 20, evening: 40, ll: true, single: true },
-                { name: "Incredible Hulk Coaster", tier: "major", base: 50, ropeDrop: 15, evening: 30, ll: true, single: true },
-                { name: "Spider-Man", tier: "major", base: 40, ropeDrop: 15, evening: 25, ll: true, single: true },
-                { name: "Jurassic World VelociCoaster", tier: "headliner", base: 75, ropeDrop: 25, evening: 45, ll: true, single: true },
-                { name: "Hagrid's (Hogsmeade)", tier: "headliner", base: 95, ropeDrop: 30, evening: 60, ll: false, single: false },
-                { name: "Skull Island", tier: "moderate", base: 35, ropeDrop: 10, evening: 25, ll: true, single: false }
-            ]
-        };
-
-        function getCrowdMultiplier(date) {
-            const d = new Date(date);
-            const month = d.getMonth();
-            const dayOfWeek = d.getDay();
-            
-            // Base multipliers by month (0 = January)
-            const monthMultipliers = [1.1, 1.0, 1.3, 1.2, 0.9, 1.2, 1.3, 1.0, 0.8, 1.1, 1.2, 1.4];
-            let multiplier = monthMultipliers[month];
-            
-            // Weekend adjustment
-            if (dayOfWeek === 0 || dayOfWeek === 6) multiplier *= 1.15;
-            
-            // Holiday adjustments (simplified)
-            const dateStr = `${d.getMonth()+1}/${d.getDate()}`;
-            const holidays = ['12/24', '12/25', '12/26', '12/27', '12/28', '12/29', '12/30', '12/31', '1/1', '7/4', '11/28', '11/29'];
-            if (holidays.includes(dateStr)) multiplier *= 1.4;
-            
-            return multiplier;
-        }
-
-        function getCrowdLevel(multiplier) {
-            if (multiplier < 0.9) return { level: 3, text: "Low", color: "text-green-600" };
-            if (multiplier < 1.0) return { level: 5, text: "Moderate", color: "text-yellow-600" };
-            if (multiplier < 1.2) return { level: 7, text: "Busy", color: "text-orange-600" };
-            if (multiplier < 1.35) return { level: 8, text: "Very Busy", color: "text-red-600" };
-            return { level: 10, text: "Extremely Busy", color: "text-red-700" };
-        }
-
-        function getWaitColor(wait) {
-            if (wait < 30) return 'bg-green-500';
-            if (wait < 60) return 'bg-yellow-500';
-            if (wait < 90) return 'bg-orange-500';
-            return 'bg-red-500';
-        }
-
-        function updatePredictions() {
-            const date = document.getElementById('visitDate').value;
-            const park = document.getElementById('parkSelect').value;
-            
-            if (!date || !park) return;
-
-            const multiplier = getCrowdMultiplier(date);
-            const crowd = getCrowdLevel(multiplier);
-            
-            // Update crowd level display
-            document.getElementById('crowdLevel').innerHTML = `
-                <span class="text-2xl font-bold ${crowd.color}">${crowd.level}</span>
-                <span class="text-sm text-gray-500">/10</span>
-                <p class="text-xs ${crowd.color} mt-1">${crowd.text}</p>
-            `;
-
-            const rides = rideData[park];
-            const container = document.getElementById('ridePredictions');
-            
-            container.innerHTML = rides.map(ride => {
-                const peakWait = Math.round(ride.base * multiplier);
-                const ropeDropWait = Math.round(ride.ropeDrop * multiplier);
-                const eveningWait = Math.round(ride.evening * multiplier);
-                
-                return `
-                    <div class="bg-white rounded-xl shadow-sm p-4">
-                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                            <div class="flex-1">
-                                <div class="flex items-center gap-2">
-                                    <h3 class="font-bold text-lg">${ride.name}</h3>
-                                    ${ride.tier === 'headliner' ? '<span class="text-xs bg-red-100 text-red-700 px-2 py-0.5 rounded">HEADLINER</span>' : ''}
-                                </div>
-                                ${ride.note ? `<p class="text-sm text-gray-500 mt-1">${ride.note}</p>` : ''}
-                                <div class="flex flex-wrap gap-2 mt-2">
-                                    ${ride.ll ? '<span class="text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded">Lightning Lane</span>' : ''}
-                                    ${ride.single ? '<span class="text-xs bg-purple-100 text-purple-700 px-2 py-0.5 rounded">Single Rider</span>' : ''}
-                                </div>
-                            </div>
-                            <div class="flex gap-4">
-                                <div class="text-center">
-                                    <p class="text-xs text-gray-500 mb-1">Rope Drop</p>
-                                    <div class="w-16 h-16 rounded-lg ${getWaitColor(ropeDropWait)} text-white flex items-center justify-center">
-                                        <span class="font-bold">${ropeDropWait}<span class="text-xs">min</span></span>
-                                    </div>
-                                </div>
-                                <div class="text-center">
-                                    <p class="text-xs text-gray-500 mb-1">Peak (12-3pm)</p>
-                                    <div class="w-16 h-16 rounded-lg ${getWaitColor(peakWait)} text-white flex items-center justify-center">
-                                        <span class="font-bold">${peakWait}<span class="text-xs">min</span></span>
-                                    </div>
-                                </div>
-                                <div class="text-center">
-                                    <p class="text-xs text-gray-500 mb-1">Evening</p>
-                                    <div class="w-16 h-16 rounded-lg ${getWaitColor(eveningWait)} text-white flex items-center justify-center">
-                                        <span class="font-bold">${eveningWait}<span class="text-xs">min</span></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                `;
-            }).join('');
-        }
-
-        // Initial load
-        updatePredictions();
-    </script>
 </body>
 </html>
