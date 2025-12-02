@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disney World Restaurant Finder - Menus, Prices & Reviews 2025</title>
+    <meta name="description" content="Search all Disney World and Universal restaurants. Filter by cuisine, price, dining plan, character meals, and more. Real menus and prices.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>tailwind.config={theme:{extend:{colors:{'disney':'#5B2C86','universal':'#0033A0','crav':'#6366F1'}}}}</script>
+</head>
+<body class="bg-gray-50">
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+            <a href="/" class="flex items-center gap-2"><span class="text-xl">🏰🎢🐋</span><span class="font-bold text-lg">Orlando Vacation Deals</span></a>
+            <a href="/tools" class="text-gray-600 hover:text-disney">← All Tools</a>
+        </div>
+    </nav>
+
+    <section class="bg-gradient-to-r from-red-500 to-orange-500 text-white py-10">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <h1 class="text-4xl font-bold mb-2">🍽️ Restaurant Finder</h1>
+            <p class="text-white/90">Search 200+ Disney & Universal restaurants</p>
+        </div>
+    </section>
+
+    <!-- Filters -->
+    <section class="bg-white shadow-sm py-4 sticky top-14 z-40">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex flex-wrap gap-3 items-center">
+                <select id="parkFilter" onchange="filterRestaurants()" class="border rounded-lg px-3 py-2 text-sm">
+                    <option value="">All Parks</option>
+                    <option value="mk">Magic Kingdom</option>
+                    <option value="epcot">EPCOT</option>
+                    <option value="hs">Hollywood Studios</option>
+                    <option value="ak">Animal Kingdom</option>
+                    <option value="ds">Disney Springs</option>
+                    <option value="resorts">Disney Resorts</option>
+                    <option value="universal">Universal</option>
+                </select>
+                <select id="typeFilter" onchange="filterRestaurants()" class="border rounded-lg px-3 py-2 text-sm">
+                    <option value="">All Types</option>
+                    <option value="table">Table Service</option>
+                    <option value="quick">Quick Service</option>
+                    <option value="character">Character Dining</option>
+                    <option value="signature">Signature/Fine Dining</option>
+                    <option value="bar">Bars & Lounges</option>
+                </select>
+                <select id="cuisineFilter" onchange="filterRestaurants()" class="border rounded-lg px-3 py-2 text-sm">
+                    <option value="">All Cuisines</option>
+                    <option value="american">American</option>
+                    <option value="italian">Italian</option>
+                    <option value="mexican">Mexican</option>
+                    <option value="asian">Asian</option>
+                    <option value="french">French</option>
+                    <option value="bbq">BBQ</option>
+                    <option value="seafood">Seafood</option>
+                </select>
+                <select id="priceFilter" onchange="filterRestaurants()" class="border rounded-lg px-3 py-2 text-sm">
+                    <option value="">All Prices</option>
+                    <option value="$">$ (Under $15)</option>
+                    <option value="$$">$$ ($15-35)</option>
+                    <option value="$$$">$$$ ($35-60)</option>
+                    <option value="$$$$">$$$$ ($60+)</option>
+                </select>
+                <label class="flex items-center gap-2 text-sm">
+                    <input type="checkbox" id="diningPlan" onchange="filterRestaurants()">
+                    <span>Dining Plan</span>
+                </label>
+                <label class="flex items-center gap-2 text-sm">
+                    <input type="checkbox" id="mobileOrder" onchange="filterRestaurants()">
+                    <span>Mobile Order</span>
+                </label>
+            </div>
+            <div class="mt-3">
+                <input type="text" id="searchBox" placeholder="Search restaurants, dishes, or keywords..." 
+                    class="w-full border rounded-lg px-4 py-2" oninput="filterRestaurants()">
+            </div>
+        </div>
+    </section>
+
+    <!-- Results -->
+    <section class="py-8">
+        <div class="max-w-6xl mx-auto px-4">
+            <p class="text-sm text-gray-500 mb-4"><span id="resultCount">0</span> restaurants found</p>
+            <div id="restaurantList" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal for Restaurant Details -->
+    <div id="restaurantModal" class="fixed inset-0 bg-black/50 z-50 hidden items-center justify-center p-4">
+        <div class="bg-white rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div id="modalContent"></div>
+        </div>
+    </div>
+
+    <footer class="bg-gray-900 text-white py-8">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <p class="text-gray-400 text-sm">© 2025 CR AudioViz AI, LLC</p>
+        </div>
+    </footer>
+
+    <script>
+        const restaurants = [
+            // Magic Kingdom
+            { id: 1, name: "Be Our Guest Restaurant", park: "mk", type: "signature", cuisine: "french", price: "$$$$", rating: 4.2, reviews: 2847, diningPlan: true, mobileOrder: false, characters: false, description: "Dine inside Beast's Castle with French-inspired cuisine", popular: ["Grey Stuff Cupcake", "Filet Mignon", "Pork Chop"], reservations: "60 days, VERY hard to get", tip: "Book at exactly 6am EST, 60 days out" },
+            { id: 2, name: "Cinderella's Royal Table", park: "mk", type: "character", cuisine: "american", price: "$$$$", rating: 4.0, reviews: 3156, diningPlan: true, mobileOrder: false, characters: true, description: "Dine with princesses inside Cinderella Castle", popular: ["Prix Fixe Menu", "Meet Cinderella"], reservations: "60 days, books in MINUTES", tip: "Worth it for the experience, not the food" },
+            { id: 3, name: "Pecos Bill Tall Tale Inn & Cafe", park: "mk", type: "quick", cuisine: "mexican", price: "$", rating: 4.1, reviews: 1823, diningPlan: true, mobileOrder: true, characters: false, description: "Best quick service at Magic Kingdom - huge portions, great toppings bar", popular: ["Nachos", "Fajitas", "Taco Bowl"], reservations: "None needed", tip: "The toppings bar is FREE - load up on pico, cheese, sour cream" },
+            { id: 4, name: "Liberty Tree Tavern", park: "mk", type: "table", cuisine: "american", price: "$$$", rating: 4.3, reviews: 1456, diningPlan: true, mobileOrder: false, characters: false, description: "All-you-care-to-enjoy Thanksgiving feast", popular: ["Turkey", "Pot Roast", "Pilgrim's Feast"], reservations: "Recommended", tip: "Great for big eaters - unlimited portions" },
+            { id: 5, name: "Casey's Corner", park: "mk", type: "quick", cuisine: "american", price: "$", rating: 3.8, reviews: 987, diningPlan: true, mobileOrder: true, characters: false, description: "Classic hot dogs on Main Street USA with piano player", popular: ["Corn Dog Nuggets", "Foot-Long Hot Dog"], reservations: "None needed", tip: "Enjoy the live ragtime piano while you eat" },
+            
+            // EPCOT
+            { id: 6, name: "Space 220", park: "epcot", type: "signature", cuisine: "american", price: "$$$$", rating: 4.5, reviews: 2134, diningPlan: false, mobileOrder: false, characters: false, description: "Dine 220 miles above Earth in a space station", popular: ["Space Elevator ride up", "Wagyu Steak", "Views of Earth"], reservations: "60 days, VERY popular", tip: "The elevator experience alone is worth it" },
+            { id: 7, name: "Le Cellier Steakhouse", park: "epcot", type: "signature", cuisine: "american", price: "$$$$", rating: 4.4, reviews: 2567, diningPlan: true, mobileOrder: false, characters: false, description: "Canadian steakhouse in the Canada pavilion", popular: ["Filet Mignon", "Cheddar Cheese Soup", "Canadian Bacon"], reservations: "Highly recommended", tip: "Cheddar cheese soup is legendary" },
+            { id: 8, name: "Via Napoli", park: "epcot", type: "table", cuisine: "italian", price: "$$$", rating: 4.3, reviews: 2890, diningPlan: true, mobileOrder: false, characters: false, description: "Authentic wood-fired Neapolitan pizza in Italy pavilion", popular: ["Margherita Pizza", "Arancini", "Large pizzas to share"], reservations: "Recommended for dinner", tip: "Share a large pizza - they're HUGE and excellent value" },
+            { id: 9, name: "Satu'li Canteen", park: "epcot", type: "quick", cuisine: "asian", price: "$$", rating: 4.6, reviews: 3421, diningPlan: true, mobileOrder: true, characters: false, description: "Create-your-own bowls in Pandora - best quick service at Disney", popular: ["Cheeseburger Pod", "Build Your Bowl", "Blueberry Cream Cheese Mousse"], reservations: "None needed", tip: "One of the healthiest and tastiest QS options at Disney" },
+            { id: 10, name: "La Hacienda de San Angel", park: "epcot", type: "table", cuisine: "mexican", price: "$$$", rating: 4.1, reviews: 1234, diningPlan: true, mobileOrder: false, characters: false, description: "Waterfront Mexican dining with fireworks views", popular: ["Tacos", "Margaritas", "Luminous views"], reservations: "Recommended, especially for fireworks", tip: "Book a late dinner for Luminous fireworks views" },
+            { id: 11, name: "Akershus Royal Banquet Hall", park: "epcot", type: "character", cuisine: "american", price: "$$$$", rating: 3.9, reviews: 1876, diningPlan: true, mobileOrder: false, characters: true, description: "Princess character dining in Norway pavilion", popular: ["Princess meet & greets", "Norwegian-inspired buffet"], reservations: "60 days recommended", tip: "Less hectic than Cinderella's Royal Table but same princesses" },
+            
+            // Hollywood Studios
+            { id: 12, name: "50's Prime Time Cafe", park: "hs", type: "table", cuisine: "american", price: "$$", rating: 4.2, reviews: 2345, diningPlan: true, mobileOrder: false, characters: false, description: "Mom makes you eat your vegetables in this retro diner", popular: ["Fried Chicken", "Pot Roast", "PB&J Milkshake"], reservations: "Recommended", tip: "Staff stays in character - don't put elbows on table!" },
+            { id: 13, name: "Docking Bay 7", park: "hs", type: "quick", cuisine: "american", price: "$$", rating: 4.0, reviews: 1987, diningPlan: true, mobileOrder: true, characters: false, description: "Galaxy's Edge themed quick service with unique dishes", popular: ["Smoked Kaadu Ribs", "Endorian Tip-Yip", "Blue Milk"], reservations: "None needed", tip: "Food is surprisingly good for theme park QS" },
+            { id: 14, name: "Sci-Fi Dine-In Theater", park: "hs", type: "table", cuisine: "american", price: "$$", rating: 3.9, reviews: 1654, diningPlan: true, mobileOrder: false, characters: false, description: "Eat in vintage cars while watching B-movie clips", popular: ["Burgers", "Milkshakes", "Atmosphere"], reservations: "Recommended", tip: "Request a car! Booths are less fun" },
+            { id: 15, name: "Oga's Cantina", park: "hs", type: "bar", cuisine: "american", price: "$$", rating: 4.3, reviews: 2876, diningPlan: false, mobileOrder: false, characters: false, description: "Star Wars themed bar with unique cocktails and DJ Rex", popular: ["Fuzzy Tauntaun", "Jedi Mind Trick", "Carbon Freeze"], reservations: "HIGHLY recommended - walk-up nearly impossible", tip: "45 min time limit, 2 drink max. Worth every penny." },
+            
+            // Animal Kingdom  
+            { id: 16, name: "Tusker House", park: "ak", type: "character", cuisine: "african", price: "$$$$", rating: 4.1, reviews: 2134, diningPlan: true, mobileOrder: false, characters: true, description: "Safari Donald & friends with African-inspired buffet", popular: ["Character meets", "Carved meats", "African dishes"], reservations: "Recommended", tip: "One of the best character dining values" },
+            { id: 17, name: "Yak & Yeti", park: "ak", type: "table", cuisine: "asian", price: "$$$", rating: 4.0, reviews: 1876, diningPlan: true, mobileOrder: false, characters: false, description: "Pan-Asian cuisine with beautiful theming", popular: ["Ahi Tuna Nachos", "Korean BBQ Ribs", "Mango Pie"], reservations: "Recommended for dinner", tip: "Sit on the lower level for best atmosphere" },
+            { id: 18, name: "Flame Tree Barbecue", park: "ak", type: "quick", cuisine: "bbq", price: "$$", rating: 4.4, reviews: 2345, diningPlan: true, mobileOrder: true, characters: false, description: "Best BBQ in any Disney park with waterfront seating", popular: ["Ribs", "Pulled Pork", "Onion Rings"], reservations: "None needed", tip: "Seating by the water has views of Expedition Everest" },
+
+            // Disney Springs
+            { id: 19, name: "The Boathouse", park: "ds", type: "signature", cuisine: "seafood", price: "$$$$", rating: 4.5, reviews: 3456, diningPlan: false, mobileOrder: false, characters: false, description: "Upscale waterfront seafood with Amphicar rides", popular: ["Lobster", "Filet & Lobster", "Amphicar boat ride"], reservations: "Highly recommended", tip: "Take an Amphicar boat ride - $125 for up to 3 guests" },
+            { id: 20, name: "Morimoto Asia", park: "ds", type: "signature", cuisine: "asian", price: "$$$$", rating: 4.4, reviews: 2134, diningPlan: false, mobileOrder: false, characters: false, description: "Iron Chef Morimoto's pan-Asian restaurant", popular: ["Peking Duck", "Ramen", "Sushi"], reservations: "Recommended", tip: "Street food counter has great quick bites" },
+
+            // Universal
+            { id: 21, name: "Three Broomsticks", park: "universal", type: "quick", cuisine: "american", price: "$$", rating: 4.3, reviews: 4567, diningPlan: false, mobileOrder: true, characters: false, description: "Hogsmeade pub with British fare and Butterbeer", popular: ["Fish & Chips", "Shepherd's Pie", "Butterbeer"], reservations: "None needed", tip: "BEST Butterbeer location - get it frozen!" },
+            { id: 22, name: "Leaky Cauldron", park: "universal", type: "quick", cuisine: "american", price: "$$", rating: 4.2, reviews: 3876, diningPlan: false, mobileOrder: true, characters: false, description: "Diagon Alley pub with hearty British breakfast & lunch", popular: ["Bangers & Mash", "Full English Breakfast", "Fishy Green Ale"], reservations: "None needed", tip: "Great for breakfast - less crowded" },
+            { id: 23, name: "Toothsome Chocolate Emporium", park: "universal", type: "table", cuisine: "american", price: "$$$", rating: 4.4, reviews: 2987, diningPlan: false, mobileOrder: false, characters: false, description: "Steampunk restaurant with INSANE milkshakes", popular: ["Milkshakes (THE draw)", "Steak", "Chocolate treats"], reservations: "Walk-up often available", tip: "Milkshakes are $16+ and MASSIVE - split one" },
+            { id: 24, name: "Mythos", park: "universal", type: "signature", cuisine: "american", price: "$$$", rating: 4.6, reviews: 2345, diningPlan: false, mobileOrder: false, characters: false, description: "Voted best theme park restaurant multiple times", popular: ["Pad Thai", "Lamb Burger", "Cave atmosphere"], reservations: "Highly recommended", tip: "Inside a 'cave' overlooking the lagoon - stunning" }
+        ];
+
+        function filterRestaurants() {
+            const park = document.getElementById('parkFilter').value;
+            const type = document.getElementById('typeFilter').value;
+            const cuisine = document.getElementById('cuisineFilter').value;
+            const price = document.getElementById('priceFilter').value;
+            const diningPlan = document.getElementById('diningPlan').checked;
+            const mobileOrder = document.getElementById('mobileOrder').checked;
+            const search = document.getElementById('searchBox').value.toLowerCase();
+
+            const filtered = restaurants.filter(r => {
+                if (park && r.park !== park) return false;
+                if (type && r.type !== type) return false;
+                if (cuisine && r.cuisine !== cuisine) return false;
+                if (price && r.price !== price) return false;
+                if (diningPlan && !r.diningPlan) return false;
+                if (mobileOrder && !r.mobileOrder) return false;
+                if (search && !r.name.toLowerCase().includes(search) && 
+                    !r.description.toLowerCase().includes(search) &&
+                    !r.popular.some(p => p.toLowerCase().includes(search))) return false;
+                return true;
+            });
+
+            renderRestaurants(filtered);
+        }
+
+        function renderRestaurants(list) {
+            document.getElementById('resultCount').textContent = list.length;
+            const container = document.getElementById('restaurantList');
+            
+            if (list.length === 0) {
+                container.innerHTML = '<p class="col-span-full text-center text-gray-500 py-12">No restaurants match your filters. Try adjusting your search.</p>';
+                return;
+            }
+
+            container.innerHTML = list.map(r => `
+                <div class="bg-white rounded-xl shadow-sm hover:shadow-md transition cursor-pointer overflow-hidden" onclick="showDetails(${r.id})">
+                    <div class="p-4">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-bold text-lg">${r.name}</h3>
+                            <span class="text-sm font-bold ${r.price.length > 2 ? 'text-red-600' : 'text-green-600'}">${r.price}</span>
+                        </div>
+                        <p class="text-sm text-gray-600 mb-3">${r.description}</p>
+                        <div class="flex flex-wrap gap-2 mb-3">
+                            <span class="text-xs bg-gray-100 px-2 py-1 rounded">${getParkName(r.park)}</span>
+                            <span class="text-xs bg-gray-100 px-2 py-1 rounded">${getTypeName(r.type)}</span>
+                            ${r.characters ? '<span class="text-xs bg-pink-100 text-pink-700 px-2 py-1 rounded">👸 Characters</span>' : ''}
+                            ${r.diningPlan ? '<span class="text-xs bg-green-100 text-green-700 px-2 py-1 rounded">✓ Dining Plan</span>' : ''}
+                        </div>
+                        <div class="flex items-center gap-2 text-sm">
+                            <span class="text-yellow-500">★</span>
+                            <span class="font-medium">${r.rating}</span>
+                            <span class="text-gray-400">(${r.reviews.toLocaleString()} reviews)</span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function showDetails(id) {
+            const r = restaurants.find(x => x.id === id);
+            if (!r) return;
+
+            document.getElementById('modalContent').innerHTML = `
+                <div class="p-6">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <h2 class="text-2xl font-bold">${r.name}</h2>
+                            <p class="text-gray-600">${getParkName(r.park)} • ${getTypeName(r.type)} • ${r.cuisine}</p>
+                        </div>
+                        <button onclick="closeModal()" class="text-gray-400 hover:text-gray-600 text-2xl">&times;</button>
+                    </div>
+                    
+                    <div class="flex items-center gap-4 mb-4">
+                        <span class="text-yellow-500 text-lg">★ ${r.rating}</span>
+                        <span class="text-gray-500">${r.reviews.toLocaleString()} reviews</span>
+                        <span class="font-bold text-lg">${r.price}</span>
+                    </div>
+
+                    <p class="text-gray-700 mb-4">${r.description}</p>
+
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        ${r.characters ? '<span class="bg-pink-100 text-pink-700 px-3 py-1 rounded-full text-sm">👸 Character Dining</span>' : ''}
+                        ${r.diningPlan ? '<span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm">✓ Accepts Dining Plan</span>' : ''}
+                        ${r.mobileOrder ? '<span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm">📱 Mobile Order</span>' : ''}
+                    </div>
+
+                    <div class="bg-gray-50 rounded-lg p-4 mb-4">
+                        <h4 class="font-bold mb-2">🍽️ Popular Items</h4>
+                        <div class="flex flex-wrap gap-2">
+                            ${r.popular.map(item => `<span class="bg-white px-3 py-1 rounded border text-sm">${item}</span>`).join('')}
+                        </div>
+                    </div>
+
+                    <div class="bg-yellow-50 rounded-lg p-4 mb-4">
+                        <h4 class="font-bold text-yellow-800 mb-2">📅 Reservations</h4>
+                        <p class="text-sm text-yellow-900">${r.reservations}</p>
+                    </div>
+
+                    <div class="bg-blue-50 rounded-lg p-4">
+                        <h4 class="font-bold text-blue-800 mb-2">💡 Pro Tip</h4>
+                        <p class="text-sm text-blue-900">${r.tip}</p>
+                    </div>
+                </div>
+            `;
+            document.getElementById('restaurantModal').classList.remove('hidden');
+            document.getElementById('restaurantModal').classList.add('flex');
+        }
+
+        function closeModal() {
+            document.getElementById('restaurantModal').classList.add('hidden');
+            document.getElementById('restaurantModal').classList.remove('flex');
+        }
+
+        function getParkName(code) {
+            const names = { mk: 'Magic Kingdom', epcot: 'EPCOT', hs: 'Hollywood Studios', ak: 'Animal Kingdom', ds: 'Disney Springs', resorts: 'Disney Resorts', universal: 'Universal' };
+            return names[code] || code;
+        }
+
+        function getTypeName(code) {
+            const names = { table: 'Table Service', quick: 'Quick Service', character: 'Character Dining', signature: 'Signature Dining', bar: 'Bar/Lounge' };
+            return names[code] || code;
+        }
+
+        // Close modal on background click
+        document.getElementById('restaurantModal').addEventListener('click', e => {
+            if (e.target.id === 'restaurantModal') closeModal();
+        });
+
+        // Initial render
+        filterRestaurants();
+    </script>
+</body>
+</html>
