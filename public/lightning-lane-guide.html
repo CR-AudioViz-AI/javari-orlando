@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lightning Lane Guide 2025 - Disney Genie+ Strategy & Tips</title>
+    <meta name="description" content="Complete guide to Disney Lightning Lane and Genie+. Learn which rides to book, optimal strategies, and how to save money.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>tailwind.config={theme:{extend:{colors:{'disney':'#5B2C86','genie':'#00A4E4','crav':'#6366F1'}}}}</script>
+</head>
+<body class="bg-gray-50">
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+            <a href="/" class="flex items-center gap-2"><span class="text-xl">🏰🎢🐋</span><span class="font-bold text-lg">Orlando Vacation Deals</span></a>
+            <a href="/tools" class="text-gray-600 hover:text-disney">← All Tools</a>
+        </div>
+    </nav>
+
+    <section class="bg-gradient-to-r from-genie to-blue-600 text-white py-12">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <h1 class="text-4xl font-bold mb-3">⚡ Lightning Lane Complete Guide</h1>
+            <p class="text-white/90 text-lg">Master Disney's skip-the-line system in 2025</p>
+        </div>
+    </section>
+
+    <section class="py-8">
+        <div class="max-w-4xl mx-auto px-4">
+            
+            <!-- Quick Summary -->
+            <div class="bg-white rounded-xl shadow-sm p-6 mb-8">
+                <h2 class="text-2xl font-bold mb-4">⚡ What is Lightning Lane?</h2>
+                <p class="text-gray-700 mb-4">Lightning Lane is Disney's paid skip-the-line system. Instead of waiting in the regular standby queue, you pay extra to use a shorter Lightning Lane entrance with a scheduled return time.</p>
+                
+                <div class="grid md:grid-cols-2 gap-6 mt-6">
+                    <div class="bg-blue-50 rounded-lg p-4">
+                        <h3 class="font-bold text-blue-800 mb-2">🎫 Lightning Lane Multi Pass</h3>
+                        <p class="text-sm text-blue-900 mb-2">Previously called "Genie+"</p>
+                        <ul class="text-sm text-blue-900 space-y-1">
+                            <li>• <strong>$15-35/person/day</strong> (price varies by date)</li>
+                            <li>• Book 3 rides at once (resort guests at 7am)</li>
+                            <li>• More rides unlock as you use them</li>
+                            <li>• 40+ attractions across all parks</li>
+                        </ul>
+                    </div>
+                    <div class="bg-purple-50 rounded-lg p-4">
+                        <h3 class="font-bold text-purple-800 mb-2">⭐ Lightning Lane Single Pass</h3>
+                        <p class="text-sm text-purple-900 mb-2">For the BIGGEST rides only</p>
+                        <ul class="text-sm text-purple-900 space-y-1">
+                            <li>• <strong>$15-35/person/ride</strong></li>
+                            <li>• A la carte - pay per attraction</li>
+                            <li>• Only ~12 rides across all parks</li>
+                            <li>• Often sells out by mid-morning</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Is It Worth It Calculator -->
+            <div class="bg-white rounded-xl shadow-sm p-6 mb-8">
+                <h2 class="text-2xl font-bold mb-4">🧮 Is Lightning Lane Worth It For YOU?</h2>
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium mb-2">How many people in your party?</label>
+                        <input type="number" id="partySize" value="4" min="1" max="20" class="border rounded-lg p-2 w-24" onchange="calculateLL()">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-2">How many park days?</label>
+                        <input type="number" id="parkDays" value="4" min="1" max="14" class="border rounded-lg p-2 w-24" onchange="calculateLL()">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-2">Expected crowd level?</label>
+                        <select id="crowdLevel" class="border rounded-lg p-2" onchange="calculateLL()">
+                            <option value="low">Low (January, September)</option>
+                            <option value="moderate" selected>Moderate (Typical weekdays)</option>
+                            <option value="high">High (Holidays, Summer)</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div id="llResult" class="mt-6 p-4 bg-gray-50 rounded-lg">
+                    <!-- Calculated result -->
+                </div>
+            </div>
+
+            <!-- Which Rides -->
+            <div class="bg-white rounded-xl shadow-sm p-6 mb-8">
+                <h2 class="text-2xl font-bold mb-4">🎢 Which Rides Use Each System?</h2>
+                
+                <div class="mb-6">
+                    <h3 class="font-bold text-lg mb-3 flex items-center gap-2">
+                        <span class="bg-purple-500 text-white px-2 py-1 rounded text-sm">SINGLE PASS</span>
+                        Individual Lightning Lane ($15-35 each)
+                    </h3>
+                    <div class="grid md:grid-cols-2 gap-3">
+                        <div class="border rounded-lg p-3">
+                            <p class="font-medium">🏰 Magic Kingdom</p>
+                            <ul class="text-sm text-gray-600 mt-1">
+                                <li>• TRON Lightcycle / Run</li>
+                                <li>• Seven Dwarfs Mine Train</li>
+                            </ul>
+                        </div>
+                        <div class="border rounded-lg p-3">
+                            <p class="font-medium">🌐 EPCOT</p>
+                            <ul class="text-sm text-gray-600 mt-1">
+                                <li>• Guardians of the Galaxy</li>
+                            </ul>
+                        </div>
+                        <div class="border rounded-lg p-3">
+                            <p class="font-medium">🎬 Hollywood Studios</p>
+                            <ul class="text-sm text-gray-600 mt-1">
+                                <li>• Rise of the Resistance</li>
+                            </ul>
+                        </div>
+                        <div class="border rounded-lg p-3">
+                            <p class="font-medium">🦁 Animal Kingdom</p>
+                            <ul class="text-sm text-gray-600 mt-1">
+                                <li>• Flight of Passage</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <p class="text-sm text-red-600 mt-3">⚠️ These sell out FAST. Book at 7am (resort guests) or park open (off-site).</p>
+                </div>
+
+                <div>
+                    <h3 class="font-bold text-lg mb-3 flex items-center gap-2">
+                        <span class="bg-blue-500 text-white px-2 py-1 rounded text-sm">MULTI PASS</span>
+                        Lightning Lane Multi Pass ($15-35/day - 40+ rides)
+                    </h3>
+                    <div class="grid md:grid-cols-2 gap-3">
+                        <div class="border rounded-lg p-3">
+                            <p class="font-medium">🏰 Magic Kingdom (Best Value)</p>
+                            <ul class="text-sm text-gray-600 mt-1">
+                                <li>• Space Mountain ⭐</li>
+                                <li>• Big Thunder Mountain ⭐</li>
+                                <li>• Splash Mountain ⭐</li>
+                                <li>• Peter Pan's Flight ⭐</li>
+                                <li>• Haunted Mansion</li>
+                                <li>• Jungle Cruise</li>
+                                <li>• Pirates of the Caribbean</li>
+                                <li>+ 10 more attractions</li>
+                            </ul>
+                        </div>
+                        <div class="border rounded-lg p-3">
+                            <p class="font-medium">🌐 EPCOT</p>
+                            <ul class="text-sm text-gray-600 mt-1">
+                                <li>• Frozen Ever After ⭐</li>
+                                <li>• Test Track ⭐</li>
+                                <li>• Remy's Ratatouille ⭐</li>
+                                <li>• Soarin'</li>
+                                <li>• Spaceship Earth</li>
+                                <li>+ more attractions</li>
+                            </ul>
+                        </div>
+                        <div class="border rounded-lg p-3">
+                            <p class="font-medium">🎬 Hollywood Studios</p>
+                            <ul class="text-sm text-gray-600 mt-1">
+                                <li>• Slinky Dog Dash ⭐</li>
+                                <li>• Millennium Falcon ⭐</li>
+                                <li>• Tower of Terror ⭐</li>
+                                <li>• Rock 'n' Roller Coaster</li>
+                                <li>• Toy Story Mania</li>
+                                <li>+ more attractions</li>
+                            </ul>
+                        </div>
+                        <div class="border rounded-lg p-3">
+                            <p class="font-medium">🦁 Animal Kingdom</p>
+                            <ul class="text-sm text-gray-600 mt-1">
+                                <li>• Na'vi River Journey ⭐</li>
+                                <li>• Kilimanjaro Safaris ⭐</li>
+                                <li>• Expedition Everest ⭐</li>
+                                <li>• Dinosaur</li>
+                                <li>• Kali River Rapids</li>
+                                <li>+ more attractions</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-500 mt-3">⭐ = Books up fastest. Prioritize these!</p>
+                </div>
+            </div>
+
+            <!-- Strategy Guide -->
+            <div class="bg-white rounded-xl shadow-sm p-6 mb-8">
+                <h2 class="text-2xl font-bold mb-4">🎯 Winning Strategy Guide</h2>
+                
+                <div class="space-y-6">
+                    <div class="border-l-4 border-green-500 pl-4">
+                        <h3 class="font-bold text-green-800">Step 1: The Night Before</h3>
+                        <ul class="text-sm text-gray-700 mt-2 space-y-1">
+                            <li>• Download the My Disney Experience app</li>
+                            <li>• Link your park tickets</li>
+                            <li>• Have payment saved to your account</li>
+                            <li>• Set your alarm for 6:55am EST</li>
+                        </ul>
+                    </div>
+
+                    <div class="border-l-4 border-blue-500 pl-4">
+                        <h3 class="font-bold text-blue-800">Step 2: At 7:00am (Resort Guests) / Park Open (Others)</h3>
+                        <ul class="text-sm text-gray-700 mt-2 space-y-1">
+                            <li>• <strong>IMMEDIATELY</strong> book Individual Lightning Lane for headliners</li>
+                            <li>• TRON, Rise of Resistance, and Guardians sell out by 8am</li>
+                            <li>• Then book your first 3 Multi Pass selections</li>
+                            <li>• Pick the most popular rides first</li>
+                        </ul>
+                    </div>
+
+                    <div class="border-l-4 border-purple-500 pl-4">
+                        <h3 class="font-bold text-purple-800">Step 3: Throughout the Day</h3>
+                        <ul class="text-sm text-gray-700 mt-2 space-y-1">
+                            <li>• After using your first LL, book the next one immediately</li>
+                            <li>• Check for earlier return times that open up (people cancel)</li>
+                            <li>• Use Single Rider for attractions that offer it (even with LL)</li>
+                            <li>• Rope drop the headliners WITHOUT buying Individual LL to save money</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Money Saving Tips -->
+            <div class="bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded-xl p-6 mb-8">
+                <h2 class="text-2xl font-bold mb-4">💰 Save Money on Lightning Lane</h2>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="bg-white/10 rounded-lg p-4">
+                        <h4 class="font-bold mb-2">Skip It on Low Crowd Days</h4>
+                        <p class="text-sm">In January, September, or early February, crowds are low enough that rope drop + good strategy = no need for LL.</p>
+                    </div>
+                    <div class="bg-white/10 rounded-lg p-4">
+                        <h4 class="font-bold mb-2">Rope Drop the Headliners</h4>
+                        <p class="text-sm">Arrive 45min early. Ride TRON, Rise, or Flight of Passage at rope drop for FREE instead of $20+ per person.</p>
+                    </div>
+                    <div class="bg-white/10 rounded-lg p-4">
+                        <h4 class="font-bold mb-2">Use Single Rider Lines</h4>
+                        <p class="text-sm">Millennium Falcon, Test Track, Everest, and Rock 'n' Roller Coaster have free single rider lines that are often faster than LL.</p>
+                    </div>
+                    <div class="bg-white/10 rounded-lg p-4">
+                        <h4 class="font-bold mb-2">Only Buy What You'll Use</h4>
+                        <p class="text-sm">Don't buy Multi Pass for Animal Kingdom (only a few LL rides) or your last park day when energy is low.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Park by Park Recommendations -->
+            <div class="bg-white rounded-xl shadow-sm p-6 mb-8">
+                <h2 class="text-2xl font-bold mb-4">🏰 Park-by-Park Lightning Lane Recommendations</h2>
+                
+                <div class="space-y-6">
+                    <div class="border rounded-lg p-4">
+                        <h3 class="font-bold text-disney">Magic Kingdom - BEST for Multi Pass</h3>
+                        <p class="text-sm text-gray-600 mb-2">Most LL-eligible attractions = best value</p>
+                        <p class="text-sm"><strong>Strategy:</strong> Buy Multi Pass. Book Peter Pan first (always longest), then Space, Big Thunder. Rope drop TRON instead of paying $20+ each.</p>
+                        <p class="text-sm text-green-600 mt-2">✅ Recommended: Multi Pass YES, Single Pass for TRON only if can't rope drop</p>
+                    </div>
+
+                    <div class="border rounded-lg p-4">
+                        <h3 class="font-bold text-disney">EPCOT - Multi Pass Worth It</h3>
+                        <p class="text-sm text-gray-600 mb-2">Frozen, Test Track, and Remy justify the cost</p>
+                        <p class="text-sm"><strong>Strategy:</strong> Book Frozen first (always packed), then Test Track, then Remy. Use Virtual Queue for Guardians at 7am (FREE!) instead of paying.</p>
+                        <p class="text-sm text-green-600 mt-2">✅ Recommended: Multi Pass YES, Single Pass for Guardians NO (use free Virtual Queue)</p>
+                    </div>
+
+                    <div class="border rounded-lg p-4">
+                        <h3 class="font-bold text-disney">Hollywood Studios - Depends</h3>
+                        <p class="text-sm text-gray-600 mb-2">Slinky Dog is the main draw for Multi Pass</p>
+                        <p class="text-sm"><strong>Strategy:</strong> If rope dropping Rise of Resistance, you might not need Single Pass. Multi Pass is good for Slinky Dog + Tower + Rock 'n' Roller. Use single rider on Millennium Falcon.</p>
+                        <p class="text-sm text-yellow-600 mt-2">⚠️ Maybe: Multi Pass depends on priorities, Single Pass YES for Rise if can't rope drop</p>
+                    </div>
+
+                    <div class="border rounded-lg p-4">
+                        <h3 class="font-bold text-disney">Animal Kingdom - Skip Multi Pass</h3>
+                        <p class="text-sm text-gray-600 mb-2">Fewest LL attractions = worst value</p>
+                        <p class="text-sm"><strong>Strategy:</strong> Rope drop Flight of Passage (be there 1hr early - worth it). Na'vi River Journey is beautiful but not worth $25+. Single rider on Everest.</p>
+                        <p class="text-sm text-red-600 mt-2">❌ Not Recommended: Multi Pass NO, Single Pass for Passage only if can't rope drop</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ -->
+            <div class="bg-white rounded-xl shadow-sm p-6">
+                <h2 class="text-2xl font-bold mb-4">❓ Frequently Asked Questions</h2>
+                <div class="space-y-4">
+                    <details class="border rounded-lg p-4">
+                        <summary class="font-medium cursor-pointer">Can I buy Lightning Lane at the park?</summary>
+                        <p class="text-sm text-gray-600 mt-2">Yes, but the most popular rides sell out before noon. For headliners like Rise of Resistance or TRON, you MUST book at 7am or they'll be gone.</p>
+                    </details>
+                    <details class="border rounded-lg p-4">
+                        <summary class="font-medium cursor-pointer">What's the difference between Multi Pass and Single Pass?</summary>
+                        <p class="text-sm text-gray-600 mt-2">Multi Pass ($15-35/day) gives unlimited LL access to 40+ rides. Single Pass ($15-35/ride) is for 5 specific headliners not included in Multi Pass.</p>
+                    </details>
+                    <details class="border rounded-lg p-4">
+                        <summary class="font-medium cursor-pointer">Can I park hop with Lightning Lane?</summary>
+                        <p class="text-sm text-gray-600 mt-2">Yes! Multi Pass works at all 4 parks. You can book rides at different parks throughout the day. Single Pass is per ride regardless of which park.</p>
+                    </details>
+                    <details class="border rounded-lg p-4">
+                        <summary class="font-medium cursor-pointer">Is it worth it for kids?</summary>
+                        <p class="text-sm text-gray-600 mt-2">Kids under 3 are free. For kids 3+, you pay full price. If your kids are tall enough for the major rides, yes it's worth it. If they're only riding kiddie rides, skip it.</p>
+                    </details>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer class="bg-gray-900 text-white py-8 mt-8">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <p class="text-gray-400 text-sm">© 2025 CR AudioViz AI, LLC | Prices subject to change. Check Disney.com for current pricing.</p>
+        </div>
+    </footer>
+
+    <script>
+        function calculateLL() {
+            const party = parseInt(document.getElementById('partySize').value) || 4;
+            const days = parseInt(document.getElementById('parkDays').value) || 4;
+            const crowd = document.getElementById('crowdLevel').value;
+            
+            let multiPassPrice = crowd === 'low' ? 18 : crowd === 'moderate' ? 25 : 32;
+            let singlePassAvg = crowd === 'low' ? 17 : crowd === 'moderate' ? 22 : 30;
+            
+            const multiPassTotal = party * days * multiPassPrice;
+            const singlePassTotal = party * days * singlePassAvg; // Assuming 1 single pass per day
+            const bothTotal = multiPassTotal + singlePassTotal;
+            
+            const timeSaved = days * (crowd === 'low' ? 2 : crowd === 'moderate' ? 4 : 6);
+            
+            let recommendation = '';
+            if (crowd === 'low') {
+                recommendation = `<span class="text-yellow-600 font-bold">MAYBE</span> - Low crowds mean shorter lines. You could skip Lightning Lane entirely and use rope drop strategy to save $${multiPassTotal.toLocaleString()}+.`;
+            } else if (crowd === 'moderate') {
+                recommendation = `<span class="text-green-600 font-bold">RECOMMENDED</span> - Multi Pass is worth it for families at moderate crowds. Skip most Single Passes and rope drop the headliners instead.`;
+            } else {
+                recommendation = `<span class="text-green-700 font-bold">HIGHLY RECOMMENDED</span> - At high crowd levels, Lightning Lane is essential. Without it, you'll wait 3-4+ hours daily.`;
+            }
+            
+            document.getElementById('llResult').innerHTML = `
+                <div class="grid md:grid-cols-3 gap-4 mb-4">
+                    <div class="bg-white p-3 rounded-lg text-center">
+                        <p class="text-sm text-gray-500">Multi Pass Total</p>
+                        <p class="text-2xl font-bold text-blue-600">$${multiPassTotal.toLocaleString()}</p>
+                        <p class="text-xs text-gray-400">${party} people × ${days} days × $${multiPassPrice}</p>
+                    </div>
+                    <div class="bg-white p-3 rounded-lg text-center">
+                        <p class="text-sm text-gray-500">+ Single Pass (1/day)</p>
+                        <p class="text-2xl font-bold text-purple-600">$${singlePassTotal.toLocaleString()}</p>
+                        <p class="text-xs text-gray-400">${party} people × ${days} days × $${singlePassAvg}</p>
+                    </div>
+                    <div class="bg-white p-3 rounded-lg text-center">
+                        <p class="text-sm text-gray-500">Time Saved</p>
+                        <p class="text-2xl font-bold text-green-600">~${timeSaved} hours</p>
+                        <p class="text-xs text-gray-400">Over your entire trip</p>
+                    </div>
+                </div>
+                <div class="bg-white p-4 rounded-lg">
+                    <h4 class="font-bold mb-2">Our Recommendation:</h4>
+                    <p class="text-sm">${recommendation}</p>
+                </div>
+            `;
+        }
+        
+        // Initial calculation
+        calculateLL();
+    </script>
+</body>
+</html>
