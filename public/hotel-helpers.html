@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Helpers | Find the Best Orlando Hotel Deals</title>
+    <meta name="description" content="Compare Orlando hotel deals from Booking.com, Hotels.com, Priceline, Hotwire and more. Find Disney area hotels at the best prices.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .hero-gradient { background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%); }
+        .deal-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.15); }
+        .deal-card { transition: all 0.3s ease; }
+        .pulse-deal { animation: pulse 2s infinite; }
+        @keyframes pulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4); } 50% { box-shadow: 0 0 0 10px rgba(34, 197, 94, 0); } }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex items-center justify-between h-16">
+                <a href="/" class="flex items-center gap-2">
+                    <span class="text-2xl">🏰</span>
+                    <span class="font-bold text-xl text-gray-800">Orlando Vacation Deals</span>
+                </a>
+                <div class="hidden md:flex items-center gap-6">
+                    <a href="/" class="text-gray-600 hover:text-purple-600">Home</a>
+                    <a href="/hotel-helpers.html" class="text-purple-600 font-medium">Hotels</a>
+                    <a href="/car-rental-helpers.html" class="text-gray-600 hover:text-purple-600">Car Rentals</a>
+                    <a href="/ticket-helpers.html" class="text-gray-600 hover:text-purple-600">Tickets</a>
+                    <a href="/passholder-helper.html" class="text-gray-600 hover:text-purple-600">Passholders</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero-gradient text-white py-16">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">🏨 Hotel Helpers</h1>
+            <p class="text-xl text-white/90 mb-6">Compare prices across all major booking sites to find the best Orlando hotel deals</p>
+            <p class="text-white/70">We've gathered the best hotel booking tools in one place so you don't have to search everywhere</p>
+        </div>
+    </section>
+
+    <!-- Quick Tip Banner -->
+    <div class="bg-amber-50 border-b border-amber-200">
+        <div class="max-w-6xl mx-auto px-4 py-4">
+            <p class="text-amber-800 text-sm flex items-start gap-2">
+                <span class="text-lg">💡</span>
+                <span><strong>Pro Tip:</strong> Always compare at least 3 sites before booking. Prices can vary by $50-100+ per night for the same room! We recommend checking Hotels.com, Booking.com, AND a mystery deal site like Priceline Express.</span>
+            </p>
+        </div>
+    </div>
+
+    <!-- Main Booking Sites -->
+    <section class="py-12">
+        <div class="max-w-6xl mx-auto px-4">
+            <h2 class="text-2xl font-bold mb-2">Compare Major Booking Sites</h2>
+            <p class="text-gray-600 mb-8">Click any site below to search Orlando hotels - we recommend checking multiple sites!</p>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Hotels.com -->
+                <a href="https://www.hotels.com/Hotel-Search?destination=Orlando%2C%20Florida%2C%20United%20States%20of%20America&regionId=178286" 
+                   target="_blank" rel="noopener sponsored"
+                   class="deal-card bg-white rounded-xl p-6 border-2 border-red-100 hover:border-red-300">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-14 h-14 bg-red-600 rounded-xl flex items-center justify-center">
+                            <span class="text-white font-bold text-lg">H</span>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg">Hotels.com</h3>
+                            <p class="text-sm text-gray-500">Earn free nights with rewards</p>
+                        </div>
+                    </div>
+                    <ul class="text-sm text-gray-600 space-y-2 mb-4">
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> Stay 10 nights, get 1 free</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> Price match guarantee</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> Free cancellation options</li>
+                    </ul>
+                    <span class="text-red-600 font-medium text-sm">Search Hotels.com →</span>
+                </a>
+
+                <!-- Booking.com -->
+                <a href="https://www.booking.com/searchresults.html?ss=Orlando%2C+Florida&dest_type=city" 
+                   target="_blank" rel="noopener sponsored"
+                   class="deal-card bg-white rounded-xl p-6 border-2 border-blue-100 hover:border-blue-300">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-14 h-14 bg-blue-700 rounded-xl flex items-center justify-center">
+                            <span class="text-white font-bold text-lg">B</span>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg">Booking.com</h3>
+                            <p class="text-sm text-gray-500">World's largest selection</p>
+                        </div>
+                    </div>
+                    <ul class="text-sm text-gray-600 space-y-2 mb-4">
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> 28+ million listings worldwide</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> Genius loyalty discounts</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> Pay at property options</li>
+                    </ul>
+                    <span class="text-blue-600 font-medium text-sm">Search Booking.com →</span>
+                </a>
+
+                <!-- Expedia -->
+                <a href="https://www.expedia.com/Hotel-Search?destination=Orlando%2C%20Florida" 
+                   target="_blank" rel="noopener sponsored"
+                   class="deal-card bg-white rounded-xl p-6 border-2 border-yellow-100 hover:border-yellow-300">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-14 h-14 bg-yellow-500 rounded-xl flex items-center justify-center">
+                            <span class="text-white font-bold text-lg">E</span>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg">Expedia</h3>
+                            <p class="text-sm text-gray-500">Bundle & save on packages</p>
+                        </div>
+                    </div>
+                    <ul class="text-sm text-gray-600 space-y-2 mb-4">
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> Save up to $500 on bundles</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> One Key rewards program</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> Price drop protection</li>
+                    </ul>
+                    <span class="text-yellow-600 font-medium text-sm">Search Expedia →</span>
+                </a>
+
+                <!-- Agoda -->
+                <a href="https://www.agoda.com/search?city=17072" 
+                   target="_blank" rel="noopener sponsored"
+                   class="deal-card bg-white rounded-xl p-6 border-2 border-purple-100 hover:border-purple-300">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-14 h-14 bg-purple-600 rounded-xl flex items-center justify-center">
+                            <span class="text-white font-bold text-lg">A</span>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg">Agoda</h3>
+                            <p class="text-sm text-gray-500">Often has hidden deals</p>
+                        </div>
+                    </div>
+                    <ul class="text-sm text-gray-600 space-y-2 mb-4">
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> Insider deals up to 30% off</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> AgodaCash rewards</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> Best price guarantee</li>
+                    </ul>
+                    <span class="text-purple-600 font-medium text-sm">Search Agoda →</span>
+                </a>
+
+                <!-- TripAdvisor -->
+                <a href="https://www.tripadvisor.com/Hotels-g34515-Orlando_Florida-Hotels.html" 
+                   target="_blank" rel="noopener sponsored"
+                   class="deal-card bg-white rounded-xl p-6 border-2 border-green-100 hover:border-green-300">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-14 h-14 bg-green-600 rounded-xl flex items-center justify-center">
+                            <span class="text-white font-bold text-lg">TA</span>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg">TripAdvisor</h3>
+                            <p class="text-sm text-gray-500">Compare prices + read reviews</p>
+                        </div>
+                    </div>
+                    <ul class="text-sm text-gray-600 space-y-2 mb-4">
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> Compare 200+ sites at once</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> Millions of real reviews</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> Traveler photos</li>
+                    </ul>
+                    <span class="text-green-600 font-medium text-sm">Search TripAdvisor →</span>
+                </a>
+
+                <!-- Kayak -->
+                <a href="https://www.kayak.com/hotels/Orlando,Florida,United-States/2025-03-01/2025-03-05/2guests" 
+                   target="_blank" rel="noopener sponsored"
+                   class="deal-card bg-white rounded-xl p-6 border-2 border-orange-100 hover:border-orange-300">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-14 h-14 bg-orange-500 rounded-xl flex items-center justify-center">
+                            <span class="text-white font-bold text-lg">K</span>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg">KAYAK</h3>
+                            <p class="text-sm text-gray-500">Meta-search all sites</p>
+                        </div>
+                    </div>
+                    <ul class="text-sm text-gray-600 space-y-2 mb-4">
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> Search hundreds of sites</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> Price alerts & tracking</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> Flexible date search</li>
+                    </ul>
+                    <span class="text-orange-600 font-medium text-sm">Search KAYAK →</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mystery Deal Sites -->
+    <section class="py-12 bg-gradient-to-r from-green-600 to-emerald-600 text-white">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold mb-2">🎰 Mystery Deal Sites</h2>
+                <p class="text-white/90">Save 40-60% by booking "mystery hotels" - you find out which hotel after booking!</p>
+                <p class="text-white/70 text-sm mt-2">These are perfect if you're flexible and want the biggest savings</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Priceline Express -->
+                <a href="https://www.priceline.com/relax/at/2000001684/from/20250301/to/20250305/rooms/1?vrid=9c55238e87cca1b62e8b50a6d3c2e03c" 
+                   target="_blank" rel="noopener sponsored"
+                   class="deal-card bg-white rounded-2xl p-8 text-gray-800">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-16 h-16 bg-blue-900 rounded-xl flex items-center justify-center">
+                            <span class="text-white font-bold text-xl">P</span>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-xl">Priceline Express Deals</h3>
+                            <span class="inline-flex items-center gap-1 bg-green-100 text-green-700 text-xs font-medium px-2 py-1 rounded-full">
+                                <i class="fas fa-fire"></i> Up to 60% Off
+                            </span>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">See the neighborhood, star rating, and amenities before booking. Hotel name revealed after purchase.</p>
+                    <ul class="text-sm text-gray-600 space-y-2 mb-6">
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> <strong>Express Deals:</strong> See area & star rating</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> <strong>Pricebreakers:</strong> Pick from 3 mystery options</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> Often 40-60% below regular rates</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-warning text-amber-500"></i> Non-refundable, non-changeable</li>
+                    </ul>
+                    <span class="bg-blue-900 text-white px-6 py-3 rounded-lg font-medium inline-block">Find Express Deals →</span>
+                </a>
+
+                <!-- Hotwire Hot Rate -->
+                <a href="https://www.hotwire.com/hotels/results?destination=Orlando,%20FL&startDate=2025-03-01&endDate=2025-03-05&rooms=1&adults=2" 
+                   target="_blank" rel="noopener sponsored"
+                   class="deal-card bg-white rounded-2xl p-8 text-gray-800">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-16 h-16 bg-red-600 rounded-xl flex items-center justify-center">
+                            <span class="text-white font-bold text-xl">H</span>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-xl">Hotwire Hot Rate</h3>
+                            <span class="inline-flex items-center gap-1 bg-green-100 text-green-700 text-xs font-medium px-2 py-1 rounded-full">
+                                <i class="fas fa-fire"></i> Up to 60% Off
+                            </span>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">Book 4-star hotels at 2-star prices. You'll know the area, star rating, and guest rating before booking.</p>
+                    <ul class="text-sm text-gray-600 space-y-2 mb-6">
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> <strong>Hot Rate:</strong> Up to 60% off published rates</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> See neighborhood on map</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> Guest ratings visible</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-warning text-amber-500"></i> Non-refundable, non-changeable</li>
+                    </ul>
+                    <span class="bg-red-600 text-white px-6 py-3 rounded-lg font-medium inline-block">Find Hot Rates →</span>
+                </a>
+            </div>
+
+            <div class="mt-8 bg-white/10 rounded-xl p-6">
+                <h4 class="font-bold mb-2 flex items-center gap-2"><i class="fas fa-lightbulb"></i> How to Decode Mystery Hotels</h4>
+                <p class="text-white/90 text-sm">Use sites like <a href="https://www.betterbidding.com" target="_blank" class="underline">BetterBidding.com</a> to figure out which hotel you're getting before you book. Users share their mystery bookings to help others identify the hotels!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Disney Resort Section -->
+    <section class="py-12">
+        <div class="max-w-6xl mx-auto px-4">
+            <h2 class="text-2xl font-bold mb-2">🏰 Disney Resort Hotels</h2>
+            <p class="text-gray-600 mb-8">For Disney resorts, book direct for best perks - but compare with these authorized sellers</p>
+
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- Disney Direct -->
+                <a href="https://disneyworld.disney.go.com/resorts/" 
+                   target="_blank" rel="noopener"
+                   class="deal-card bg-white rounded-xl p-6 border-2 border-blue-200 hover:border-blue-400">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="text-3xl">🏰</span>
+                        <div>
+                            <h3 class="font-bold">Disney Direct</h3>
+                            <span class="text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded">Official</span>
+                        </div>
+                    </div>
+                    <ul class="text-sm text-gray-600 space-y-1 mb-4">
+                        <li>✓ First access to deals & discounts</li>
+                        <li>✓ Flexible payment plans</li>
+                        <li>✓ All resort perks included</li>
+                    </ul>
+                    <span class="text-blue-600 font-medium text-sm">Book at Disney.com →</span>
+                </a>
+
+                <!-- Undercover Tourist -->
+                <a href="https://www.undercovertourist.com/orlando/hotels/" 
+                   target="_blank" rel="noopener sponsored"
+                   class="deal-card bg-white rounded-xl p-6 border-2 border-purple-200 hover:border-purple-400">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="text-3xl">🎟️</span>
+                        <div>
+                            <h3 class="font-bold">Undercover Tourist</h3>
+                            <span class="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded">Authorized</span>
+                        </div>
+                    </div>
+                    <ul class="text-sm text-gray-600 space-y-1 mb-4">
+                        <li>✓ Bundle with discounted tickets</li>
+                        <li>✓ Price monitoring & alerts</li>
+                        <li>✓ Authorized Disney seller</li>
+                    </ul>
+                    <span class="text-purple-600 font-medium text-sm">Check Packages →</span>
+                </a>
+
+                <!-- Orlando Vacation -->
+                <a href="https://www.orlandovacation.com/disney-world-hotels/" 
+                   target="_blank" rel="noopener sponsored"
+                   class="deal-card bg-white rounded-xl p-6 border-2 border-orange-200 hover:border-orange-400">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="text-3xl">🌴</span>
+                        <div>
+                            <h3 class="font-bold">Orlando Vacation</h3>
+                            <span class="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded">Local Expert</span>
+                        </div>
+                    </div>
+                    <ul class="text-sm text-gray-600 space-y-1 mb-4">
+                        <li>✓ Local company since 1993</li>
+                        <li>✓ Disney + off-site options</li>
+                        <li>✓ Vacation home rentals too</li>
+                    </ul>
+                    <span class="text-orange-600 font-medium text-sm">See All Hotels →</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Off-Site Hotels Near Disney -->
+    <section class="py-12 bg-gray-100">
+        <div class="max-w-6xl mx-auto px-4">
+            <h2 class="text-2xl font-bold mb-2">🏢 Popular Off-Site Areas</h2>
+            <p class="text-gray-600 mb-8">Save money staying off-site - here are the best areas near the parks</p>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white rounded-xl p-6">
+                    <h3 class="font-bold mb-2">Lake Buena Vista</h3>
+                    <p class="text-sm text-gray-600 mb-3">Closest to Disney - many hotels offer free shuttles</p>
+                    <a href="https://www.booking.com/searchresults.html?ss=Lake+Buena+Vista%2C+Florida" target="_blank" rel="noopener sponsored" class="text-blue-600 text-sm hover:underline">Search Hotels →</a>
+                </div>
+                <div class="bg-white rounded-xl p-6">
+                    <h3 class="font-bold mb-2">Kissimmee / US-192</h3>
+                    <p class="text-sm text-gray-600 mb-3">Budget-friendly with tons of restaurants nearby</p>
+                    <a href="https://www.booking.com/searchresults.html?ss=Kissimmee%2C+Florida" target="_blank" rel="noopener sponsored" class="text-blue-600 text-sm hover:underline">Search Hotels →</a>
+                </div>
+                <div class="bg-white rounded-xl p-6">
+                    <h3 class="font-bold mb-2">International Drive</h3>
+                    <p class="text-sm text-gray-600 mb-3">Near Universal, lots of attractions & dining</p>
+                    <a href="https://www.booking.com/searchresults.html?ss=International+Drive%2C+Orlando" target="_blank" rel="noopener sponsored" class="text-blue-600 text-sm hover:underline">Search Hotels →</a>
+                </div>
+                <div class="bg-white rounded-xl p-6">
+                    <h3 class="font-bold mb-2">Disney Springs Area</h3>
+                    <p class="text-sm text-gray-600 mb-3">Official Disney Good Neighbor hotels</p>
+                    <a href="https://www.booking.com/searchresults.html?ss=Disney+Springs%2C+Orlando" target="_blank" rel="noopener sponsored" class="text-blue-600 text-sm hover:underline">Search Hotels →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vacation Rentals -->
+    <section class="py-12">
+        <div class="max-w-6xl mx-auto px-4">
+            <h2 class="text-2xl font-bold mb-2">🏠 Vacation Rentals & Homes</h2>
+            <p class="text-gray-600 mb-8">Great for large families - get a full house with pool, kitchen, and multiple bedrooms</p>
+
+            <div class="grid md:grid-cols-3 gap-6">
+                <a href="https://www.vrbo.com/vacation-rentals/usa/florida/orlando" 
+                   target="_blank" rel="noopener sponsored"
+                   class="deal-card bg-white rounded-xl p-6 border hover:border-blue-300">
+                    <div class="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center mb-4">
+                        <span class="text-white font-bold">V</span>
+                    </div>
+                    <h3 class="font-bold mb-2">VRBO</h3>
+                    <p class="text-sm text-gray-600 mb-3">Whole homes & condos, great for families. Often includes private pools!</p>
+                    <span class="text-blue-600 text-sm font-medium">Search VRBO →</span>
+                </a>
+
+                <a href="https://www.airbnb.com/s/Orlando--Florida/homes" 
+                   target="_blank" rel="noopener"
+                   class="deal-card bg-white rounded-xl p-6 border hover:border-pink-300">
+                    <div class="w-12 h-12 bg-gradient-to-r from-pink-500 to-red-500 rounded-lg flex items-center justify-center mb-4">
+                        <span class="text-white font-bold">A</span>
+                    </div>
+                    <h3 class="font-bold mb-2">Airbnb</h3>
+                    <p class="text-sm text-gray-600 mb-3">Homes, apartments, and unique stays. Good mix of budget to luxury.</p>
+                    <span class="text-pink-600 text-sm font-medium">Search Airbnb →</span>
+                </a>
+
+                <a href="https://www.orlandovacation.com/orlando-vacation-homes/" 
+                   target="_blank" rel="noopener sponsored"
+                   class="deal-card bg-white rounded-xl p-6 border hover:border-orange-300">
+                    <div class="w-12 h-12 bg-orange-500 rounded-lg flex items-center justify-center mb-4">
+                        <span class="text-white font-bold">OV</span>
+                    </div>
+                    <h3 class="font-bold mb-2">Orlando Vacation Homes</h3>
+                    <p class="text-sm text-gray-600 mb-3">100+ vacation homes near Disney managed by local experts.</p>
+                    <span class="text-orange-600 text-sm font-medium">Browse Homes →</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Tips -->
+    <section class="py-12 bg-purple-50">
+        <div class="max-w-4xl mx-auto px-4">
+            <h2 class="text-2xl font-bold text-center mb-8">💡 Hotel Booking Tips</h2>
+            
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="bg-white rounded-xl p-6">
+                    <h3 class="font-bold mb-3 flex items-center gap-2"><span class="text-2xl">📅</span> When to Book</h3>
+                    <ul class="text-sm text-gray-600 space-y-2">
+                        <li>• <strong>Disney resorts:</strong> Book 6-8 months ahead for best selection</li>
+                        <li>• <strong>Off-site hotels:</strong> 2-4 weeks out often has best prices</li>
+                        <li>• <strong>Last minute:</strong> Check Hotwire/Priceline for same-week deals</li>
+                        <li>• <strong>Holidays:</strong> Book 6+ months ahead or pay premium</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white rounded-xl p-6">
+                    <h3 class="font-bold mb-3 flex items-center gap-2"><span class="text-2xl">💰</span> Save Money</h3>
+                    <ul class="text-sm text-gray-600 space-y-2">
+                        <li>• <strong>Compare 3+ sites</strong> - prices vary significantly!</li>
+                        <li>• <strong>Use mystery sites</strong> for 40-60% savings</li>
+                        <li>• <strong>Book refundable first</strong>, then look for better deals</li>
+                        <li>• <strong>Check hotel direct</strong> - sometimes matches or beats OTAs</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white rounded-xl p-6">
+                    <h3 class="font-bold mb-3 flex items-center gap-2"><span class="text-2xl">🏨</span> Disney On-Site Perks</h3>
+                    <ul class="text-sm text-gray-600 space-y-2">
+                        <li>• Early theme park entry (30 min before opening)</li>
+                        <li>• Free MagicBand+ customization</li>
+                        <li>• Free transportation to all parks</li>
+                        <li>• Ability to charge purchases to room</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white rounded-xl p-6">
+                    <h3 class="font-bold mb-3 flex items-center gap-2"><span class="text-2xl">🚗</span> Off-Site Benefits</h3>
+                    <ul class="text-sm text-gray-600 space-y-2">
+                        <li>• Save $100-300+ per night</li>
+                        <li>• Often includes free breakfast</li>
+                        <li>• More space (vacation homes)</li>
+                        <li>• Flexibility to explore beyond Disney</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-12 bg-gradient-to-r from-purple-600 to-indigo-600 text-white">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h2 class="text-2xl font-bold mb-4">Need More Help Planning?</h2>
+            <p class="text-white/90 mb-6">Check out our other planning tools and helpers!</p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="/car-rental-helpers.html" class="bg-white text-purple-600 px-6 py-3 rounded-lg font-medium hover:bg-gray-100">🚗 Car Rental Helpers</a>
+                <a href="/ticket-helpers.html" class="bg-white text-purple-600 px-6 py-3 rounded-lg font-medium hover:bg-gray-100">🎟️ Ticket Helpers</a>
+                <a href="/" class="bg-white/20 text-white px-6 py-3 rounded-lg font-medium hover:bg-white/30">🏠 Back to Home</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <p class="text-gray-400 text-sm mb-4">Some links on this page are affiliate links. We may earn a commission if you book through them, at no extra cost to you. This helps us keep our planning tools free!</p>
+            <p class="text-gray-500 text-xs">© 2025 CR AudioViz AI, LLC | <a href="https://craudiovizai.com" class="hover:text-white">craudiovizai.com</a></p>
+        </div>
+    </footer>
+</body>
+</html>

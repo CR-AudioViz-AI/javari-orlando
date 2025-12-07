@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disney Passholder Helper | Annual Pass Comparison & Calculator</title>
+    <meta name="description" content="Compare Disney World Annual Passes, calculate your break-even point, see blockout dates, and find passholder discounts.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .hero-gradient { background: linear-gradient(135deg, #1e40af 0%, #7c3aed 50%, #db2777 100%); }
+        .card-hover:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.15); }
+        .card-hover { transition: all 0.3s ease; }
+        .blockout { background: #fecaca; }
+        .available { background: #bbf7d0; }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex items-center justify-between h-16">
+                <a href="/" class="flex items-center gap-2">
+                    <span class="text-2xl">🏰</span>
+                    <span class="font-bold text-xl text-gray-800">Orlando Vacation Deals</span>
+                </a>
+                <div class="hidden md:flex items-center gap-6">
+                    <a href="/" class="text-gray-600 hover:text-purple-600">Home</a>
+                    <a href="/hotel-helpers.html" class="text-gray-600 hover:text-purple-600">Hotels</a>
+                    <a href="/car-rental-helpers.html" class="text-gray-600 hover:text-purple-600">Car Rentals</a>
+                    <a href="/ticket-helpers.html" class="text-gray-600 hover:text-purple-600">Tickets</a>
+                    <a href="/passholder-helper.html" class="text-purple-600 font-medium">Passholders</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero-gradient text-white py-16">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">🎫 Passholder Helper</h1>
+            <p class="text-xl text-white/90 mb-6">Compare Disney Annual Passes & calculate if it's worth it for you</p>
+            <p class="text-white/70">Updated for 2025 pass types, prices, and blockout dates</p>
+        </div>
+    </section>
+
+    <!-- Quick Stats -->
+    <div class="bg-white border-b">
+        <div class="max-w-6xl mx-auto px-4 py-6">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                <div>
+                    <div class="text-2xl font-bold text-purple-600">4</div>
+                    <div class="text-sm text-gray-500">Pass Types</div>
+                </div>
+                <div>
+                    <div class="text-2xl font-bold text-purple-600">$1,449</div>
+                    <div class="text-sm text-gray-500">Starting Price</div>
+                </div>
+                <div>
+                    <div class="text-2xl font-bold text-purple-600">20%</div>
+                    <div class="text-sm text-gray-500">Merch Discount</div>
+                </div>
+                <div>
+                    <div class="text-2xl font-bold text-purple-600">10-20%</div>
+                    <div class="text-sm text-gray-500">Dining Discount</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pass Comparison -->
+    <section class="py-12">
+        <div class="max-w-6xl mx-auto px-4">
+            <h2 class="text-2xl font-bold mb-2">📊 Annual Pass Comparison</h2>
+            <p class="text-gray-600 mb-8">Compare all Disney World Annual Pass types side by side</p>
+
+            <div class="grid lg:grid-cols-4 gap-6">
+                <!-- Incredi-Pass -->
+                <div class="card-hover bg-white rounded-xl border-2 border-purple-300 overflow-hidden">
+                    <div class="bg-gradient-to-r from-purple-600 to-pink-600 text-white p-4 text-center">
+                        <div class="text-sm font-medium mb-1">💎 BEST VALUE</div>
+                        <h3 class="font-bold text-xl">Disney Incredi-Pass</h3>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-center mb-6">
+                            <span class="text-4xl font-bold text-gray-800">$1,549</span>
+                            <span class="text-gray-500">/year</span>
+                            <p class="text-sm text-gray-500 mt-1">+ tax | ~$4.24/day</p>
+                        </div>
+                        <ul class="text-sm space-y-3 mb-6">
+                            <li class="flex items-start gap-2">
+                                <i class="fas fa-check text-green-500 mt-1"></i>
+                                <span><strong>No blockout dates</strong></span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fas fa-check text-green-500 mt-1"></i>
+                                <span>Park Hopper included</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fas fa-check text-green-500 mt-1"></i>
+                                <span>Standard parking included</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fas fa-check text-green-500 mt-1"></i>
+                                <span>20% merch discount</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fas fa-check text-green-500 mt-1"></i>
+                                <span>20% dining discount</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fas fa-check text-green-500 mt-1"></i>
+                                <span>PhotoPass downloads</span>
+                            </li>
+                        </ul>
+                        <div class="bg-purple-50 rounded-lg p-3 text-center">
+                            <p class="text-sm text-purple-700"><strong>Best for:</strong> Frequent visitors, no date restrictions needed</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sorcerer Pass -->
+                <div class="card-hover bg-white rounded-xl border overflow-hidden">
+                    <div class="bg-blue-600 text-white p-4 text-center">
+                        <div class="text-sm font-medium mb-1">⭐ MOST POPULAR</div>
+                        <h3 class="font-bold text-xl">Disney Sorcerer Pass</h3>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-center mb-6">
+                            <span class="text-4xl font-bold text-gray-800">$1,049</span>
+                            <span class="text-gray-500">/year</span>
+                            <p class="text-sm text-gray-500 mt-1">+ tax | ~$2.87/day</p>
+                        </div>
+                        <ul class="text-sm space-y-3 mb-6">
+                            <li class="flex items-start gap-2">
+                                <i class="fas fa-times text-red-500 mt-1"></i>
+                                <span><strong>Some blockout dates</strong> (peak holidays)</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fas fa-check text-green-500 mt-1"></i>
+                                <span>Park Hopper included</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fas fa-check text-green-500 mt-1"></i>
+                                <span>Standard parking included</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fas fa-check text-green-500 mt-1"></i>
+                                <span>20% merch discount</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fas fa-check text-green-500 mt-1"></i>
+                                <span>20% dining discount</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fas fa-check text-green-500 mt-1"></i>
+                                <span>PhotoPass downloads</span>
+                            </li>
+                        </ul>
+                        <div class="bg-blue-50 rounded-lg p-3 text-center">
+                            <p class="text-sm text-blue-700"><strong>Best for:</strong> DVC Members, avoid major holidays</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pirate Pass -->
+                <div class="card-hover bg-white rounded-xl border overflow-hidden">
+                    <div class="bg-amber-600 text-white p-4 text-center">
+                        <div class="text-sm font-medium mb-1">🏴‍☠️ FL RESIDENTS</div>
+                        <h3 class="font-bold text-xl">Disney Pirate Pass</h3>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-center mb-6">
+                            <span class="text-4xl font-bold text-gray-800">$799</span>
+                            <span class="text-gray-500">/year</span>
+                            <p class="text-sm text-gray-500 mt-1">+ tax | ~$2.19/day</p>
+                        </div>
+                        <ul class="text-sm space-y-3 mb-6">
+                            <li class="flex items-start gap-2">
+                                <i class="fas fa-times text-red-500 mt-1"></i>
+                                <span><strong>More blockout dates</strong> (weekends + holidays)</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fas fa-check text-green-500 mt-1"></i>
+                                <span>Park Hopper included</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fas fa-check text-green-500 mt-1"></i>
+                                <span>Standard parking included</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fas fa-check text-green-500 mt-1"></i>
+                                <span>20% merch discount</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fas fa-check text-green-500 mt-1"></i>
+                                <span>10% dining discount</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fas fa-times text-gray-400 mt-1"></i>
+                                <span class="text-gray-400">No PhotoPass</span>
+                            </li>
+                        </ul>
+                        <div class="bg-amber-50 rounded-lg p-3 text-center">
+                            <p class="text-sm text-amber-700"><strong>Best for:</strong> FL residents with flexible schedules</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pixie Dust Pass -->
+                <div class="card-hover bg-white rounded-xl border overflow-hidden">
+                    <div class="bg-pink-600 text-white p-4 text-center">
+                        <div class="text-sm font-medium mb-1">✨ BUDGET OPTION</div>
+                        <h3 class="font-bold text-xl">Disney Pixie Dust Pass</h3>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-center mb-6">
+                            <span class="text-4xl font-bold text-gray-800">$449</span>
+                            <span class="text-gray-500">/year</span>
+                            <p class="text-sm text-gray-500 mt-1">+ tax | ~$1.23/day</p>
+                        </div>
+                        <ul class="text-sm space-y-3 mb-6">
+                            <li class="flex items-start gap-2">
+                                <i class="fas fa-times text-red-500 mt-1"></i>
+                                <span><strong>Weekdays only</strong> (most weekends blocked)</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fas fa-times text-gray-400 mt-1"></i>
+                                <span class="text-gray-400">No Park Hopper</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fas fa-times text-gray-400 mt-1"></i>
+                                <span class="text-gray-400">No parking included</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fas fa-check text-green-500 mt-1"></i>
+                                <span>20% merch discount</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fas fa-check text-green-500 mt-1"></i>
+                                <span>10% dining discount</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fas fa-times text-gray-400 mt-1"></i>
+                                <span class="text-gray-400">No PhotoPass</span>
+                            </li>
+                        </ul>
+                        <div class="bg-pink-50 rounded-lg p-3 text-center">
+                            <p class="text-sm text-pink-700"><strong>Best for:</strong> FL residents, weekday only visits</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <p class="text-sm text-gray-500 text-center mt-6">* Prices subject to change. Florida residency required for Pirate and Pixie Dust passes. All passes require park reservations.</p>
+        </div>
+    </section>
+
+    <!-- Break-Even Calculator -->
+    <section class="py-12 bg-white">
+        <div class="max-w-4xl mx-auto px-4">
+            <h2 class="text-2xl font-bold mb-2 text-center">🧮 Break-Even Calculator</h2>
+            <p class="text-gray-600 mb-8 text-center">How many visits until your Annual Pass pays for itself?</p>
+
+            <div class="bg-gray-50 rounded-xl p-6 border">
+                <div class="grid md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Select Pass Type</label>
+                        <select id="passType" onchange="calculateBreakEven()" class="w-full border rounded-lg p-3">
+                            <option value="1549">Incredi-Pass ($1,549)</option>
+                            <option value="1049">Sorcerer Pass ($1,049)</option>
+                            <option value="799">Pirate Pass ($799) - FL only</option>
+                            <option value="449">Pixie Dust Pass ($449) - FL only</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Compare to Ticket Type</label>
+                        <select id="ticketType" onchange="calculateBreakEven()" class="w-full border rounded-lg p-3">
+                            <option value="159">1-Day Park Hopper (~$159)</option>
+                            <option value="109">1-Day Base Ticket (~$109)</option>
+                            <option value="90">Multi-Day Avg (~$90/day)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div id="breakEvenResult" class="bg-purple-100 rounded-xl p-6 text-center">
+                    <p class="text-lg text-purple-800 mb-2">Your pass pays for itself after:</p>
+                    <p class="text-5xl font-bold text-purple-600 mb-2" id="breakEvenDays">10</p>
+                    <p class="text-purple-700">park visits</p>
+                    <p class="text-sm text-purple-600 mt-4" id="monthlyVisits">(Less than 1 visit per month!)</p>
+                </div>
+
+                <div class="mt-6 grid md:grid-cols-3 gap-4 text-center">
+                    <div class="bg-white rounded-lg p-4">
+                        <p class="text-2xl font-bold text-green-600" id="savingsPerVisit">$0</p>
+                        <p class="text-sm text-gray-500">Savings after 12 visits</p>
+                    </div>
+                    <div class="bg-white rounded-lg p-4">
+                        <p class="text-2xl font-bold text-blue-600" id="costPerVisit">$0</p>
+                        <p class="text-sm text-gray-500">Cost per visit (12 visits)</p>
+                    </div>
+                    <div class="bg-white rounded-lg p-4">
+                        <p class="text-2xl font-bold text-purple-600">+$30</p>
+                        <p class="text-sm text-gray-500">Parking savings/visit</p>
+                    </div>
+                </div>
+            </div>
+
+            <script>
+                function calculateBreakEven() {
+                    const passPrice = parseInt(document.getElementById('passType').value);
+                    const ticketPrice = parseInt(document.getElementById('ticketType').value);
+                    
+                    const breakEven = Math.ceil(passPrice / ticketPrice);
+                    const monthlyVisits = (breakEven / 12).toFixed(1);
+                    const costPer12 = (passPrice / 12).toFixed(0);
+                    const savings12 = ((ticketPrice * 12) - passPrice).toFixed(0);
+                    
+                    document.getElementById('breakEvenDays').textContent = breakEven;
+                    document.getElementById('monthlyVisits').textContent = `(About ${monthlyVisits} visits per month)`;
+                    document.getElementById('savingsPerVisit').textContent = '$' + savings12;
+                    document.getElementById('costPerVisit').textContent = '$' + costPer12;
+                }
+                calculateBreakEven();
+            </script>
+        </div>
+    </section>
+
+    <!-- Passholder Benefits -->
+    <section class="py-12">
+        <div class="max-w-6xl mx-auto px-4">
+            <h2 class="text-2xl font-bold mb-6">🎁 Passholder Benefits & Discounts</h2>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-white rounded-xl p-6 border card-hover">
+                    <div class="text-3xl mb-3">🛍️</div>
+                    <h3 class="font-bold mb-2">Merchandise Discounts</h3>
+                    <ul class="text-sm text-gray-600 space-y-1">
+                        <li>• <strong>20% off</strong> at most Disney shops</li>
+                        <li>• Applies to theme parks, resorts, Disney Springs</li>
+                        <li>• Some exclusions (new releases, sale items)</li>
+                        <li>• Works on shopDisney.com too!</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white rounded-xl p-6 border card-hover">
+                    <div class="text-3xl mb-3">🍽️</div>
+                    <h3 class="font-bold mb-2">Dining Discounts</h3>
+                    <ul class="text-sm text-gray-600 space-y-1">
+                        <li>• <strong>10-20% off</strong> at select restaurants</li>
+                        <li>• Quick service & table service</li>
+                        <li>• Check app for participating locations</li>
+                        <li>• Excludes alcohol, gratuity</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white rounded-xl p-6 border card-hover">
+                    <div class="text-3xl mb-3">🅿️</div>
+                    <h3 class="font-bold mb-2">Free Parking</h3>
+                    <ul class="text-sm text-gray-600 space-y-1">
+                        <li>• <strong>Standard parking included</strong> (most passes)</li>
+                        <li>• Saves $30/day at parks</li>
+                        <li>• Upgrade to Preferred for $30-45</li>
+                        <li>• Pixie Dust pass does NOT include parking</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white rounded-xl p-6 border card-hover">
+                    <div class="text-3xl mb-3">📸</div>
+                    <h3 class="font-bold mb-2">PhotoPass (Select Passes)</h3>
+                    <ul class="text-sm text-gray-600 space-y-1">
+                        <li>• Unlimited digital downloads</li>
+                        <li>• Incredi-Pass & Sorcerer Pass only</li>
+                        <li>• Normally $169/year value</li>
+                        <li>• Includes ride photos!</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white rounded-xl p-6 border card-hover">
+                    <div class="text-3xl mb-3">🏨</div>
+                    <h3 class="font-bold mb-2">Resort Discounts</h3>
+                    <ul class="text-sm text-gray-600 space-y-1">
+                        <li>• Exclusive AP room rates</li>
+                        <li>• Up to <strong>30% off</strong> at Disney resorts</li>
+                        <li>• Subject to availability</li>
+                        <li>• Book through Disney or call</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white rounded-xl p-6 border card-hover">
+                    <div class="text-3xl mb-3">🎉</div>
+                    <h3 class="font-bold mb-2">Special Events</h3>
+                    <ul class="text-sm text-gray-600 space-y-1">
+                        <li>• Passholder preview events</li>
+                        <li>• Exclusive merchandise</li>
+                        <li>• Special photo opportunities</li>
+                        <li>• AP magnets (limited editions!)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blockout Calendar Overview -->
+    <section class="py-12 bg-gray-100">
+        <div class="max-w-6xl mx-auto px-4">
+            <h2 class="text-2xl font-bold mb-2">📅 Blockout Date Overview</h2>
+            <p class="text-gray-600 mb-6">General blockout periods for each pass type (check Disney app for exact dates)</p>
+
+            <div class="bg-white rounded-xl overflow-hidden shadow-sm">
+                <table class="w-full text-sm">
+                    <thead class="bg-purple-600 text-white">
+                        <tr>
+                            <th class="text-left p-4">Time Period</th>
+                            <th class="text-center p-4">Incredi</th>
+                            <th class="text-center p-4">Sorcerer</th>
+                            <th class="text-center p-4">Pirate</th>
+                            <th class="text-center p-4">Pixie</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y">
+                        <tr>
+                            <td class="p-4 font-medium">Regular Weekdays</td>
+                            <td class="p-4 text-center available">✅</td>
+                            <td class="p-4 text-center available">✅</td>
+                            <td class="p-4 text-center available">✅</td>
+                            <td class="p-4 text-center available">✅</td>
+                        </tr>
+                        <tr>
+                            <td class="p-4 font-medium">Regular Weekends</td>
+                            <td class="p-4 text-center available">✅</td>
+                            <td class="p-4 text-center available">✅</td>
+                            <td class="p-4 text-center blockout">❌</td>
+                            <td class="p-4 text-center blockout">❌</td>
+                        </tr>
+                        <tr>
+                            <td class="p-4 font-medium">Spring Break (March)</td>
+                            <td class="p-4 text-center available">✅</td>
+                            <td class="p-4 text-center blockout">❌</td>
+                            <td class="p-4 text-center blockout">❌</td>
+                            <td class="p-4 text-center blockout">❌</td>
+                        </tr>
+                        <tr>
+                            <td class="p-4 font-medium">Summer (June-Aug)</td>
+                            <td class="p-4 text-center available">✅</td>
+                            <td class="p-4 text-center available">✅</td>
+                            <td class="p-4 text-center blockout">❌</td>
+                            <td class="p-4 text-center blockout">❌</td>
+                        </tr>
+                        <tr>
+                            <td class="p-4 font-medium">Thanksgiving Week</td>
+                            <td class="p-4 text-center available">✅</td>
+                            <td class="p-4 text-center blockout">❌</td>
+                            <td class="p-4 text-center blockout">❌</td>
+                            <td class="p-4 text-center blockout">❌</td>
+                        </tr>
+                        <tr>
+                            <td class="p-4 font-medium">Christmas/New Year</td>
+                            <td class="p-4 text-center available">✅</td>
+                            <td class="p-4 text-center blockout">❌</td>
+                            <td class="p-4 text-center blockout">❌</td>
+                            <td class="p-4 text-center blockout">❌</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="text-xs text-gray-500 mt-4 text-center">This is a simplified overview. Check the official Disney calendar for exact blockout dates.</p>
+            
+            <div class="mt-6 text-center">
+                <a href="https://disneyworld.disney.go.com/passes/" target="_blank" 
+                   class="inline-flex items-center gap-2 bg-purple-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-purple-700">
+                    <i class="fas fa-calendar"></i> Check Official Blockout Calendar
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Universal & SeaWorld Passes -->
+    <section class="py-12">
+        <div class="max-w-6xl mx-auto px-4">
+            <h2 class="text-2xl font-bold mb-6">🎢 Other Orlando Annual Passes</h2>
+
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- Universal -->
+                <div class="bg-white rounded-xl p-6 border card-hover">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="text-4xl">🎢</span>
+                        <div>
+                            <h3 class="font-bold text-lg">Universal Orlando</h3>
+                            <p class="text-sm text-gray-500">Annual Passes</p>
+                        </div>
+                    </div>
+                    <ul class="text-sm text-gray-600 space-y-2 mb-4">
+                        <li>• <strong>2-Park Seasonal:</strong> ~$370/year</li>
+                        <li>• <strong>2-Park Power:</strong> ~$420/year</li>
+                        <li>• <strong>2-Park Preferred:</strong> ~$530/year</li>
+                        <li>• <strong>2-Park Premier:</strong> ~$680/year</li>
+                        <li class="text-amber-600 font-medium">• Epic Universe passes coming 2025!</li>
+                    </ul>
+                    <a href="https://www.universalorlando.com/web/en/us/tickets/annual-passes" target="_blank" 
+                       class="text-orange-600 font-medium text-sm hover:underline">Compare Universal Passes →</a>
+                </div>
+
+                <!-- SeaWorld -->
+                <div class="bg-white rounded-xl p-6 border card-hover">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="text-4xl">🐬</span>
+                        <div>
+                            <h3 class="font-bold text-lg">SeaWorld Parks</h3>
+                            <p class="text-sm text-gray-500">Annual Passes</p>
+                        </div>
+                    </div>
+                    <ul class="text-sm text-gray-600 space-y-2 mb-4">
+                        <li>• <strong>SeaWorld Only:</strong> ~$120/year</li>
+                        <li>• <strong>SeaWorld + Aquatica:</strong> ~$180/year</li>
+                        <li>• <strong>All 3 Parks:</strong> ~$230/year</li>
+                        <li>• <strong>Platinum (all US parks):</strong> ~$350/year</li>
+                        <li class="text-green-600">• Often has amazing sales!</li>
+                    </ul>
+                    <a href="https://seaworld.com/orlando/annual-passes/" target="_blank" 
+                       class="text-cyan-600 font-medium text-sm hover:underline">Compare SeaWorld Passes →</a>
+                </div>
+
+                <!-- LEGOLAND -->
+                <div class="bg-white rounded-xl p-6 border card-hover">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="text-4xl">🧱</span>
+                        <div>
+                            <h3 class="font-bold text-lg">LEGOLAND Florida</h3>
+                            <p class="text-sm text-gray-500">Annual Passes</p>
+                        </div>
+                    </div>
+                    <ul class="text-sm text-gray-600 space-y-2 mb-4">
+                        <li>• <strong>Awesome:</strong> ~$170/year (some blockouts)</li>
+                        <li>• <strong>Awesomer:</strong> ~$220/year</li>
+                        <li>• <strong>Awesomest:</strong> ~$300/year</li>
+                        <li>• Includes Water Park & PEPPA PIG</li>
+                        <li class="text-yellow-600">• Great for kids 2-12!</li>
+                    </ul>
+                    <a href="https://www.legoland.com/florida/tickets-passes/annual-passes/" target="_blank" 
+                       class="text-yellow-600 font-medium text-sm hover:underline">Compare LEGOLAND Passes →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tips -->
+    <section class="py-12 bg-purple-50">
+        <div class="max-w-4xl mx-auto px-4">
+            <h2 class="text-2xl font-bold text-center mb-8">💡 Passholder Pro Tips</h2>
+            
+            <div class="space-y-4">
+                <div class="bg-white rounded-xl p-6">
+                    <h3 class="font-bold mb-2 flex items-center gap-2"><span class="text-xl">🎯</span> Make Reservations Early</h3>
+                    <p class="text-gray-600 text-sm">Passholders can only hold 3 park reservations at a time. Book popular dates as soon as you use one up! Park Pass availability can be limited, especially for Magic Kingdom.</p>
+                </div>
+                
+                <div class="bg-white rounded-xl p-6">
+                    <h3 class="font-bold mb-2 flex items-center gap-2"><span class="text-xl">💳</span> Use Payment Plans</h3>
+                    <p class="text-gray-600 text-sm">Disney offers monthly payment plans with a down payment. Spread the cost over 12 months! Note: You must maintain an active pass to keep benefits.</p>
+                </div>
+
+                <div class="bg-white rounded-xl p-6">
+                    <h3 class="font-bold mb-2 flex items-center gap-2"><span class="text-xl">📱</span> Check the App Daily</h3>
+                    <p class="text-gray-600 text-sm">Passholder-exclusive offerings, merchandise, and experiences pop up in the My Disney Experience app. Check the "Passholder" section regularly!</p>
+                </div>
+
+                <div class="bg-white rounded-xl p-6">
+                    <h3 class="font-bold mb-2 flex items-center gap-2"><span class="text-xl">🎁</span> Stack Discounts Carefully</h3>
+                    <p class="text-gray-600 text-sm">Usually can't combine AP discount with other offers, BUT you can use Disney gift cards bought at 5% off from Target RedCard!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-12 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h2 class="text-2xl font-bold mb-4">Ready to Become a Passholder?</h2>
+            <p class="text-white/90 mb-6">Visit Disney's official site to purchase your Annual Pass</p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="https://disneyworld.disney.go.com/passes/" target="_blank" class="bg-white text-purple-600 px-6 py-3 rounded-lg font-medium hover:bg-gray-100">🎫 Buy Disney Annual Pass</a>
+                <a href="/ticket-helpers.html" class="bg-white/20 text-white px-6 py-3 rounded-lg font-medium hover:bg-white/30">🎟️ Compare Single Tickets</a>
+                <a href="/" class="bg-white/20 text-white px-6 py-3 rounded-lg font-medium hover:bg-white/30">🏠 Back to Home</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <p class="text-gray-400 text-sm mb-4">Information on this page is for reference only. Always verify current prices, blockout dates, and benefits on Disney's official website.</p>
+            <p class="text-gray-500 text-xs">© 2025 CR AudioViz AI, LLC | <a href="https://craudiovizai.com" class="hover:text-white">craudiovizai.com</a></p>
+        </div>
+    </footer>
+</body>
+</html>
