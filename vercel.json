@@ -1,14 +1,11 @@
 {
+  "version": 2,
   "rewrites": [
+    { "source": "/api/(.*)", "destination": "/api/$1" },
     { "source": "/hotel-helpers.html", "destination": "/public/hotel-helpers.html" },
     { "source": "/car-rental-helpers.html", "destination": "/public/car-rental-helpers.html" },
     { "source": "/ticket-helpers.html", "destination": "/public/ticket-helpers.html" },
     { "source": "/passholder-helper.html", "destination": "/public/passholder-helper.html" },
-    { "source": "/((?!api/).*)", "destination": "/public/$1" }
-  ],
-  "functions": {
-    "api/*.js": {
-      "runtime": "@vercel/node@3"
-    }
-  }
+    { "source": "/(.*)", "destination": "/public/$1" }
+  ]
 }
