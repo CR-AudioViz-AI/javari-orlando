@@ -3,7 +3,6 @@
   "version": "3.0.0",
   "description": "Orlando Vacation Deals - Disney, Universal, SeaWorld Planning",
   "private": true,
-  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
