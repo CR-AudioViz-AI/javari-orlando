@@ -1,12 +1,14 @@
-// app/layout.tsx — javari-orlando
+// app/layout.tsx — javari-orlando (product name: Orlando Trip Deals)
+// 2026-08-10 (Roy): "make orlandotripdeal our proper name." The product is
+// Orlando Trip Deals on orlandotripdeal.com. 'Orlando' alone was a placeholder.
 // Universal brand shell — EIN, auth CTA, metadata
 // CR AudioViz AI · EIN 39-3646201 · May 2026
 import type { Metadata } from 'next'
 export const dynamic = 'force-dynamic'
 export const metadata: Metadata = {
-  title: 'Orlando',
-  description: 'Orlando — powered by Javari AI on the CR AudioViz AI platform',
-  openGraph: { title: 'Orlando', type: 'website' },
+  title: 'Orlando Trip Deals — CR AudioViz AI',
+  description: 'Orlando Trip Deals — hotels, tickets and package comparisons for Walt Disney World, Universal Orlando and Central Florida attractions. Powered by Javari AI on the CR AudioViz AI platform.',
+  openGraph: { title: 'Orlando Trip Deals — CR AudioViz AI', type: 'website' },
 }
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -15,7 +17,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <div style={{ background: 'rgba(7,8,15,0.95)', backdropFilter: 'blur(8px)', height: 48, display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 20px', position: 'fixed', top: 0, left: 0, right: 0, zIndex: 200, borderBottom: '1px solid rgba(99,102,241,0.12)' }}>
           <a href="https://craudiovizai.com" style={{ color: '#fff', textDecoration: 'none', fontWeight: 700, fontSize: 13, display: 'flex', alignItems: 'center', gap: 8 }}>
             <span style={{ fontSize: 16 }}>✨</span>
-            <span style={{ color: '#6366f1' }}>Orlando</span>
+            <span style={{ color: '#6366f1' }}>Orlando Trip Deals</span>
             <span style={{ color: '#374151', fontSize: 10 }}>· CR AudioViz AI · EIN 39-3646201</span>
           </a>
           <a href="https://craudiovizai.com/auth/signup" style={{ background: '#6366f1', color: '#000', borderRadius: 6, padding: '5px 14px', fontSize: 11, fontWeight: 700, textDecoration: 'none' }}>Sign Up Free →</a>
