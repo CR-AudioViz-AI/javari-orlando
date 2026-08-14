@@ -11,7 +11,7 @@ import { createClient } from '@supabase/supabase-js';
 // =====================================================
 
 const CRAIVERSE_CONFIG = {
-  supabaseUrl: process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://kteobfyferrukqeolofj.supabase.co',
+  supabaseUrl: process.env.NEXT_PUBLIC_SUPABASE_URL,
   supabaseAnonKey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '',
   appSlug: process.env.NEXT_PUBLIC_APP_SLUG || 'unknown',
 };
