@@ -60,7 +60,7 @@ Important rules:
 Current date context: December 2025`;
 
     // Try to connect to Javari AI backend first
-    const JAVARI_API_URL = process.env.JAVARI_API_URL || 'https://crav-javari.vercel.app/api/chat';
+    const JAVARI_API_URL = process.env.JAVARI_API_URL || 'https://javari-javari.vercel.app/api/chat';
     const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
     const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY;
 

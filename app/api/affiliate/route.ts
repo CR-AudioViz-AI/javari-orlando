@@ -59,7 +59,7 @@ export async function POST(request: NextRequest) {
         if (networkConfig?.partnerId) {
           const url = new URL(destinationUrl);
           url.searchParams.set(networkConfig.trackingParam, networkConfig.partnerId);
-          url.searchParams.set("utm_source", "crav-orlando-deals");
+          url.searchParams.set("utm_source", "javari-orlando-deals");
           url.searchParams.set("utm_medium", "affiliate");
           url.searchParams.set("utm_campaign", dealId);
           affiliateUrl = url.toString();

@@ -5,7 +5,7 @@
 
 ## 📋 TEST OVERVIEW
 
-**Site URL:** https://crav-orlando-deals.vercel.app
+**Site URL:** https://javari-orlando-deals.vercel.app
 **Tester:** _______________
 **Date:** _______________
 **Browser:** _______________

@@ -20,7 +20,7 @@
                         'universal': '#0033A0',
                         'seaworld': '#0077B6',
                         'legoland': '#FFD700',
-                        'crav': '#6366F1'
+                        'javari': '#6366F1'
                     }
                 }
             }
@@ -115,7 +115,7 @@
                     <i class="fas fa-magic"></i>
                     Build My Custom Trip
                 </a>
-                <button onclick="openAIChat()" class="bg-crav text-white px-6 py-3 rounded-full font-semibold hover:bg-indigo-600 transition flex items-center gap-2">
+                <button onclick="openAIChat()" class="bg-javari text-white px-6 py-3 rounded-full font-semibold hover:bg-indigo-600 transition flex items-center gap-2">
                     <i class="fas fa-robot"></i>
                     Ask Javari AI
                 </button>
@@ -152,7 +152,7 @@
     <!-- Javari AI Chat Widget (Floating) -->
     <div id="aiChatWidget" class="fixed bottom-6 right-6 z-50 hidden">
         <div class="bg-white rounded-2xl shadow-2xl w-96 max-h-[500px] flex flex-col overflow-hidden">
-            <div class="bg-gradient-to-r from-crav to-purple-600 text-white p-4 flex items-center justify-between">
+            <div class="bg-gradient-to-r from-javari to-purple-600 text-white p-4 flex items-center justify-between">
                 <div class="flex items-center gap-3">
                     <div class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
                         <i class="fas fa-robot"></i>
@@ -167,7 +167,7 @@
                 </button>
             </div>
             <div id="chatMessages" class="flex-1 p-4 space-y-4 overflow-y-auto max-h-72 bg-gray-50">
-                <div class="chat-bubble bg-crav/10 rounded-lg p-3 max-w-[80%]">
+                <div class="chat-bubble bg-javari/10 rounded-lg p-3 max-w-[80%]">
                     <p class="text-sm text-gray-800">👋 Hi! I'm Javari, your AI trip planner. Tell me about your dream Orlando vacation and I'll help you find the best deals!</p>
                     <p class="text-xs text-gray-500 mt-2">Try: "Plan a Disney trip for a family of 4 under $3000"</p>
                 </div>
@@ -175,9 +175,9 @@
             <div class="p-4 border-t bg-white">
                 <div class="flex gap-2">
                     <input type="text" id="chatInput" placeholder="Describe your ideal trip..." 
-                        class="flex-1 border rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-crav"
+                        class="flex-1 border rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-javari"
                         onkeypress="if(event.key==='Enter')sendChat()">
-                    <button onclick="sendChat()" class="bg-crav text-white px-4 py-2 rounded-lg hover:bg-indigo-600">
+                    <button onclick="sendChat()" class="bg-javari text-white px-4 py-2 rounded-lg hover:bg-indigo-600">
                         <i class="fas fa-paper-plane"></i>
                     </button>
                 </div>
@@ -187,7 +187,7 @@
     </div>
 
     <!-- AI Chat FAB -->
-    <button id="aiFab" onclick="openAIChat()" class="fixed bottom-6 right-6 z-40 bg-crav text-white w-14 h-14 rounded-full shadow-lg hover:bg-indigo-600 transition flex items-center justify-center">
+    <button id="aiFab" onclick="openAIChat()" class="fixed bottom-6 right-6 z-40 bg-javari text-white w-14 h-14 rounded-full shadow-lg hover:bg-indigo-600 transition flex items-center justify-center">
         <i class="fas fa-robot text-xl"></i>
     </button>
 
@@ -596,7 +596,7 @@
         <div class="max-w-6xl mx-auto px-4">
             <div class="grid md:grid-cols-2 gap-12 items-center">
                 <div>
-                    <span class="bg-crav/20 text-crav px-3 py-1 rounded-full text-sm font-medium mb-4 inline-block">For Travel Professionals</span>
+                    <span class="bg-javari/20 text-javari px-3 py-1 rounded-full text-sm font-medium mb-4 inline-block">For Travel Professionals</span>
                     <h2 class="text-3xl font-bold mb-4">Travel Agent Portal</h2>
                     <p class="text-gray-300 mb-6">
                         Access wholesale rates, earn commissions, and provide your clients with the best Orlando vacation deals.
@@ -619,7 +619,7 @@
                             <span>Dedicated agent support</span>
                         </li>
                     </ul>
-                    <a href="/agents" class="bg-crav text-white px-6 py-3 rounded-lg font-semibold hover:bg-indigo-600 transition inline-flex items-center gap-2">
+                    <a href="/agents" class="bg-javari text-white px-6 py-3 rounded-lg font-semibold hover:bg-indigo-600 transition inline-flex items-center gap-2">
                         <i class="fas fa-briefcase"></i>
                         Agent Sign Up
                     </a>
@@ -628,7 +628,7 @@
                     <div class="text-5xl mb-4">💼</div>
                     <h3 class="text-xl font-bold mb-2">Partner With Us</h3>
                     <p class="text-gray-400 mb-6">Hotels, attractions, and travel companies - let's work together!</p>
-                    <a href="/investors" class="text-crav hover:underline font-medium">Business Inquiries →</a>
+                    <a href="/investors" class="text-javari hover:underline font-medium">Business Inquiries →</a>
                 </div>
             </div>
         </div>
@@ -677,8 +677,8 @@
                     <h4 class="font-bold mb-4">Get Deal Alerts</h4>
                     <p class="text-gray-400 text-sm mb-4">Be the first to know about Orlando vacation deals</p>
                     <form onsubmit="submitFooterEmail(event)" class="flex gap-2">
-                        <input type="email" required placeholder="Email" class="flex-1 px-3 py-2 rounded bg-gray-800 border border-gray-700 text-white text-sm focus:outline-none focus:border-crav">
-                        <button type="submit" class="bg-crav px-4 py-2 rounded font-medium text-sm hover:bg-indigo-600">
+                        <input type="email" required placeholder="Email" class="flex-1 px-3 py-2 rounded bg-gray-800 border border-gray-700 text-white text-sm focus:outline-none focus:border-javari">
+                        <button type="submit" class="bg-javari px-4 py-2 rounded font-medium text-sm hover:bg-indigo-600">
                             <i class="fas fa-paper-plane"></i>
                         </button>
                     </form>
@@ -818,7 +818,7 @@
             setTimeout(() => {
                 const responses = getAIResponse(message);
                 container.innerHTML += `
-                    <div class="chat-bubble bg-crav/10 rounded-lg p-3 max-w-[80%]">
+                    <div class="chat-bubble bg-javari/10 rounded-lg p-3 max-w-[80%]">
                         <p class="text-sm text-gray-800">${responses}</p>
                     </div>
                 `;
@@ -835,16 +835,16 @@
                 return "🏰 For a family Disney trip, I'd recommend:<br><br>• <strong>Stay:</strong> Pop Century ($199/night) or DVC rental at Animal Kingdom ($294/night - 45% savings!)<br>• <strong>Tickets:</strong> 4-day Park Hopper, best value at ~$135/day<br>• <strong>Must-do:</strong> Magic Kingdom + Hollywood Studios<br><br>Want me to search for specific dates?";
             }
             if (lower.includes('budget') || lower.includes('cheap') || lower.includes('save')) {
-                return "💰 Best ways to save on Orlando vacations:<br><br>1. <strong>DVC Rentals</strong> - Save 30-60% on Disney Deluxe resorts<br>2. <strong>Off-season</strong> - January & September have lowest prices<br>3. <strong>Universal AP</strong> - 40% off hotels<br>4. <strong>SeaWorld Fun Card</strong> - $49.99 unlimited visits<br><br>Use our <a href='/dvc' class='text-crav underline'>DVC Calculator</a> to see exact savings!";
+                return "💰 Best ways to save on Orlando vacations:<br><br>1. <strong>DVC Rentals</strong> - Save 30-60% on Disney Deluxe resorts<br>2. <strong>Off-season</strong> - January & September have lowest prices<br>3. <strong>Universal AP</strong> - 40% off hotels<br>4. <strong>SeaWorld Fun Card</strong> - $49.99 unlimited visits<br><br>Use our <a href='/dvc' class='text-javari underline'>DVC Calculator</a> to see exact savings!";
             }
             if (lower.includes('universal') || lower.includes('epic')) {
                 return "🎢 Universal Orlando tips:<br><br>• <strong>Epic Universe</strong> opens 2025 - buy 3-day, get 2 FREE!<br>• <strong>Premier Pass</strong> = FREE Express after 4pm<br>• <strong>Stay on-site</strong> for Early Park Admission<br>• <strong>Best value:</strong> Endless Summer Resort from $119/night<br><br>Want me to find Universal hotel deals?";
             }
             if (lower.includes('dvc') || lower.includes('deluxe')) {
-                return "💎 DVC Rentals explained:<br><br>Disney Vacation Club owners rent their unused points. You get:<br>• Same deluxe rooms (Grand Floridian, Polynesian, etc.)<br>• Same perks (Early Entry, Extended Hours)<br>• 30-60% less than Disney direct<br><br>Example: Grand Floridian $441/night vs $789 direct!<br><br><a href='/dvc' class='text-crav underline'>Calculate your savings →</a>";
+                return "💎 DVC Rentals explained:<br><br>Disney Vacation Club owners rent their unused points. You get:<br>• Same deluxe rooms (Grand Floridian, Polynesian, etc.)<br>• Same perks (Early Entry, Extended Hours)<br>• 30-60% less than Disney direct<br><br>Example: Grand Floridian $441/night vs $789 direct!<br><br><a href='/dvc' class='text-javari underline'>Calculate your savings →</a>";
             }
             
-            return "I can help you plan the perfect Orlando trip! Tell me:<br><br>• Which parks? (Disney, Universal, SeaWorld)<br>• How many people?<br>• What's your budget?<br>• Any specific dates?<br><br>Or try our <a href='#trip-builder' class='text-crav underline'>Trip Builder</a> to see all your options!";
+            return "I can help you plan the perfect Orlando trip! Tell me:<br><br>• Which parks? (Disney, Universal, SeaWorld)<br>• How many people?<br>• What's your budget?<br>• Any specific dates?<br><br>Or try our <a href='#trip-builder' class='text-javari underline'>Trip Builder</a> to see all your options!";
         }
 
         // ========== EMAIL FUNCTIONS ==========

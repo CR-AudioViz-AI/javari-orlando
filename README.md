@@ -4,7 +4,7 @@ Free Orlando vacation planning tools powered by Javari AI.
 
 ## Live Site
 - **Production:** https://orlandotripdeal.com
-- **Preview:** https://crav-orlando-deals.vercel.app
+- **Preview:** https://javari-orlando-deals.vercel.app
 
 ## Features
 - Hotel comparison tools

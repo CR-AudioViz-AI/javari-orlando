@@ -1,7 +1,7 @@
 // Disney Deal Tracker - Content Script
 // Runs on Disney.com to inject deal information and auto-apply codes
 
-const API_BASE = 'https://crav-disney-deal-tracker.vercel.app/api'
+const API_BASE = 'https://javari-disney-deal-tracker.vercel.app/api'
 
 // Initialize extension
 async function init() {
@@ -329,7 +329,7 @@ function addPriceTrackerButton() {
   `
   button.title = 'Disney Deal Tracker'
   button.onclick = () => {
-    window.open('https://crav-disney-deal-tracker.vercel.app', '_blank')
+    window.open('https://javari-disney-deal-tracker.vercel.app', '_blank')
   }
   
   document.body.appendChild(button)
