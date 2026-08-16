@@ -81,11 +81,15 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
   const sb = db()
   let joined: Row[] = []
   let pending = 0
+  // A roster that returns nothing looks the same whether the database is
+  // unreachable, the query is wrong, or there genuinely are no approvals.
+  // Say which, so the next person does not spend an hour guessing.
+  let diagnostic: string | null = sb ? null : 'Supabase not configured on this project'
 
   if (sb) {
     // Only merchants we are actually approved with. A pending or rejected
     // merchant sends the customer somewhere that earns nothing.
-    const { data } = await sb
+    const { data, error } = await sb
       .from('merchant_feeds')
       .select('advertiser_name, advertiser_id, sector, feed_url, maps_to_category')
       .eq('relationship', 'joined')
@@ -93,6 +97,7 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
       // a travel roster. Sectors are named explicitly instead of pattern-matched.
       .in('sector', TRAVEL_SECTORS)
       .limit(200)
+    if (error) diagnostic = `merchant query failed: ${error.message}`
     joined = (data as Row[] | null) ?? []
 
     const { count } = await sb
@@ -128,6 +133,7 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
       pending > 0
         ? `${pending} travel merchants are awaiting AWIN approval. They appear here automatically once approved — no deploy needed.`
         : undefined,
+    diagnostic,
     generatedAt: new Date().toISOString(),
   }
 
