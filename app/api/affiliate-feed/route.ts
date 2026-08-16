@@ -50,6 +50,20 @@ const DIRECT = [
     url: 'https://www.squaremouth.com/', param: 'utm_source', id: '' },
 ]
 
+// The sectors AWIN actually uses for travel. Named rather than pattern-matched,
+// because '%car%' silently matched 'Pets & Pet Care'.
+const TRAVEL_SECTORS = [
+  'Travel',
+  'Travel Agencies',
+  'Tourism & Attraction',
+  'Tourism & Attractions',
+  'Airlines',
+  'Hotels & Accommodation',
+  'Car Rental',
+  'Cruises',
+  'Travel Insurance',
+]
+
 interface Row {
   advertiser_name: string
   advertiser_id: string | null
@@ -75,10 +89,9 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
       .from('merchant_feeds')
       .select('advertiser_name, advertiser_id, sector, feed_url, maps_to_category')
       .eq('relationship', 'joined')
-      .or(
-        'sector.ilike.%travel%,sector.ilike.%tourism%,sector.ilike.%attraction%,' +
-          'sector.ilike.%hotel%,sector.ilike.%airline%,sector.ilike.%car%',
-      )
+      // '%car%' matched 'Pets & Pet Care' and pulled twelve pet merchants into
+      // a travel roster. Sectors are named explicitly instead of pattern-matched.
+      .in('sector', TRAVEL_SECTORS)
       .limit(200)
     joined = (data as Row[] | null) ?? []
 
@@ -86,7 +99,7 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
       .from('merchant_feeds')
       .select('advertiser_id', { count: 'exact', head: true })
       .eq('relationship', 'pending')
-      .or('sector.ilike.%travel%,sector.ilike.%tourism%,sector.ilike.%attraction%')
+      .in('sector', TRAVEL_SECTORS)
     pending = count ?? 0
   }
 
